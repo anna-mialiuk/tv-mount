@@ -10,7 +10,7 @@ const reviews = [
     avatar: "/review-2.jpg",
     name: "Christopher D.",
     time: "5 days ago",
-    text: "Andrey mounted our TV in less than 30 minutes! Looks great. Very professional",
+    text: "The quickest process ever. They asked me to rest while they exceeded customer",
     city: "Chicago, IL",
   },
   {
