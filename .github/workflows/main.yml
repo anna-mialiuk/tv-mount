@@ -1,0 +1,24 @@
+name: Deploy TV Mount
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy on VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 173.242.49.47
+          username: root
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/tv-mount-repo
+            git pull
+            npm install
+            npm run build
+            deploy-tv
