@@ -1,0 +1,23 @@
+@use '../../styles/mixins' as mix
+
+.benefits
+    @include mix.section(3.2rem)
+    @include mix.laptop
+        @include mix.section(2.4rem)
+    @include mix.big-screen
+        @include mix.section(5rem)
+
+    &__title
+        margin-bottom: 5.6rem
+        @include mix.laptop
+            margin-bottom: 3rem
+
+    &__text
+        margin-bottom: none
+
+    &__cards
+        @include mix.grid(4)
+        @include mix.laptop
+            @include mix.grid(2)
+        @include mix.mobile-sm
+            @include mix.grid(1)

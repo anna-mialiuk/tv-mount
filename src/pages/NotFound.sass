@@ -1,0 +1,37 @@
+@use '../styles/variables' as vars
+@use '../styles/mixins' as mix
+
+.not-found
+    padding: 6rem 0
+    &__container
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        min-height: calc(100vh - 18rem)
+        text-align: center
+
+    &__code
+        font-size: clamp(8rem, 18vw, 16rem)
+        font-weight: 700
+        line-height: 1
+        color: vars.$color-primary
+        margin-bottom: 2rem
+
+    &__title
+
+        margin-bottom: 2rem
+
+    &__text
+
+        font-size: 2rem
+        line-height: 160%
+        color: vars.$color-darkgrey
+        margin-bottom: 4rem
+
+    &__actions
+        display: flex
+        justify-content: centers
+        background-color: vars.$color-primary
+        color: vars.$color-white
+        border-radius: 1.2rem

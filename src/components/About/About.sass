@@ -1,0 +1,81 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.about
+    @include mix.section
+    @include mix.big-screen
+        @include mix.section(5rem)
+
+    &__wrapper
+        display: flex
+        @include mix.tablet
+            flex-direction: column
+    
+    &__content
+        width: 50%
+        margin-right: 5rem
+        @include mix.tablet
+            width: 100%
+            margin-right: 0rem
+
+    &__image
+        width: 50%
+        @include mix.tablet
+            display: none
+
+    &__image-tablet
+        display: none
+        @include mix.tablet
+            display: block
+            margin-bottom: 2rem
+
+    &__title
+        margin-bottom: 2rem
+
+    &__paragraph
+        margin-bottom: 1.2rem
+
+    &__stats
+        display: flex
+        gap: 2rem
+        margin-top: 4rem
+        @include mix.laptop
+            display: none
+
+    &__stats-laptop
+        display: none
+        @include mix.laptop
+            @include mix.grid(4)
+            gap: 2rem
+            margin-top: 3rem
+            @include mix.tablet
+                @include mix.grid(2)
+
+    &__stat
+        @include mix.flex-center
+        flex-direction: column
+        border: .1rem solid vars.$color-primary
+        padding: 1.2rem 2rem
+        border-radius: vars.$radius-md
+        @include mix.laptop
+            font-size: 2rem
+            width: 100%
+        @include mix.big-screen
+            font-size: 2rem
+        @include mix.big-screen
+            font-size: 2.5rem
+            padding: 2.2rem 2rem
+
+    &__span-text
+        font-size: .8rem
+        border-top: .1rem solid vars.$color-sublightgrey
+        padding-top: .8rem
+        margin-top: .8rem
+        @include mix.laptop
+            font-size: 1.4rem
+        @include mix.big-screen
+            font-size: 1.4rem
+
+
+    &__img-team
+        width: 100%

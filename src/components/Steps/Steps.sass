@@ -1,0 +1,67 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.steps
+    padding: 3.2rem 0
+    @include mix.big-screen
+        padding: 5rem 0
+
+    &__title
+        margin-bottom: 5.6rem
+
+    &__cards
+        @include mix.grid(4)
+        align-items: stretch
+
+        @include mix.laptop
+            @include mix.grid(2)
+
+        @include mix.mobile-sm
+            @include mix.grid(1)
+
+        .card
+            position: relative
+
+            &:not(:last-child)::after
+                content: ''
+                position: absolute
+                top: 50%
+                right: -2rem
+                width: 2rem
+                height: .2rem
+                background: vars.$color-primary
+                transform: translateY(-50%)
+
+            @include mix.laptop
+                &::after
+                    display: none
+
+                &:nth-child(odd)::after
+                    content: ''
+                    display: block
+                    position: absolute
+                    top: 50%
+                    right: -2rem
+                    width: 2rem
+                    height: .2rem
+                    background: vars.$color-primary
+                    transform: translateY(-50%)
+
+            @include mix.mobile-sm
+                &::after
+                    display: none
+
+                &:not(:last-child)::after
+                    content: ''
+                    display: block
+                    position: absolute
+                    left: 50%
+                    bottom: -2rem
+                    top: auto
+                    right: auto
+
+                    width: .2rem
+                    height: 2rem
+
+                    background: vars.$color-primary
+                    transform: translateX(-50%)

@@ -1,0 +1,117 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.header
+    position: relative
+    z-index: 50
+    padding: 1rem 0
+
+    &__container
+        @include mix.flex-between
+        gap: 2rem
+
+    &__logo img
+        width: 10rem
+
+        @include mix.big-screen
+            width: 20rem
+
+    &__nav
+        display: flex
+        align-items: center
+        gap: 4rem
+
+        @include mix.laptop-big
+            position: absolute
+            top: 100%
+            left: 0
+            right: 0
+
+            flex-direction: column
+            align-items: flex-start
+            gap: 2rem
+
+            padding: 3rem
+
+            background: vars.$color-white
+            box-shadow: vars.$shadow-card
+            font-size: 3rem
+
+            opacity: 0
+            visibility: hidden
+            pointer-events: none
+            transform: translateY(-2rem)
+
+            transition: opacity .3s ease, transform .3s ease, visibility .3s ease
+
+            &--active
+                opacity: 1
+                visibility: visible
+                pointer-events: auto
+                transform: translateY(0)
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__a
+        transition: .3s all
+
+        &:hover
+            color: vars.$color-primary
+
+    &__actions
+        display: flex
+        align-items: center
+        gap: 2rem
+
+    &__button
+        padding: 1.2rem 2.4rem
+
+        @include mix.laptop-big
+            display: none
+
+    &__number-desktop
+        transition: .3s all
+
+        &:hover
+            color: vars.$color-primary
+
+        @include mix.laptop-big
+            display: none
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__number-phone
+        display: none
+
+        @include mix.laptop-big
+            display: block
+            margin-left: auto
+
+    &__burger
+        display: none
+        width: 3rem
+        height: 3rem
+        padding: 0
+        border: none
+        background: transparent
+        cursor: pointer
+        transition: .3s ease
+
+        @include mix.laptop-big
+            @include mix.flex-center
+
+        &--active
+            background: #343434
+            border-radius: .8rem
+
+    &__burger-icon
+        width: 2.4rem
+        height: 2.4rem
+        transition: .3s ease
+
+        &--active
+            width: 1rem
+            height: 1rem
+            transform: rotate(180deg)

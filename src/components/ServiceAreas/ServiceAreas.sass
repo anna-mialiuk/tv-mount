@@ -1,0 +1,122 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.service-areas
+    @include mix.section(3.2rem)
+    background: vars.$color-lightgrey
+    @include mix.big-screen
+        @include mix.section(5rem)
+
+    &__city
+        cursor: pointer
+
+        &--active
+            color: vars.$color-primary
+            font-weight: 600
+
+    &__wrapper
+        @include mix.grid(2, 6rem)
+        align-items: start
+
+        @include mix.tablet
+            grid-template-columns: 1fr
+            gap: 3rem
+
+    &__map
+        @include mix.flex-center
+        height: 100%
+        border-radius: 1.2rem
+        font-size: 3rem
+        @include mix.tablet
+            flex-direction: column
+            width: 100%
+            min-height: 36rem
+        @include mix.big-screen
+            font-size: 5rem
+
+    &__content
+        width: 100%
+
+    &__title
+        margin-bottom: 3rem
+        @include mix.tablet
+            display: none
+
+    &__title-tablet
+        display: none
+        @include mix.tablet
+            display: block
+            margin-bottom: 2rem
+
+    &__item
+        &:not(:last-child)
+            margin-bottom: 2rem
+        @include mix.mobile
+            border: .1rem solid vars.$color-sublightgrey
+            padding: .7rem .8rem
+            border-radius: .6rem
+            background: vars.$color-white
+
+    &__button
+        width: 100%
+        @include mix.flex-between
+        font-size: 1.8rem
+        font-weight: 500
+        cursor: pointer
+        @include mix.tablet
+            justify-content: flex-start
+        @include mix.mobile
+            justify-content: space-between
+        @include mix.big-screen
+            font-size: 2.2rem
+
+        &--active
+            color: vars.$color-primary
+
+    &__arrow
+        display: inline-block
+        transition: transform .3s ease
+        transform: rotate(180deg)
+        @include mix.tablet
+            margin-left: 3rem
+
+        &--active
+            transform: rotate(0deg)
+
+    &__cities
+        @include mix.flex-column
+        gap: .8rem
+        margin-top: 1.6rem
+
+        li
+            position: relative
+            padding-left: 1.6rem
+            font-size: 1.6rem
+            line-height: 150%
+
+            &::before
+                content: "•"
+                position: absolute
+                left: 0
+                color: vars.$color-primary
+
+            @include mix.big-screen
+                font-size: 2rem
+
+    &__list
+        @include mix.tablet
+            display: flex
+            justify-content: space-between
+        @include mix.mobile
+            flex-direction: column
+
+    &__actions
+        margin-top: 3rem
+
+        .button
+            width: 100%
+
+.leaflet-container
+    width: 100%
+    height: 100%
+    border-radius: 1.2rem

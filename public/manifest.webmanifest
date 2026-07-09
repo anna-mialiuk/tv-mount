@@ -1,0 +1,16 @@
+{
+  "name": "TV Mount Company",
+  "short_name": "TV Mount",
+  "description": "Professional TV mounting and installation services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6b3d",
+  "icons": [
+    {
+      "src": "/favicon-light.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

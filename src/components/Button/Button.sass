@@ -1,0 +1,23 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.button
+    @include mix.flex-center
+    padding: 1.6rem 6rem
+    border-radius: vars.$radius-md
+    font-size: 1.8rem
+    font-weight: 500
+    cursor: pointer
+    text-decoration: none
+    transition: .2s ease
+    @include mix.big-screen
+        font-size: 2.2rem
+
+    &--primary
+        background: vars.$color-primary
+        color: vars.$color-white
+
+    &--outline
+        background: vars.$color-white
+        color: vars.$color-black
+        border: .2rem solid vars.$color-primary

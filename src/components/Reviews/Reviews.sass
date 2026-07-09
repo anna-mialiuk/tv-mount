@@ -1,0 +1,99 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.reviews
+    @include mix.section
+    background: vars.$color-lightgrey
+    @include mix.laptop
+        @include mix.section(2.4rem)
+    @include mix.big-screen
+        @include mix.section(5rem)
+
+    &__title
+        margin-bottom: 2rem
+        @include mix.laptop
+            margin-bottom: 1.6rem
+
+    &__rating
+        display: flex
+        align-items: center
+        margin-bottom: 5.6rem
+        @include mix.laptop
+            margin-bottom: 3rem
+
+    &__rate-text
+        color: vars.$color-darkgrey
+
+    &__cards
+        @include mix.grid(4)
+        @include mix.laptop
+            @include mix.grid(2)
+        @include mix.tablet
+            @include mix.grid(1)
+
+    &__card
+        background: vars.$color-white
+        padding: 2rem 2.6rem
+        border-radius: 1.2rem
+        border-left: .3rem solid vars.$color-primary
+        @include mix.big-screen
+            padding: 3rem 3.6rem
+
+    &__card-top
+        @include mix.flex-between
+        align-items: flex-start
+        margin-bottom: 2rem
+
+    &__card-top-left
+        display: flex
+        align-items: center
+        
+    &__name
+        font-size: 1.4rem
+        @include mix.laptop
+            font-size: 1.6rem
+        @include mix.big-screen
+            font-size: 1.8rem
+
+    &__stars
+        font-size: 1.4rem
+        @include mix.big-screen
+            font-size: 1.8rem
+    
+    &__time
+        font-size: 1rem
+        @include mix.big-screen
+            font-size: 1.4rem
+
+    &__text
+        margin-bottom: 2rem
+        padding-bottom: 2rem
+        border-bottom: .1rem solid vars.$color-sublightgrey
+        font-size: 1.4rem
+        @include mix.laptop
+            font-size: 1.6rem
+        @include mix.big-screen
+            font-size: 1.8rem
+
+    &__city
+        font-size: 1rem
+        color: vars.$color-darkgrey
+        @include mix.big-screen
+            font-size: 1.4rem
+
+    &__avatar
+        width: 3rem
+        height: 3rem
+        margin-right: 1rem
+        @include mix.big-screen
+            width: 6rem
+            height: 6rem
+            margin-right: 3rem
+
+.stars,
+.reviews__stars
+    color: #FFD70F
+    letter-spacing: .4rem
+
+.stars
+    margin-right: 1.6rem

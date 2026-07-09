@@ -1,0 +1,35 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.error-boundary
+    min-height: calc(100vh - 18rem)
+    padding: 6rem 0
+
+    &__container
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-direction: column
+        max-width: 60rem
+        margin: 0 auto
+        text-align: center
+
+    &__code
+        font-size: 7rem
+        font-weight: 700
+        color: vars.$color-primary
+        margin-bottom: 2rem
+
+    &__title
+        margin-bottom: 2rem
+
+    &__text
+        font-size: 2rem
+        line-height: 160%
+        color: vars.$color-darkgrey
+        margin-bottom: 4rem
+
+    &__button
+        background-color: vars.$color-primary
+        color: vars.$color-white
+        padding: 1.5rem 3rem

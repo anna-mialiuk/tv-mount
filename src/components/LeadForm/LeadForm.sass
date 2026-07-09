@@ -1,0 +1,55 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.lead-form
+    @include mix.flex-column
+    align-items: center
+    background: vars.$color-white
+    padding: 2rem 3.2rem
+    border-radius: vars.$radius-md
+    border: .1rem solid vars.$color-sublightgrey
+    box-shadow: vars.$shadow-card
+
+    &__title
+        font-family: 'Cygre', sans-serif
+        font-size: 3rem
+        margin-bottom: 2rem
+        color: vars.$color-black
+        @include mix.big-screen
+            font-size: 5rem
+
+    &__input
+        width: 100%
+        padding: 1.2rem 2.4rem
+        border-radius: vars.$radius-sm
+        border: .15rem solid #878787
+        font-size: 1.6rem
+        font-weight: 300
+        color: #878787
+        @include mix.big-screen
+            font-size: 2rem
+
+        &:not(:last-child)
+            margin-bottom: 1.2rem
+
+    &__button
+        width: 100%
+        margin: 1.2rem 0
+
+    &__note
+        font-size: 1.4rem
+        font-weight: 300
+        color: #878787
+        @include mix.big-screen
+            font-size: 1.8rem
+    
+    &__call
+        width: 100%
+
+    &__button-icon
+        width: 2rem
+        height: 2rem
+        margin-right: 1.6rem
+        @include mix.big-screen
+            width: 3rem
+            height: 3rem

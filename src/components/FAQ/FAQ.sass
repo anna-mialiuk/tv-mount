@@ -1,0 +1,68 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.faq
+    @include mix.section
+    @include mix.big-screen
+        @include mix.section(5rem)
+
+    &__title
+        margin-bottom: 3rem
+
+    &__grid
+        @include mix.grid(2)
+        align-items: start
+        @include mix.laptop
+            @include mix.grid(1)
+            
+    &__item
+        background: vars.$color-sublightgrey
+        border-radius: vars.$radius-sm
+        padding: 2rem 2.4rem
+        @include mix.big-screen
+            padding: 3rem 2.4rem
+
+        &--active
+            background: vars.$color-white
+            border-left: .3rem solid vars.$color-primary
+            box-shadow: vars.$shadow-card
+
+    &__button
+        width: 100%
+
+        @include mix.flex-between
+
+        gap: 2rem
+        background: transparent
+        border: none
+        text-align: left
+        cursor: pointer
+        font-size: 1.8rem
+        font-weight: 700
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__icon
+        transition: transform .35s ease
+
+    &__item--active &__icon
+        color: vars.$color-primary
+        transform: rotate(180deg)
+
+    &__content
+        max-height: 0
+        opacity: 0
+        overflow: hidden
+        transition: max-height .3s ease, opacity .15s ease
+
+    &__content--active
+        max-height: 100rem
+        opacity: 1
+
+    &__answer
+        padding-top: 1.6rem
+        font-size: 1.6rem
+        line-height: 140%
+        white-space: pre-line
+        @include mix.big-screen
+            font-size: 2rem

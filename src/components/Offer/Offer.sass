@@ -1,0 +1,169 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.offer
+    padding: 3.2rem 0
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8747 100%)
+    @include mix.big-screen
+        padding: 5rem 0
+
+    &__wrapper
+        display: flex
+        @include mix.laptop
+            flex-direction: column
+
+    &__content
+        width: 50%
+        margin-right: 5rem
+        @include mix.laptop
+            width: 100%
+            margin-right: 0
+            margin-bottom: 3.2rem
+        @include mix.big-screen
+            width: 55%
+
+    &__form
+        max-width: 48rem
+        width: 100%
+        @include mix.laptop
+            max-width: 100%
+        @include mix.big-screen
+            max-width: none
+            width: 45%
+
+    &__title
+        margin-bottom: 1.2rem
+        color: vars.$color-white
+        @include mix.laptop
+            text-align: center
+
+    &__description
+        margin-bottom: 3.6rem
+        color: vars.$color-white
+        @include mix.laptop
+            text-align: center
+
+    &__info
+        position: relative
+        display: flex
+        align-items: flex-start
+        flex-direction: column
+        gap: 3rem
+        @include mix.laptop
+            flex-direction: column
+            gap: 2rem
+
+    &__side
+        display: flex
+        flex-direction: column
+        gap: 1.6rem
+        @include mix.laptop
+            width: 100%
+            flex-direction: column-reverse
+            gap: 2rem
+
+    &__timer
+        display: flex
+        align-items: center
+        @include mix.laptop
+            width: 100%
+        
+    &__time
+        @include mix.flex-center
+        flex-direction: column
+        width: 9rem
+        padding: 1.3rem 2.2rem
+        background: vars.$color-white
+        border: .2rem solid #D81212
+        border-radius: 1rem
+        @include mix.laptop
+            height: 100%
+            width: 100%
+        @include mix.big-screen
+            padding: 3rem 6rem
+            width: auto
+
+    &__number
+        margin-bottom: .4rem
+        font-family: 'Cygre', sans-serif
+        font-size: 3rem
+        line-height: 120%
+        @include mix.laptop
+            font-size: 4rem
+        @include mix.big-screen
+            font-size: 5rem
+    
+    &__label
+        font-size: 1.3rem
+        font-weight: 300
+        @include mix.laptop
+            font-size: 2rem
+        @include mix.big-screen
+            font-size: 1.5rem
+
+    &__separator
+        margin: 1rem
+        font-family: 'Cygre', sans-serif
+        font-size: 3rem
+        color: vars.$color-white
+        @include mix.big-screen
+            font-size: 5rem
+
+    &__slots
+        display: flex
+        gap: 2rem
+        padding: 1.8rem 4rem
+        background: vars.$color-white
+        border-radius: 1.2rem
+        @include mix.laptop
+            background: none
+            padding: 0rem
+            border-radius: none
+        @include mix.big-screen
+            padding: 1.8rem 18rem
+
+    &__slot
+        display: flex
+        @include mix.laptop
+            background: vars.$color-white
+            padding: 1.8rem 4rem
+            border-radius: 1.2rem
+            width: 100%
+        @include mix.mobile-sm
+            padding: 1.8rem
+
+    &__arrow
+        width: 1rem
+        margin-right: .8rem
+        @include mix.laptop
+            margin-right: 1.8rem
+
+    &__bonus
+        position: absolute
+        display: flex
+        align-items: center
+        max-width: 20rem
+        top: -2rem
+        left: 30rem
+        @include mix.laptop
+            position: relative
+            top: 0
+            left: 0
+            max-width: 32rem
+        @include mix.big-screen
+            top: -2rem
+            left: 57rem
+            max-width: 30rem
+
+    &__bonus-icon
+        margin-right: 1rem
+        @include mix.big-screen
+            width: 6rem
+            height: 6rem
+
+    &__bonus-text
+        color: vars.$color-white
+        font-size: 1.4rem
+        font-weight: 300
+        @include mix.big-screen
+            font-size: 1.8rem

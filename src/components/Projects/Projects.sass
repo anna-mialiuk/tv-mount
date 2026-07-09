@@ -1,0 +1,119 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.projects
+    @include mix.section
+
+    &__title
+        margin-bottom: 3rem
+
+    &__grid
+        @include mix.grid(4)
+
+        @include mix.laptop
+            @include mix.grid(2)
+
+        @include mix.mobile-sm
+            @include mix.grid(1)
+
+    &__card
+        position: relative
+        overflow: hidden
+        min-height: 16rem
+        border: none
+        border-radius: 1.2rem
+        background: transparent
+        cursor: pointer
+
+    &__image
+        width: 100%
+        height: 100%
+        display: block
+        object-fit: cover
+
+    &__actions
+        @include mix.flex-center
+        margin-top: 4rem
+
+    &__button
+        @include mix.mobile-sm
+            width: 100%
+
+    &__button-icon
+        margin-left: 2.4rem
+
+    &__modal
+        position: fixed
+        inset: 0
+        z-index: 1000
+        padding: 4rem
+        background: rgba(0, 0, 0, .88)
+
+    &__close
+        position: absolute
+        top: 3rem
+        right: 4rem
+        z-index: 2
+        width: 4rem
+        height: 4rem
+        border: none
+        border-radius: .8rem
+        background: #343434
+        color: vars.$color-white
+        font-size: 3rem
+        cursor: pointer
+
+    &__modal-content
+        position: relative
+        max-width: 120rem
+        margin: 0 auto
+
+    &__modal-image
+        width: 100%
+        max-height: 65vh
+        display: block
+        object-fit: cover
+        border-radius: 1.2rem
+
+    &__modal-title
+        margin-top: -6rem
+        padding-left: 3rem
+        color: vars.$color-white
+        font-size: 2.4rem
+        position: relative
+        z-index: 1
+
+    &__thumbs
+        display: flex
+        gap: 1.2rem
+        margin-top: 4rem
+
+    &__thumb
+        width: 14rem
+        height: 7rem
+        border: none
+        border-radius: .6rem
+        overflow: hidden
+        opacity: .6
+        cursor: pointer
+
+        &--active
+            opacity: 1
+
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+    &__arrows
+        display: flex
+        justify-content: flex-end
+        gap: 4rem
+        margin-top: 3rem
+
+        button
+            border: none
+            background: transparent
+            color: vars.$color-primary
+            font-size: 3rem
+            cursor: pointer

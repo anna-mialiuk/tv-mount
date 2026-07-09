@@ -1,0 +1,75 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.booking-cta
+    @include mix.section
+    @include mix.big-screen
+        @include mix.section(5rem)
+
+    background: vars.$color-black
+    color: vars.$color-white
+
+    &__wrapper
+        display: flex
+        @include mix.laptop
+            flex-direction: column
+    
+    &__content
+        width: 50%
+        margin-right: 4rem
+        @include mix.laptop
+            width: 100%
+            margin-right: 0rem
+            margin-bottom: 4rem
+
+    &__title
+        max-width: 55rem
+        margin-bottom: 1.6rem
+        color: vars.$color-white
+        text-transform: uppercase
+        @include mix.laptop
+            max-width: none
+        @include mix.big-screen
+            max-width: 75rem
+
+    &__subtitle
+        margin-bottom: 4rem
+        font-size: 1.8rem
+        line-height: 140%
+        @include mix.laptop
+            margin-bottom: 3.2rem
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__text
+        margin-bottom: 1.8rem
+        color: rgba(255,255,255,.6)
+        font-size: 1.8rem
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__list
+        @include mix.flex-column
+        gap: 1.4rem
+        @include mix.laptop
+            flex-direction: row
+        @include mix.mobile
+            flex-direction: column
+
+    &__item
+        font-size: 1.8rem
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__form
+        max-width: 48rem
+        width: 100%
+        margin-left: auto
+        @include mix.laptop
+            max-width: none
+        @include mix.big-screen
+            max-width: none
+            width: 50%
+
+    &__item-icon
+        margin-right: .3rem
