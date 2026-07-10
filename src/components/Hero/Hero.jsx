@@ -101,8 +101,11 @@ function Hero({ onQuizOpen }) {
 
           <div className="hero__badge">
             <img src="/star.svg" alt="" className="hero__badge-icon" />
+
             <span className="hero__span-badge text-sm">
-              Best service in {serviceRegion}
+              {serviceRegion
+                ? `Best service in ${serviceRegion}`
+                : "Best service near you"}
             </span>
           </div>
         </div>

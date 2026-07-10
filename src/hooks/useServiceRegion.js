@@ -1,48 +1,46 @@
 import { useEffect, useState } from "react";
 
-function getServiceRegion(data) {
-  const city = String(data?.city || "").toLowerCase();
-  const region = String(data?.region || "").toLowerCase();
-  const regionCode = String(data?.region_code || "").toUpperCase();
-  const countryCode = String(data?.country_code || "").toUpperCase();
+function formatLocation(data) {
+  const city = data?.city?.trim();
+  const region = data?.region?.trim();
 
-  if (countryCode !== "US") return "USA";
+  if (city && region) {
+    if (city.toLowerCase() === region.toLowerCase()) {
+      return city;
+    }
 
-  if (city.includes("philadelphia") || regionCode === "PA") {
-    return "Philadelphia";
+    return `${city}, ${region}`;
   }
 
-  if (regionCode === "NJ") {
-    return "New Jersey";
-  }
-
-  if (city.includes("chicago") || regionCode === "IL") {
-    return "Chicago Area";
-  }
-
-  if (city.includes("atlanta") || regionCode === "GA") {
-    return "Atlanta Area";
-  }
-
-  return "USA";
+  return city || region || "";
 }
 
 export default function useServiceRegion() {
-  const [serviceRegion, setServiceRegion] = useState("USA");
+  const [serviceRegion, setServiceRegion] = useState("");
 
   useEffect(() => {
-    async function loadRegion() {
-      try {
-        const res = await fetch("https://ipapi.co/json/");
-        const data = await res.json();
+    const controller = new AbortController();
 
-        setServiceRegion(getServiceRegion(data));
+    async function detectLocation() {
+      try {
+        const response = await fetch("https://ipapi.co/json/", {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Location request failed");
+        }
+
+        const data = await response.json();
+        setServiceRegion(formatLocation(data));
       } catch {
-        setServiceRegion("USA");
+        setServiceRegion("");
       }
     }
 
-    loadRegion();
+    detectLocation();
+
+    return () => controller.abort();
   }, []);
 
   return serviceRegion;
