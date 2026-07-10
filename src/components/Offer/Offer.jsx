@@ -22,7 +22,7 @@ function Offer() {
             <h2 className="offer__title">LIMITED OFFER!</h2>
 
             <p className="offer__description text-s">
-              Get a $50 discount on any service + Free consultation
+              Get a $33 discount on any service + Free consultation
             </p>
 
             <div className="offer__info">
@@ -47,7 +47,7 @@ function Offer() {
                   <img src="/gift.svg" alt="" className="offer__bonus-icon" />
 
                   <p className="offer__bonus-text">
-                    + Free wire concealment in a conduit (value $49)
+                    + Free wire concealment (value $49)
                   </p>
                 </div>
               </div>

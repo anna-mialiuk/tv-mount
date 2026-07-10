@@ -2,7 +2,7 @@ const benefits = [
   {
     icon: "/experience.svg",
     title: "6+ years of experience",
-    text: "Trusted by 10,000+ customers. 4.9/5 rating on Google",
+    text: "Trusted by 10,000+ customers. 5/5 rating on Google",
   },
   {
     icon: "/rocket.svg",

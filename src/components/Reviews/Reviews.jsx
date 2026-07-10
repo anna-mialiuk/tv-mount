@@ -11,7 +11,7 @@ function Reviews() {
         <div className="reviews__rating">
           <span className="stars">★★★★★</span>
           <p className="reviews__rate-text text-sm">
-            4.9 / 5.0 (8,000+ reviews)
+            5.0 / 5.0 (8,000+ reviews)
           </p>
         </div>
 

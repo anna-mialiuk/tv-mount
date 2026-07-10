@@ -28,7 +28,7 @@ function Hero({ onQuizOpen }) {
             </h1>
 
             <p className="hero__paragraph text-s">
-              Trusted by 10,000+ customers. 4.9/5 rating on Google
+              Trusted by 10,000+ customers. 5/5 rating on Google
             </p>
 
             <img
