@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Benefits from "./components/Benefits/Benefits";
 import Reviews from "./components/Reviews/Reviews";
+import PopularAddons from "./components/PopularAddons/PopularAddons";
 import Offer from "./components/Offer/Offer";
 import Steps from "./components/Steps/Steps";
 import About from "./components/About/About";
@@ -37,6 +38,7 @@ function HomePage({ onQuizOpen }) {
       <Hero onQuizOpen={onQuizOpen} />
       <Benefits />
       <Reviews />
+      <PopularAddons onQuizOpen={onQuizOpen} />
       <Offer />
       <Steps />
 

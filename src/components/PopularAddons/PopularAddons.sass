@@ -1,0 +1,57 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.popular-addons
+  @include mix.section
+  background: vars.$color-lightgrey
+
+  &__title
+    margin: 0 0 3rem
+
+  &__list
+    display: grid
+    grid-template-columns: repeat(5, minmax(0, 1fr))
+    gap: 1.25rem
+    @include mix.laptop
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+
+  &__card
+    display: flex
+    flex-direction: column
+    align-items: center
+    min-height: 17.5rem
+    padding: 1.5rem 1.25rem
+    border: 0.1rem solid vars.$color-sublightgrey
+    border-radius: 1.2rem
+    background: vars.$color-white
+    text-align: center
+    @include mix.laptop
+      min-width: 30rem
+    @include mix.tablet
+      width: 48%
+      min-width: 0
+    @include mix.mobile-sm
+      width: 100%
+
+  &__image
+    width: 6rem
+    height: 6rem
+    margin-bottom: 1.2rem
+    border-radius: 50%
+    object-fit: cover
+
+  &__card-title
+    flex-grow: 1
+    font-weight: 600
+    margin-bottom: 1rem
+
+  &__button
+    font-size: 1.4rem
+    padding: 1.6rem 5rem
+    @include mix.mobile-sm
+      width: 100%
+
+
+
