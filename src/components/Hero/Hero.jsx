@@ -1,3 +1,4 @@
+import useServiceRegion from "../../hooks/useServiceRegion";
 import Button from "../Button/Button";
 import heroBenefits from "../../data/hero";
 import "./Hero.sass";
@@ -12,6 +13,8 @@ function BenefitItem({ text }) {
 }
 
 function Hero({ onQuizOpen }) {
+  const serviceRegion = useServiceRegion();
+
   return (
     <section className="hero">
       <div className="hero__container container">
@@ -85,7 +88,7 @@ function Hero({ onQuizOpen }) {
           <div className="hero__badge">
             <img src="/google.svg" alt="" className="hero__badge-icon" />
             <span className="hero__span-badge text-sm">
-              4.9/5 (8,000+ reviews on Google)
+              5/5 (8,000+ reviews on Google)
             </span>
           </div>
 
@@ -99,7 +102,7 @@ function Hero({ onQuizOpen }) {
           <div className="hero__badge">
             <img src="/star.svg" alt="" className="hero__badge-icon" />
             <span className="hero__span-badge text-sm">
-              Best service in Atlanta
+              Best service in {serviceRegion}
             </span>
           </div>
         </div>
