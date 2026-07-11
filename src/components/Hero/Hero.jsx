@@ -22,9 +22,6 @@ function Hero({ onQuizOpen }) {
           <div className="hero__left-side">
             <h1 className="hero__main-text">
               Professional TV installation in 30 minutes <br />
-              <span className="hero__main-span-text">
-                (Perfectly level. No visible wires. 2-year warranty)
-              </span>
             </h1>
 
             <p className="hero__paragraph text-s">
