@@ -25,17 +25,6 @@ function BookingCTA() {
                   className="booking-cta__item-icon"
                   loading="lazy"
                 />
-                <span className="booking-cta__item-span-text">
-                  Free consultation
-                </span>
-              </li>
-              <li className="booking-cta__item">
-                <img
-                  src="/check.svg"
-                  alt="icon"
-                  className="booking-cta__item-icon"
-                  loading="lazy"
-                />
                 <span className="booking-cta__item-span-text text-s">
                   $50 discount
                 </span>
