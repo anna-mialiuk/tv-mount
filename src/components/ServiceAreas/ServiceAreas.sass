@@ -4,14 +4,18 @@
 .service-areas
     @include mix.section(3.2rem)
     background: vars.$color-lightgrey
+
     @include mix.big-screen
         @include mix.section(5rem)
 
     &__city
+        color: vars.$color-black
+        -webkit-text-fill-color: vars.$color-black
         cursor: pointer
 
         &--active
             color: vars.$color-primary
+            -webkit-text-fill-color: vars.$color-primary
             font-weight: 600
 
     &__wrapper
@@ -27,10 +31,12 @@
         height: 100%
         border-radius: 1.2rem
         font-size: 3rem
+
         @include mix.tablet
             flex-direction: column
             width: 100%
             min-height: 36rem
+
         @include mix.big-screen
             font-size: 5rem
 
@@ -39,11 +45,13 @@
 
     &__title
         margin-bottom: 3rem
+
         @include mix.tablet
             display: none
 
     &__title-tablet
         display: none
+
         @include mix.tablet
             display: block
             margin-bottom: 2rem
@@ -51,32 +59,55 @@
     &__item
         &:not(:last-child)
             margin-bottom: 2rem
+
         @include mix.mobile
-            border: .1rem solid vars.$color-sublightgrey
             padding: .7rem .8rem
+            border: .1rem solid vars.$color-sublightgrey
             border-radius: .6rem
             background: vars.$color-white
 
     &__button
         width: 100%
-        @include mix.flex-between
+        padding: 0
+        border: none
+        background: transparent
+        color: vars.$color-black
+        -webkit-text-fill-color: vars.$color-black
+        font: inherit
         font-size: 1.8rem
         font-weight: 500
+        text-align: left
         cursor: pointer
+        appearance: none
+        -webkit-appearance: none
+
+        @include mix.flex-between
+
+        &:visited,
+        &:active,
+        &:focus
+            color: vars.$color-black
+            -webkit-text-fill-color: vars.$color-black
+
         @include mix.tablet
             justify-content: flex-start
+
         @include mix.mobile
             justify-content: space-between
+
         @include mix.big-screen
             font-size: 2.2rem
 
         &--active
             color: vars.$color-primary
+            -webkit-text-fill-color: vars.$color-primary
 
     &__arrow
         display: inline-block
-        transition: transform .3s ease
+        flex-shrink: 0
         transform: rotate(180deg)
+        transition: transform .3s ease
+
         @include mix.tablet
             margin-left: 3rem
 
@@ -91,6 +122,8 @@
         li
             position: relative
             padding-left: 1.6rem
+            color: vars.$color-black
+            -webkit-text-fill-color: vars.$color-black
             font-size: 1.6rem
             line-height: 150%
 
@@ -99,6 +132,7 @@
                 position: absolute
                 left: 0
                 color: vars.$color-primary
+                -webkit-text-fill-color: vars.$color-primary
 
             @include mix.big-screen
                 font-size: 2rem
@@ -107,6 +141,7 @@
         @include mix.tablet
             display: flex
             justify-content: space-between
+
         @include mix.mobile
             flex-direction: column
 

@@ -3,6 +3,7 @@
 
 .faq
     @include mix.section
+
     @include mix.big-screen
         @include mix.section(5rem)
 
@@ -12,13 +13,15 @@
     &__grid
         @include mix.grid(2)
         align-items: start
+
         @include mix.laptop
             @include mix.grid(1)
-            
+
     &__item
         background: vars.$color-sublightgrey
         border-radius: vars.$radius-sm
         padding: 2rem 2.4rem
+
         @include mix.big-screen
             padding: 3rem 2.4rem
 
@@ -35,10 +38,22 @@
         gap: 2rem
         background: transparent
         border: none
+        color: vars.$color-black
+        -webkit-text-fill-color: vars.$color-black
+        font: inherit
         text-align: left
         cursor: pointer
         font-size: 1.8rem
         font-weight: 700
+        appearance: none
+        -webkit-appearance: none
+
+        &:visited,
+        &:active,
+        &:focus
+            color: vars.$color-black
+            -webkit-text-fill-color: vars.$color-black
+
         @include mix.big-screen
             font-size: 2.2rem
 
@@ -64,5 +79,6 @@
         font-size: 1.6rem
         line-height: 140%
         white-space: pre-line
+
         @include mix.big-screen
             font-size: 2rem
