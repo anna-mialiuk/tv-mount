@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function ProjectGallery({
   projects,
@@ -9,6 +9,9 @@ function ProjectGallery({
   onNext,
   onSelect,
 }) {
+  const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") onClose();
@@ -16,14 +19,48 @@ function ProjectGallery({
       if (event.key === "ArrowRight") onNext();
     };
 
+    const previousOverflow = document.body.style.overflow;
+
     window.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [onClose, onNext, onPrev]);
+
+  const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null || touchStartY.current === null) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+
+    const distanceX = touch.clientX - touchStartX.current;
+    const distanceY = touch.clientY - touchStartY.current;
+
+    const minimumSwipeDistance = 50;
+    const isHorizontalSwipe = Math.abs(distanceX) > Math.abs(distanceY);
+
+    if (isHorizontalSwipe && Math.abs(distanceX) >= minimumSwipeDistance) {
+      if (distanceX > 0) {
+        onPrev();
+      } else {
+        onNext();
+      }
+    }
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
 
   return (
     <div className="projects__modal" onClick={onClose} role="presentation">
@@ -39,14 +76,15 @@ function ProjectGallery({
       <div
         className="projects__modal-content"
         onClick={(event) => event.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         role="dialog"
         aria-modal="true"
         aria-label="Project gallery"
       >
         <img
           src={activeImage}
-          alt="TV Mount Company project preview"
-          loading="lazy"
+          alt={`TV Mount Company project ${activeIndex + 1}`}
           className="projects__modal-image"
         />
 
