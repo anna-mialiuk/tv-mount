@@ -6,19 +6,19 @@ const steps = [
     options: [
       {
         text: "Up to 42″",
-        image: "/tv-small.png",
+        image: "/quiz/tv-small.webp",
       },
       {
         text: "42″ - 55″",
-        image: "/tv-medium.png",
+        image: "/quiz/tv-medium.webp",
       },
       {
         text: "56″ - 75″",
-        image: "/tv-large.png",
+        image: "/quiz/tv-large.webp",
       },
       {
         text: "76″+ / Large",
-        image: "/tv-xlarge.png",
+        image: "/quiz/tv-xlarge.webp",
       },
     ],
   },
@@ -29,19 +29,19 @@ const steps = [
     options: [
       {
         text: "Drywall",
-        image: "/drywall.png",
+        image: "/quiz/drywall.webp",
       },
       {
         text: "Brick / Concrete",
-        image: "/brick.png",
+        image: "/quiz/brick.webp",
       },
       {
         text: "Wood / Paneling",
-        image: "/wood.png",
+        image: "/quiz/wood.webp",
       },
       {
         text: "Not Sure / Other",
-        image: "/other.png",
+        image: "/quiz/other.webp",
       },
     ],
   },
@@ -53,19 +53,19 @@ const steps = [
     options: [
       {
         text: "Wire Concealment",
-        image: "/wire.png",
+        image: "/quiz/wire.webp",
       },
       {
         text: "Soundbar Install",
-        image: "/soundbar.png",
+        image: "/quiz/soundbar.webp",
       },
       {
         text: "LED Backlight",
-        image: "/led.png",
+        image: "/quiz/led.webp",
       },
       {
         text: "Smart Home Setup",
-        image: "/other.png",
+        image: "/quiz/other.webp",
       },
     ],
   },

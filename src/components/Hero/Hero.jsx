@@ -7,6 +7,7 @@ function BenefitItem({ text }) {
   return (
     <li className="hero__item">
       <img src="/check.svg" alt="check-icon" className="hero__item-icon" />
+
       <span className="hero__item-span-text text-s">{text}</span>
     </li>
   );
@@ -21,19 +22,23 @@ function Hero({ onQuizOpen }) {
         <div className="hero__wrapper">
           <div className="hero__left-side">
             <h1 className="hero__main-text">
-              Professional TV installation in 30 minutes <br />
+              Professional TV installation in 30 minutes
             </h1>
 
             <p className="hero__paragraph text-s">
               Trusted by 10,000+ customers. 5/5 rating on Google
             </p>
 
-            <img
-              src="/hero-tablet.jpg"
-              alt="TV installation"
-              className="hero__tablet-img"
-              fetchPriority="high"
-            />
+            <picture className="hero__tablet-picture">
+              <source media="(max-width: 576px)" srcSet="/hero-mobile.webp" />
+
+              <img
+                src="/hero-tablet.webp"
+                alt="TV installation"
+                className="hero__tablet-img"
+                fetchPriority="high"
+              />
+            </picture>
 
             <div className="hero__benefits">
               <ul className="hero__list">
@@ -73,7 +78,7 @@ function Hero({ onQuizOpen }) {
 
           <div className="hero__right-side">
             <img
-              src="/hero.jpg"
+              src="/hero.webp"
               alt="TV installation"
               className="hero__img"
               fetchPriority="high"
@@ -84,6 +89,7 @@ function Hero({ onQuizOpen }) {
         <div className="hero__badges">
           <div className="hero__badge">
             <img src="/google.svg" alt="" className="hero__badge-icon" />
+
             <span className="hero__span-badge text-sm">
               5/5 (8,000+ reviews on Google)
             </span>
@@ -91,6 +97,7 @@ function Hero({ onQuizOpen }) {
 
           <div className="hero__badge">
             <img src="/shield.svg" alt="" className="hero__badge-icon" />
+
             <span className="hero__span-badge text-sm">
               Insured and certified
             </span>

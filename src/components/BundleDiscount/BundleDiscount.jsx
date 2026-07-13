@@ -32,7 +32,7 @@ function BundleDiscount() {
               </div>
 
               <img
-                src="/crown.png"
+                src="/discounts/crown.png"
                 alt=""
                 className="bundle-discount__crown"
                 loading="lazy"

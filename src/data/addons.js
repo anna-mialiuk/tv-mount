@@ -2,27 +2,27 @@ const addons = [
   {
     id: "wire",
     title: "Wire concealment",
-    image: "/addon-wire.webp",
+    image: "/addons/addon-wire.webp",
   },
   {
     id: "fireplace",
     title: "Fireplace TV installation",
-    image: "/addon-fireplace.webp",
+    image: "/addons/addon-fireplace.webp",
   },
   {
     id: "soundbar",
     title: "Soundbar installation",
-    image: "/addon-soundbar.webp",
+    image: "/addons/addon-soundbar.webp",
   },
   {
     id: "brick",
     title: "Stone, brick TV mounting",
-    image: "/addon-brick.webp",
+    image: "/addons/addon-brick.webp",
   },
   {
     id: "frame",
     title: "Frame TV installation",
-    image: "/addon-frame.webp",
+    image: "/addons/addon-frame.webp",
   },
 ];
 
