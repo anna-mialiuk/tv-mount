@@ -4,7 +4,14 @@ function AccordionItem({ question, answer, isActive, onClick }) {
       <button type="button" className="faq__button" onClick={onClick}>
         <span>{question}</span>
 
-        <span className="faq__icon">⌃</span>
+        <img
+          src={
+            isActive ? "/icons/faq-arrow-active.svg" : "/icons/faq-arrow.svg"
+          }
+          alt=""
+          aria-hidden="true"
+          className="faq__icon"
+        />
       </button>
 
       <div className={`faq__content ${isActive ? "faq__content--active" : ""}`}>

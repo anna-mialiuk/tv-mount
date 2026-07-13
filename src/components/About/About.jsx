@@ -10,7 +10,7 @@ function About() {
 
             <div className="about__image-tablet">
               <img
-                src="/about-team.jpg"
+                src="/about-team.webp"
                 alt="TV Mount Company team"
                 className="about__img-team"
                 loading="lazy"
@@ -63,7 +63,7 @@ function About() {
 
           <div className="about__image">
             <img
-              src="/about-team.jpg"
+              src="/about-team.webp"
               alt="TV Mount Company team"
               className="about__img-team"
               loading="lazy"

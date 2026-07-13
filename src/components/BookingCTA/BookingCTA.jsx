@@ -45,7 +45,7 @@ function BookingCTA() {
 
           <div className="booking-cta__form">
             <LeadForm
-              title="Get a $50 discount"
+              title="Get a $33 discount"
               buttonText="Book now"
               showCallButton={true}
             />

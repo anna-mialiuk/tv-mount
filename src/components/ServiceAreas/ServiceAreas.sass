@@ -9,9 +9,17 @@
         @include mix.section(5rem)
 
     &__city
+        width: 100%
+        padding: 0
+        border: none
+        background: transparent
         color: vars.$color-black
         -webkit-text-fill-color: vars.$color-black
+        font: inherit
+        text-align: left
         cursor: pointer
+        appearance: none
+        -webkit-appearance: none
 
         &--active
             color: vars.$color-primary
@@ -103,16 +111,14 @@
             -webkit-text-fill-color: vars.$color-primary
 
     &__arrow
-        display: inline-block
+        width: 2.4rem
+        height: 2.4rem
         flex-shrink: 0
-        transform: rotate(180deg)
         transition: transform .3s ease
 
         @include mix.tablet
             margin-left: 3rem
 
-        &--active
-            transform: rotate(0deg)
 
     &__cities
         @include mix.flex-column
@@ -122,8 +128,6 @@
         li
             position: relative
             padding-left: 1.6rem
-            color: vars.$color-black
-            -webkit-text-fill-color: vars.$color-black
             font-size: 1.6rem
             line-height: 150%
 
@@ -132,7 +136,6 @@
                 position: absolute
                 left: 0
                 color: vars.$color-primary
-                -webkit-text-fill-color: vars.$color-primary
 
             @include mix.big-screen
                 font-size: 2rem

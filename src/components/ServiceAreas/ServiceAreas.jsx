@@ -1,8 +1,15 @@
 import { useState } from "react";
-import Button from "../Button/Button";
-import ServiceMap from "./ServiceMap";
+
 import { serviceAreas } from "../../data/serviceAreas";
+import Button from "../Button/Button";
+import ServiceAreaItem from "./ServiceAreaItem";
+import ServiceMap from "./ServiceMap";
+
 import "./ServiceAreas.sass";
+
+const DEFAULT_CENTER = [39.8283, -98.5795];
+const DEFAULT_ZOOM = 3;
+const CITY_ZOOM = 13;
 
 const defaultMarkers = serviceAreas.map((area) => ({
   name: area.title,
@@ -15,9 +22,10 @@ function ServiceAreas() {
   const [mapCity, setMapCity] = useState(null);
 
   const handleAreaClick = (area) => {
-    const isCurrentArea = activeArea?.title === area.title;
+    setActiveArea((currentArea) =>
+      currentArea?.title === area.title ? null : area,
+    );
 
-    setActiveArea(isCurrentArea ? null : area);
     setSelectedCity(null);
     setMapCity(null);
   };
@@ -27,13 +35,13 @@ function ServiceAreas() {
   };
 
   const handleCheckArea = () => {
-    if (!selectedCity) return;
-
-    setMapCity(selectedCity);
+    if (selectedCity) {
+      setMapCity(selectedCity);
+    }
   };
 
-  const mapCenter = mapCity ? mapCity.coords : [39.8283, -98.5795];
-  const mapZoom = mapCity ? 13 : 3;
+  const mapCenter = mapCity?.coords || DEFAULT_CENTER;
+  const mapZoom = mapCity ? CITY_ZOOM : DEFAULT_ZOOM;
   const mapMarkers = mapCity ? [mapCity] : defaultMarkers;
 
   return (
@@ -44,6 +52,7 @@ function ServiceAreas() {
             <h2 className="service-areas__title-tablet">
               We serve these cities
             </h2>
+
             <ServiceMap center={mapCenter} zoom={mapZoom} cities={mapMarkers} />
           </div>
 
@@ -51,53 +60,24 @@ function ServiceAreas() {
             <h2 className="service-areas__title">We serve these cities</h2>
 
             <div className="service-areas__list">
-              {serviceAreas.map((area) => {
-                const isActive = activeArea?.title === area.title;
-
-                return (
-                  <div className="service-areas__item" key={area.title}>
-                    <button
-                      type="button"
-                      className={`service-areas__button ${
-                        isActive ? "service-areas__button--active" : ""
-                      }`}
-                      onClick={() => handleAreaClick(area)}
-                    >
-                      <span>{area.title}</span>
-
-                      <span
-                        className={`service-areas__arrow ${
-                          isActive ? "service-areas__arrow--active" : ""
-                        }`}
-                      >
-                        ⌃
-                      </span>
-                    </button>
-
-                    {isActive && (
-                      <ul className="service-areas__cities">
-                        {area.cities.map((city) => (
-                          <li
-                            key={city.name}
-                            className={`service-areas__city ${
-                              selectedCity?.name === city.name
-                                ? "service-areas__city--active"
-                                : ""
-                            }`}
-                            onClick={() => handleCityClick(city)}
-                          >
-                            {city.name}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                );
-              })}
+              {serviceAreas.map((area) => (
+                <ServiceAreaItem
+                  key={area.title}
+                  area={area}
+                  isActive={activeArea?.title === area.title}
+                  selectedCity={selectedCity}
+                  onToggle={handleAreaClick}
+                  onSelectCity={handleCityClick}
+                />
+              ))}
             </div>
 
             <div className="service-areas__actions">
-              <Button variant="primary" onClick={handleCheckArea}>
+              <Button
+                variant="primary"
+                onClick={handleCheckArea}
+                disabled={!selectedCity}
+              >
                 Check if we serve your area
               </Button>
             </div>
