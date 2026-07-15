@@ -26,7 +26,18 @@ function BookingCTA() {
                   loading="lazy"
                 />
                 <span className="booking-cta__item-span-text text-s">
-                  $50 discount
+                  Free estimate in minutes
+                </span>
+              </li>
+              <li className="booking-cta__item">
+                <img
+                  src="/check.svg"
+                  alt="icon"
+                  className="booking-cta__item-icon"
+                  loading="lazy"
+                />
+                <span className="booking-cta__item-span-text text-s">
+                  $33 discount
                 </span>
               </li>
               <li className="booking-cta__item">

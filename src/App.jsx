@@ -10,7 +10,6 @@ import PopularAddons from "./components/PopularAddons/PopularAddons";
 import MountingStyles from "./components/MountingStyles/MountingStyles";
 import Offer from "./components/Offer/Offer";
 import Steps from "./components/Steps/Steps";
-import About from "./components/About/About";
 import BookingCTA from "./components/BookingCTA/BookingCTA";
 import Footer from "./components/Footer/Footer";
 import ScrollToHash from "./components/ScrollToHash";
@@ -48,7 +47,6 @@ function HomePage({ onQuizOpen }) {
 
       <Suspense fallback={null}>
         <ServiceAreas />
-        <About />
         <Projects />
         <BookingCTA />
         <FAQ />

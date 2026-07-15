@@ -90,23 +90,23 @@ function Hero({ onQuizOpen }) {
           <div className="hero__badge">
             <img src="/google.svg" alt="" className="hero__badge-icon" />
 
-            <span className="hero__span-badge text-sm">
-              5/5 (8,000+ reviews on Google)
+            <span className="hero__span-badge text-s">
+              5/5 rating on Google
             </span>
           </div>
 
           <div className="hero__badge">
             <img src="/shield.svg" alt="" className="hero__badge-icon" />
 
-            <span className="hero__span-badge text-sm">
-              Insured and certified
+            <span className="hero__span-badge text-s">
+              Liscenced and insured
             </span>
           </div>
 
           <div className="hero__badge">
             <img src="/star.svg" alt="" className="hero__badge-icon" />
 
-            <span className="hero__span-badge text-sm">
+            <span className="hero__span-badge text-s">
               {serviceRegion
                 ? `Best service in ${serviceRegion}`
                 : "Best service near you"}
