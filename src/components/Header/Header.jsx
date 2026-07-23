@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Reviews", href: "/#reviews" },
   { label: "Contacts", href: "/#contact" },
   { label: "About Us", href: "/#about" },
-  { label: "Blog", href: "/#blog" },
+  { label: "Blog", href: "/blog" },
 ];
 
 function Header({ onQuizOpen }) {

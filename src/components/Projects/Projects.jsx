@@ -27,7 +27,7 @@ function Projects() {
   } = useProjectGallery(projects);
 
   return (
-    <section className="projects" id="blog">
+    <section className="projects">
       <div className="container">
         <h2 className="projects__title">Our Work: Before and After</h2>
 
