@@ -1,0 +1,161 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.blog-article
+    min-height: 100vh
+    padding: 4rem 0 6rem
+    background: vars.$color-white
+    color: vars.$color-black
+
+    @include mix.tablet
+        padding-top: 3rem
+    @include mix.mobile-sm
+        padding: 2rem 0 4rem
+
+    &__header
+        margin-bottom: 1.6rem
+
+    &__title
+        max-width: 78rem
+        margin: 0
+        color: vars.$color-primary
+        font-weight: 700
+        line-height: 1.08
+
+    &__intro
+        margin: 0 0 3.6rem
+        line-height: 1.4
+
+        @include mix.mobile-sm
+            margin: 0 0 1.6rem
+
+    &__hero-image
+        display: block
+        width: 100%
+        max-height: 48rem
+        border-radius: 1rem
+        object-fit: cover
+
+        @include mix.mobile-sm
+            min-height: 16rem
+            border-radius: .75rem
+
+    &__content
+        padding-top: 4rem
+
+        @include mix.mobile-sm
+            padding-top: 2.5rem
+
+    &__section
+        margin-bottom: 3.5rem
+
+        @include mix.mobile-sm
+            margin-bottom: 2.5rem
+
+    &__section-title
+        margin: 0 0 1.6rem
+        font-weight: 800
+        line-height: 1.15
+
+    &__paragraph
+        margin: 0 0 1.6rem
+        line-height: 1.4
+
+        &_italic
+            font-style: italic
+
+    &__section-image
+        display: block
+        width: min(100%, 38rem)
+        max-height: 47rem
+        margin-bottom: 2.5rem
+        border-radius: 1rem
+        object-fit: cover
+
+        @include mix.mobile-sm
+            width: 100%
+            max-height: none
+
+    &__list
+        display: grid
+        gap: .8rem
+        margin: 1.2rem 0 1.5rem
+        padding: 0
+        list-style: none
+
+    &__list-item
+        position: relative
+        padding-left: 1.5rem
+
+        &::before
+            content: ""
+            position: absolute
+            top: .65rem
+            left: 0
+            width: .55rem
+            height: .55rem
+            border-radius: 50%
+            background: vars.$color-primary
+
+        p
+            margin: 0
+
+
+    &__loading
+        min-height: 20rem
+        display: flex
+        align-items: center
+        justify-content: center
+        color: vars.$color-darkgrey
+        font-size: 1rem
+
+    &__video
+        display: block
+        width: min(100%, 38rem)
+        max-height: 47rem
+        margin-bottom: 2.5rem
+        border-radius: 1rem
+        object-fit: cover
+        overflow: hidden
+        background: vars.$color-black
+
+        @include mix.mobile-sm
+            width: 100%
+            max-height: none
+
+.article-not-found
+    min-height: 70vh
+    padding: 8rem 0
+    background: vars.$color-white
+    text-align: center
+
+    &__container
+        display: flex
+        align-items: center
+        flex-direction: column
+
+    &__title
+        margin: 0 0 1rem
+        font-size: 2.5rem
+
+    &__text
+        margin: 0 0 1.5rem
+        color: vars.$color-darkgrey
+
+    &__link
+        color: vars.$color-primary
+        font-weight: 700
+        text-decoration: underline
+
+.m-b-0
+    margin-bottom: 0rem
+
+.m-t-0
+    margin-top: 0rem
+    padding-top: 0rem
+
+.m-b-1-6
+    margin-bottom: 1.6rem
+
+.italic
+    font-style: italic

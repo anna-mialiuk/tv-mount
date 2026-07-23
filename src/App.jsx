@@ -29,6 +29,8 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const Blog = lazy(() => import("./pages/Blog/Blog"));
+const BlogArticle = lazy(() => import("./pages/Blog/BlogArticle"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function HomePage({ onQuizOpen }) {
@@ -75,6 +77,8 @@ function App() {
             <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
