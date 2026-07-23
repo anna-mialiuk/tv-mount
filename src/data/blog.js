@@ -217,4 +217,14 @@ export const blogArticles = [
       "If you’re wondering how to hang a TV from the ceiling safely and cleanly — this guide covers everything you need to know...",
     slug: "how-to-hang-tv-from-ceiling",
   },
+
+  {
+    id: 24,
+    category: "Guides",
+    image: "/blog/blog-24.webp",
+    title: "Mounting Giants: Safe Installation for Large-Scale TVs",
+    description:
+      "When we cross the 75-inch threshold and approach 100-inch panels, we move beyond “standard household mounting” and...",
+    slug: "mounting-giants-safe-installation-for-large-scale-tvs",
+  },
 ];
