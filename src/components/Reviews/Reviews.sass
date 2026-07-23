@@ -3,39 +3,158 @@
 
 .reviews
     @include mix.section
-    background: vars.$color-lightgrey
+    background: vars.$color-white
+
     @include mix.laptop
         @include mix.section(2.4rem)
+
     @include mix.big-screen
         @include mix.section(5rem)
 
     &__title
         margin-bottom: 2rem
+
         @include mix.laptop
             margin-bottom: 1.6rem
 
-    &__rating
+    &__google
         display: flex
         align-items: center
+        justify-content: space-between
+        gap: 2rem
         margin-bottom: 5.6rem
+        padding: 0rem 0rem 0rem 2.4rem
+        border-radius: 1.2rem
+        background: vars.$color-lightgrey
+
         @include mix.laptop
             margin-bottom: 3rem
 
-    &__rate-text
+        @include mix.tablet
+            flex-direction: column
+            align-items: stretch
+            gap: 1.6rem
+            padding: 1.6rem
+
+    &__google-left
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+        gap: 1.6rem
+
+        @include mix.tablet
+            gap: 1rem
+
+    &__google-stars
+        flex-shrink: 0
+        color: #FFD70F
+        font-size: 1.4rem
+        line-height: 1
+        letter-spacing: .35rem
+
+        @include mix.laptop
+            font-size: 2rem
+
+        @include mix.tablet
+            width: 100%
+            font-size: 2.2rem
+
+        @include mix.big-screen
+            font-size: 3rem
+
+    &__google-text
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+        gap: .6rem
+        margin: 0
         color: vars.$color-darkgrey
+        font-size: 1.4rem
+        line-height: 1.4
+
+        strong
+            color: vars.$color-darkgrey
+            font-weight: 500
+
+        span
+            color: vars.$color-darkgrey
+
+        @include mix.laptop
+            font-size: 1.6rem
+
+        @include mix.tablet
+            font-size: 1.4rem
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__google-logo
+        display: block
+        flex-shrink: 0
+        width: 5rem
+        height: auto
+        object-fit: contain
+
+        @include mix.laptop
+            width: 8.5rem
+
+        @include mix.tablet
+            width: 8rem
+
+        @include mix.big-screen
+            width: 12rem
+
+    &__google-button
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        flex-shrink: 0
+        padding: 1.4rem 2.4rem
+        border: none
+        border-radius: 1.2rem
+        background: #2176FF
+        color: vars.$color-white
+        -webkit-text-fill-color: vars.$color-white
+        font-size: 1.4rem
+        font-weight: 600
+        line-height: 1.2
+        text-align: center
+        text-decoration: none
+        white-space: nowrap
+        cursor: pointer
+        appearance: none
+        -webkit-appearance: none
+
+        @include mix.laptop
+            padding: 1.2rem 2.4rem
+            font-size: 1.5rem
+
+        @include mix.tablet
+            width: 100%
+            padding: 1.2rem 2rem
+            font-size: 1.5rem
+            white-space: normal
+
+        @include mix.big-screen
+            padding: 1.8rem 3.8rem
+            border-radius: 1.6rem
+            font-size: 2rem
 
     &__cards
         @include mix.grid(4)
+
         @include mix.laptop
             @include mix.grid(2)
+
         @include mix.tablet
             @include mix.grid(1)
 
     &__card
-        background: vars.$color-white
         padding: 2rem 2.6rem
-        border-radius: 1.2rem
         border-left: .3rem solid vars.$color-primary
+        border-radius: 1.2rem
+        background: vars.$color-lightgrey
+
         @include mix.big-screen
             padding: 3rem 3.6rem
 
@@ -47,21 +166,25 @@
     &__card-top-left
         display: flex
         align-items: center
-        
+
     &__name
         font-size: 1.4rem
+
         @include mix.laptop
             font-size: 1.6rem
+
         @include mix.big-screen
             font-size: 1.8rem
 
     &__stars
         font-size: 1.4rem
+
         @include mix.big-screen
             font-size: 1.8rem
-    
+
     &__time
         font-size: 1rem
+
         @include mix.big-screen
             font-size: 1.4rem
 
@@ -70,14 +193,17 @@
         padding-bottom: 2rem
         border-bottom: .1rem solid vars.$color-sublightgrey
         font-size: 1.4rem
+
         @include mix.laptop
             font-size: 1.6rem
+
         @include mix.big-screen
             font-size: 1.8rem
 
     &__city
-        font-size: 1rem
         color: vars.$color-darkgrey
+        font-size: 1rem
+
         @include mix.big-screen
             font-size: 1.4rem
 
@@ -85,15 +211,14 @@
         width: 3rem
         height: 3rem
         margin-right: 1rem
+        border-radius: 50%
+        object-fit: cover
+
         @include mix.big-screen
             width: 6rem
             height: 6rem
             margin-right: 3rem
 
-.stars,
 .reviews__stars
     color: #FFD70F
     letter-spacing: .4rem
-
-.stars
-    margin-right: 1.6rem
