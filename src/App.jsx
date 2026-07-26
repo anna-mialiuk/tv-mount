@@ -41,7 +41,7 @@ function HomePage({ onQuizOpen }) {
       <Hero onQuizOpen={onQuizOpen} />
       <Benefits />
       <Reviews />
-      <BundleDiscount />
+      <BundleDiscount onQuizOpen={onQuizOpen} />
       <PopularAddons onQuizOpen={onQuizOpen} />
       <MountingStyles onQuizOpen={onQuizOpen} />
       <Offer />

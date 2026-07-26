@@ -1,45 +1,64 @@
-import discounts from "../../data/discounts";
+import Button from "../Button/Button";
 import "./BundleDiscount.sass";
 
-function BundleDiscount() {
+function BundleDiscount({ onQuizOpen }) {
+  const handleDiscountClick = () => {
+    if (typeof onQuizOpen === "function") {
+      onQuizOpen();
+    }
+  };
+
   return (
     <section className="bundle-discount">
       <div className="bundle-discount__container container">
-        <div className="bundle-discount__list">
-          {discounts.map((discount) => (
-            <article className="bundle-discount__card" key={discount.id}>
-              <div className="bundle-discount__card-inner">
-                <div className="bundle-discount__text">
-                  <p className="bundle-discount__title">{discount.title}</p>
+        <div className="bundle-discount__info">
+          <div className="bundle-discount__label">
+            <span>Limited offer</span>
 
-                  <p className="bundle-discount__subtitle">
-                    {discount.subtitle}
-                  </p>
-                </div>
+            <span className="bundle-discount__label-dot" aria-hidden="true">
+              •
+            </span>
 
-                <div className="bundle-discount__visual">
-                  <img
-                    src={discount.image}
-                    alt={`${discount.subtitle} discount`}
-                    className="bundle-discount__image"
-                    loading="lazy"
-                  />
+            <span className="bundle-discount__label-accent">Best value</span>
+          </div>
 
-                  <span className="bundle-discount__badge">
-                    {discount.badge}
-                  </span>
-                </div>
-              </div>
+          <h2 className="bundle-discount__title">
+            More screens. Less
+            <br />
+            hassle.{" "}
+            <span className="bundle-discount__title-accent">
+              Save up to 30%
+            </span>
+          </h2>
 
-              <img
-                src="/discounts/crown.png"
-                alt=""
-                className="bundle-discount__crown"
-                loading="lazy"
-              />
-            </article>
-          ))}
+          <p className="bundle-discount__description">
+            Save up to 30% when you book multiple installations. Professional
+            wire concealment included — flawless walls in a single visit.
+          </p>
+
+          <Button
+            variant="primary"
+            className="projects__button"
+            onClick={handleDiscountClick}
+          >
+            View all projects
+            <img
+              className="projects__button-icon"
+              src="/button-arrow.svg"
+              alt=""
+              loading="lazy"
+            />
+          </Button>
         </div>
+      </div>
+
+      <div className="bundle-discount__visual" aria-hidden="true">
+        <img
+          className="bundle-discount__image"
+          src="/discounts/tv-top.png"
+          alt=""
+          loading="lazy"
+        />
       </div>
     </section>
   );
