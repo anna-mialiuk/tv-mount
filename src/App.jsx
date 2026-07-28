@@ -86,9 +86,11 @@ function App() {
 
       <Footer />
 
-      <Suspense fallback={null}>
-        <QuoteQuiz isOpen={isQuizOpen} onClose={closeQuiz} />
-      </Suspense>
+      {isQuizOpen && (
+        <Suspense fallback={null}>
+          <QuoteQuiz isOpen={isQuizOpen} onClose={closeQuiz} />
+        </Suspense>
+      )}
     </>
   );
 }
