@@ -1,11 +1,12 @@
-import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 
 import { serviceAreas } from "../../data/serviceAreas";
 import Button from "../Button/Button";
 import ServiceAreaItem from "./ServiceAreaItem";
-import ServiceMap from "./ServiceMap";
 
 import "./ServiceAreas.sass";
+
+const ServiceMap = lazy(() => import("./ServiceMap"));
 
 const DEFAULT_CENTER = [39.8283, -98.5795];
 const DEFAULT_ZOOM = 3;
@@ -44,7 +45,7 @@ function ServiceAreas() {
     setMapCity(selectedCity);
 
     if (window.matchMedia("(max-width: 768px)").matches) {
-      setTimeout(() => {
+      window.setTimeout(() => {
         mapRef.current?.scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -66,7 +67,17 @@ function ServiceAreas() {
               We serve these cities
             </h2>
 
-            <ServiceMap center={mapCenter} zoom={mapZoom} cities={mapMarkers} />
+            <Suspense
+              fallback={
+                <div className="service-areas__map-loader">Loading map...</div>
+              }
+            >
+              <ServiceMap
+                center={mapCenter}
+                zoom={mapZoom}
+                cities={mapMarkers}
+              />
+            </Suspense>
           </div>
 
           <div className="service-areas__content">
