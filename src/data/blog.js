@@ -227,4 +227,45 @@ export const blogArticles = [
       "When we cross the 75-inch threshold and approach 100-inch panels, we move beyond “standard household mounting” and...",
     slug: "mounting-giants-safe-installation-for-large-scale-tvs",
   },
+
+  {
+    id: 25,
+    category: "Aesthetics & Wire Management",
+    image: "/blog/blog-25.webp",
+    title:
+      "Synchronizing Your TV and Soundbar: Aesthetics and Acoustic Clarity",
+    description:
+      "A great picture should be accompanied by great sound. A modern, high-quality soundbar — an optimal solution for those who wish to achieve a home cinema effect...",
+    slug: "synchronizing-your-tv-and-soundbar-aesthetics-and-acoustic-clarity",
+  },
+
+  {
+    id: 26,
+    category: "Fireplace & Accent Walls",
+    image: "/blog/blog-26.webp",
+    title: "Proper TV Installation Directly Above the Fireplace",
+    description:
+      "Mounting your TV above the fireplace is the ultimate aesthetic choice. It naturally serves as the room's focal point, anchoring the entire layout...",
+    slug: "proper-tv-installation-directly-above-the-fireplace",
+  },
+
+  {
+    id: 27,
+    category: "Guides",
+    image: "/blog/blog-27.webp",
+    title: "How Wall Type Determines the Right TV Mounting Hardware",
+    description:
+      "Mounting a TV may seem like a straightforward task — right up until you pick up the drill. The stability of the installation and the safety of your expensive, fragile television depend entirely on choosing mounting hardware that's compatible with the wall material...",
+    slug: "how-wall-type-determines-the-right-tv-mounting-hardware",
+  },
+
+  {
+    id: 28,
+    category: "Guides",
+    image: "/blog/blog-28.webp",
+    title: "How Does Room Lighting Affect TV Viewing?",
+    description:
+      "You've invested in a modern TV with outstanding color accuracy and exceptional picture quality. But even the best display can't guarantee a truly cinematic viewing experience on its own...",
+    slug: "how-does-room-lighting-affect-tv-viewing",
+  },
 ];
