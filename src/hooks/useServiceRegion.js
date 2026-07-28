@@ -1,47 +1,86 @@
 import { useEffect, useState } from "react";
 
+const STORAGE_KEY = "service-region";
+
 function formatLocation(data) {
   const city = data?.city?.trim();
-  const region = data?.region?.trim();
 
-  if (city && region) {
-    if (city.toLowerCase() === region.toLowerCase()) {
-      return city;
-    }
+  const state =
+    data?.region_code?.trim() ||
+    data?.region?.code?.trim() ||
+    data?.region?.trim();
 
-    return `${city}, ${region}`;
+  if (city && state) {
+    return `${city}, ${state}`;
   }
 
-  return city || region || "";
+  return city || state || "";
+}
+
+async function fetchLocation(url, signal) {
+  const response = await fetch(url, { signal });
+
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  if (url.includes("ipwho.is") && data.success === false) {
+    throw new Error("ipwho.is lookup failed");
+  }
+
+  return formatLocation(data);
 }
 
 export default function useServiceRegion() {
-  const [serviceRegion, setServiceRegion] = useState("");
+  const [serviceRegion, setServiceRegion] = useState(() => {
+    return sessionStorage.getItem(STORAGE_KEY) || "";
+  });
 
   useEffect(() => {
+    if (serviceRegion) {
+      return;
+    }
+
     const controller = new AbortController();
 
     async function detectLocation() {
-      try {
-        const response = await fetch("https://ipapi.co/json/", {
-          signal: controller.signal,
-        });
+      let location = "";
 
-        if (!response.ok) {
-          throw new Error("Location request failed");
+      try {
+        location = await fetchLocation("https://ipwho.is/", controller.signal);
+      } catch (error) {
+        if (error.name === "AbortError") {
+          return;
         }
 
-        const data = await response.json();
-        setServiceRegion(formatLocation(data));
-      } catch {
-        setServiceRegion("");
+        try {
+          location = await fetchLocation(
+            "https://ipapi.co/json/",
+            controller.signal,
+          );
+        } catch (fallbackError) {
+          if (fallbackError.name === "AbortError") {
+            return;
+          }
+
+          console.error("Failed to detect user location:", fallbackError);
+
+          return;
+        }
+      }
+
+      if (location) {
+        sessionStorage.setItem(STORAGE_KEY, location);
+        setServiceRegion(location);
       }
     }
 
     detectLocation();
 
     return () => controller.abort();
-  }, []);
+  }, [serviceRegion]);
 
   return serviceRegion;
 }
