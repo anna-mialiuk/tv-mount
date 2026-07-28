@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { serviceAreas } from "../../data/serviceAreas";
 import Button from "../Button/Button";
@@ -21,6 +21,8 @@ function ServiceAreas() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [mapCity, setMapCity] = useState(null);
 
+  const mapRef = useRef(null);
+
   const handleAreaClick = (area) => {
     setActiveArea((currentArea) =>
       currentArea?.title === area.title ? null : area,
@@ -35,8 +37,19 @@ function ServiceAreas() {
   };
 
   const handleCheckArea = () => {
-    if (selectedCity) {
-      setMapCity(selectedCity);
+    if (!selectedCity) {
+      return;
+    }
+
+    setMapCity(selectedCity);
+
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      setTimeout(() => {
+        mapRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 150);
     }
   };
 
@@ -48,7 +61,7 @@ function ServiceAreas() {
     <section id="services" className="service-areas">
       <div className="container">
         <div className="service-areas__wrapper">
-          <div className="service-areas__map">
+          <div ref={mapRef} className="service-areas__map">
             <h2 className="service-areas__title-tablet">
               We serve these cities
             </h2>
