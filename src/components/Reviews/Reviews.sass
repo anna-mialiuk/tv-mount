@@ -189,9 +189,6 @@
             font-size: 1.4rem
 
     &__text
-        margin-bottom: 2rem
-        padding-bottom: 2rem
-        border-bottom: .1rem solid vars.$color-sublightgrey
         font-size: 1.4rem
 
         @include mix.laptop
@@ -219,6 +216,71 @@
             height: 6rem
             margin-right: 3rem
 
-.reviews__stars
-    color: #FFD70F
-    letter-spacing: .4rem
+    &__slider
+        width: 100%
+
+    &__controls
+        display: flex
+        align-items: center
+        gap: 5.5rem
+        margin-top: 3.8rem
+
+        @include mix.tablet
+            gap: 4rem
+            margin-top: 3rem
+
+        @include mix.mobile
+            gap: 3rem
+            margin-top: 2.4rem
+
+    &__arrow
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 6rem
+        padding: 0
+        border: 0
+        background: transparent
+        cursor: pointer
+        appearance: none
+        -webkit-appearance: none
+        transition: transform .2s ease
+
+        img
+            display: block
+            width: 6rem
+            height: auto
+            pointer-events: none
+            @include mix.mobile
+                width: 5.2rem
+
+        &:hover:not(:disabled)
+            transform: translateX(.3rem)
+
+        &:active:not(:disabled)
+            transform: translateX(.1rem)
+
+        &:focus-visible
+            border-radius: .4rem
+            outline-offset: .4rem
+
+        &:disabled
+            cursor: default
+
+        @include mix.mobile
+            width: 5.2rem
+    
+    &__arrow--prev
+        &:hover:not(:disabled)
+            transform: translateX(-.3rem)
+
+        &:active:not(:disabled)
+            transform: translateX(-.1rem)
+
+    &__read-more
+        color: vars.$color-primary
+        font-weight: 600
+
+    &__stars
+        color: #FFD70F
+        letter-spacing: .4rem

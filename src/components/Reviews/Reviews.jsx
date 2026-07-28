@@ -1,11 +1,11 @@
-import ReviewCard from "./ReviewCard";
 import reviews from "../../data/reviews";
+import ReviewsSlider from "./ReviewsSlider";
 import "./Reviews.sass";
 
 function Reviews() {
   return (
     <section id="reviews" className="reviews">
-      <div className="container">
+      <div className="reviews__container container">
         <h2 className="reviews__title">What Our Customers Say</h2>
 
         <div className="reviews__google">
@@ -27,11 +27,7 @@ function Reviews() {
           <div className="reviews__google-button">Review us on Google</div>
         </div>
 
-        <div className="reviews__cards">
-          {reviews.map((review) => (
-            <ReviewCard key={review.name} {...review} />
-          ))}
-        </div>
+        <ReviewsSlider reviews={reviews} />
       </div>
     </section>
   );
