@@ -1,7 +1,35 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+
+  build: {
+    sourcemap: false,
+
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            {
+              name: "react-vendor",
+              test: /node_modules\/(react|react-dom)\//,
+            },
+            {
+              name: "router-vendor",
+              test: /node_modules\/react-router/,
+            },
+            {
+              name: "leaflet-vendor",
+              test: /node_modules\/(leaflet|react-leaflet)\//,
+            },
+            {
+              name: "helmet-vendor",
+              test: /node_modules\/react-helmet-async\//,
+            },
+          ],
+        },
+      },
+    },
+  },
+});
