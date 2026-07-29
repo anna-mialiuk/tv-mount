@@ -6,7 +6,12 @@ import "./Hero.sass";
 function BenefitItem({ text }) {
   return (
     <li className="hero__item">
-      <img src="/check.svg" alt="check-icon" className="hero__item-icon" />
+      <img
+        src="/check.svg"
+        alt=""
+        className="hero__item-icon"
+        aria-hidden="true"
+      />
 
       <span className="hero__item-span-text text-s">{text}</span>
     </li>
@@ -34,9 +39,10 @@ function Hero({ onQuizOpen }) {
 
               <img
                 src="/hero-tablet.webp"
-                alt="TV installation"
+                alt="Professional TV installation"
                 className="hero__tablet-img"
                 fetchPriority="high"
+                decoding="async"
               />
             </picture>
 
@@ -69,26 +75,29 @@ function Hero({ onQuizOpen }) {
                 <img
                   className="hero__button-icon"
                   src="/phone.svg"
-                  alt="phone"
+                  alt=""
+                  aria-hidden="true"
                 />
                 Call: (404) 793-8283
               </Button>
             </div>
           </div>
 
-          <div className="hero__right-side">
-            <img
-              src="/hero.webp"
-              alt="TV installation"
-              className="hero__img"
-              fetchPriority="high"
-            />
-          </div>
+          <div
+            className="hero__right-side"
+            role="img"
+            aria-label="Professional TV installation"
+          />
         </div>
 
         <div className="hero__badges">
           <div className="hero__badge">
-            <img src="/google.svg" alt="" className="hero__badge-icon" />
+            <img
+              src="/google.svg"
+              alt=""
+              className="hero__badge-icon"
+              aria-hidden="true"
+            />
 
             <span className="hero__span-badge text-s">
               5/5 rating on Google
@@ -96,15 +105,25 @@ function Hero({ onQuizOpen }) {
           </div>
 
           <div className="hero__badge">
-            <img src="/shield.svg" alt="" className="hero__badge-icon" />
+            <img
+              src="/shield.svg"
+              alt=""
+              className="hero__badge-icon"
+              aria-hidden="true"
+            />
 
             <span className="hero__span-badge text-s">
-              Liscenced and insured
+              Licensed and insured
             </span>
           </div>
 
           <div className="hero__badge">
-            <img src="/star.svg" alt="" className="hero__badge-icon" />
+            <img
+              src="/star.svg"
+              alt=""
+              className="hero__badge-icon"
+              aria-hidden="true"
+            />
 
             <span className="hero__span-badge text-s">
               {serviceRegion
