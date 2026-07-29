@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 
 import { serviceAreas } from "../../data/serviceAreas";
 import Button from "../Button/Button";
@@ -21,8 +21,35 @@ function ServiceAreas() {
   const [activeArea, setActiveArea] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [mapCity, setMapCity] = useState(null);
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
 
   const mapRef = useRef(null);
+
+  useEffect(() => {
+    const mapElement = mapRef.current;
+
+    if (!mapElement) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadMap(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: "300px 0px",
+      },
+    );
+
+    observer.observe(mapElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleAreaClick = (area) => {
     setActiveArea((currentArea) =>
@@ -42,6 +69,7 @@ function ServiceAreas() {
       return;
     }
 
+    setShouldLoadMap(true);
     setMapCity(selectedCity);
 
     if (window.matchMedia("(max-width: 768px)").matches) {
@@ -67,17 +95,15 @@ function ServiceAreas() {
               We serve these cities
             </h2>
 
-            <Suspense
-              fallback={
-                <div className="service-areas__map-loader">Loading map...</div>
-              }
-            >
-              <ServiceMap
-                center={mapCenter}
-                zoom={mapZoom}
-                cities={mapMarkers}
-              />
-            </Suspense>
+            {shouldLoadMap && (
+              <Suspense fallback={null}>
+                <ServiceMap
+                  center={mapCenter}
+                  zoom={mapZoom}
+                  cities={mapMarkers}
+                />
+              </Suspense>
+            )}
           </div>
 
           <div className="service-areas__content">
