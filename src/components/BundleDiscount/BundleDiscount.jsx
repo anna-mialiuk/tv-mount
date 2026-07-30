@@ -55,7 +55,7 @@ function BundleDiscount({ onQuizOpen }) {
       <div className="bundle-discount__visual" aria-hidden="true">
         <img
           className="bundle-discount__image"
-          src="/discounts/tv-top.png"
+          src="/discounts/tv-top.webp"
           alt=""
           loading="lazy"
         />

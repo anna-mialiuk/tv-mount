@@ -1,16 +1,9 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Benefits from "./components/Benefits/Benefits";
-import Reviews from "./components/Reviews/Reviews";
-import BundleDiscount from "./components/BundleDiscount/BundleDiscount";
-import PopularAddons from "./components/PopularAddons/PopularAddons";
-import MountingStyles from "./components/MountingStyles/MountingStyles";
-import Offer from "./components/Offer/Offer";
-import Steps from "./components/Steps/Steps";
-import BookingCTA from "./components/BookingCTA/BookingCTA";
 import Footer from "./components/Footer/Footer";
 import ScrollToHash from "./components/ScrollToHash";
 import ScrollToTop from "./components/ScrollToTop";
@@ -18,10 +11,23 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import SEO from "./components/SEO/SEO";
 import seo from "./data/seo";
 
+const Reviews = lazy(() => import("./components/Reviews/Reviews"));
+const BundleDiscount = lazy(
+  () => import("./components/BundleDiscount/BundleDiscount"),
+);
+const PopularAddons = lazy(
+  () => import("./components/PopularAddons/PopularAddons"),
+);
+const MountingStyles = lazy(
+  () => import("./components/MountingStyles/MountingStyles"),
+);
+const Offer = lazy(() => import("./components/Offer/Offer"));
+const Steps = lazy(() => import("./components/Steps/Steps"));
 const ServiceAreas = lazy(
   () => import("./components/ServiceAreas/ServiceAreas"),
 );
 const Projects = lazy(() => import("./components/Projects/Projects"));
+const BookingCTA = lazy(() => import("./components/BookingCTA/BookingCTA"));
 const FAQ = lazy(() => import("./components/FAQ/FAQ"));
 const QuoteQuiz = lazy(() => import("./components/QuoteQuiz/QuoteQuiz"));
 
@@ -34,41 +40,25 @@ const BlogArticle = lazy(() => import("./pages/Blog/BlogArticle"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function HomePage({ onQuizOpen }) {
-  // The below-the-fold sections are rendered only after the app mounts in the
-  // browser. This keeps them out of the build-time prerender (they are lazy /
-  // not needed for first paint) and avoids an unfinished Suspense boundary
-  // during server rendering.
-  const [showDeferred, setShowDeferred] = useState(false);
-
-  useEffect(() => {
-    // Intentional: flip to true only after the client mounts so the first
-    // client render matches the prerendered HTML (both omit the deferred
-    // sections), then reveal them. This is what keeps hydration clean.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setShowDeferred(true);
-  }, []);
-
   return (
     <>
       <SEO {...seo.home} />
 
       <Hero onQuizOpen={onQuizOpen} />
       <Benefits />
-      <Reviews />
-      <BundleDiscount onQuizOpen={onQuizOpen} />
-      <PopularAddons onQuizOpen={onQuizOpen} />
-      <MountingStyles onQuizOpen={onQuizOpen} />
-      <Offer />
-      <Steps />
 
-      {showDeferred && (
-        <Suspense fallback={null}>
-          <ServiceAreas />
-          <Projects />
-          <BookingCTA />
-          <FAQ />
-        </Suspense>
-      )}
+      <Suspense fallback={null}>
+        <Reviews />
+        <BundleDiscount onQuizOpen={onQuizOpen} />
+        <PopularAddons onQuizOpen={onQuizOpen} />
+        <MountingStyles onQuizOpen={onQuizOpen} />
+        <Offer />
+        <Steps />
+        <ServiceAreas />
+        <Projects />
+        <BookingCTA />
+        <FAQ />
+      </Suspense>
     </>
   );
 }
