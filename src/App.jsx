@@ -1,28 +1,45 @@
-import { useState, lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import Benefits from "./components/Benefits/Benefits";
-import Reviews from "./components/Reviews/Reviews";
-import BundleDiscount from "./components/BundleDiscount/BundleDiscount";
-import PopularAddons from "./components/PopularAddons/PopularAddons";
-import MountingStyles from "./components/MountingStyles/MountingStyles";
-import Offer from "./components/Offer/Offer";
-import Steps from "./components/Steps/Steps";
-import BookingCTA from "./components/BookingCTA/BookingCTA";
-import Footer from "./components/Footer/Footer";
+
+import DeferredSection from "./components/DeferredSection/DeferredSection";
 import ScrollToHash from "./components/ScrollToHash";
 import ScrollToTop from "./components/ScrollToTop";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import SEO from "./components/SEO/SEO";
+
 import seo from "./data/seo";
+
+const Reviews = lazy(() => import("./components/Reviews/Reviews"));
+
+const BundleDiscount = lazy(
+  () => import("./components/BundleDiscount/BundleDiscount"),
+);
+
+const PopularAddons = lazy(
+  () => import("./components/PopularAddons/PopularAddons"),
+);
+
+const MountingStyles = lazy(
+  () => import("./components/MountingStyles/MountingStyles"),
+);
+
+const Offer = lazy(() => import("./components/Offer/Offer"));
+const Steps = lazy(() => import("./components/Steps/Steps"));
 
 const ServiceAreas = lazy(
   () => import("./components/ServiceAreas/ServiceAreas"),
 );
+
 const Projects = lazy(() => import("./components/Projects/Projects"));
+
+const BookingCTA = lazy(() => import("./components/BookingCTA/BookingCTA"));
+
 const FAQ = lazy(() => import("./components/FAQ/FAQ"));
+const Footer = lazy(() => import("./components/Footer/Footer"));
 const QuoteQuiz = lazy(() => import("./components/QuoteQuiz/QuoteQuiz"));
 
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -39,20 +56,69 @@ function HomePage({ onQuizOpen }) {
       <SEO {...seo.home} />
 
       <Hero onQuizOpen={onQuizOpen} />
-      <Benefits />
-      <Reviews />
-      <BundleDiscount onQuizOpen={onQuizOpen} />
-      <PopularAddons onQuizOpen={onQuizOpen} />
-      <MountingStyles onQuizOpen={onQuizOpen} />
-      <Offer />
-      <Steps />
 
-      <Suspense fallback={null}>
-        <ServiceAreas />
-        <Projects />
-        <BookingCTA />
-        <FAQ />
-      </Suspense>
+      {/* Benefits близько до першого екрана — залишаємо одразу */}
+      <Benefits />
+
+      <DeferredSection rootMargin="1000px 0px">
+        <Suspense fallback={null}>
+          <Reviews />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <BundleDiscount onQuizOpen={onQuizOpen} />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <PopularAddons onQuizOpen={onQuizOpen} />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <MountingStyles onQuizOpen={onQuizOpen} />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <Offer />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <Steps />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <ServiceAreas />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <Projects />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <BookingCTA />
+        </Suspense>
+      </DeferredSection>
+
+      <DeferredSection>
+        <Suspense fallback={null}>
+          <FAQ />
+        </Suspense>
+      </DeferredSection>
     </>
   );
 }
@@ -66,6 +132,7 @@ function App() {
   return (
     <>
       <Header onQuizOpen={openQuiz} />
+
       <ScrollToTop />
       <ScrollToHash />
 
@@ -73,18 +140,27 @@ function App() {
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<HomePage onQuizOpen={openQuiz} />} />
+
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
             <Route path="/cookie-policy" element={<CookiePolicy />} />
+
             <Route path="/disclaimer" element={<Disclaimer />} />
+
             <Route path="/terms-of-service" element={<TermsOfService />} />
+
             <Route path="/blog" element={<Blog />} />
+
             <Route path="/blog/:slug" element={<BlogArticle />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
       {isQuizOpen && (
         <Suspense fallback={null}>
