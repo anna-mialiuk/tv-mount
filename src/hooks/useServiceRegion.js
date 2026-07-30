@@ -34,9 +34,7 @@ async function fetchLocation(url, signal) {
 }
 
 export default function useServiceRegion() {
-  const [serviceRegion, setServiceRegion] = useState(() => {
-    return sessionStorage.getItem(STORAGE_KEY) || "";
-  });
+  const [serviceRegion, setServiceRegion] = useState("");
 
   useEffect(() => {
     if (serviceRegion) {
@@ -46,7 +44,15 @@ export default function useServiceRegion() {
     const controller = new AbortController();
 
     async function detectLocation() {
-      let location = "";
+      const cached = sessionStorage.getItem(STORAGE_KEY);
+
+      if (cached) {
+        setServiceRegion(cached);
+
+        return;
+      }
+
+      let location;
 
       try {
         location = await fetchLocation("https://ipwho.is/", controller.signal);

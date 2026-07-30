@@ -4,6 +4,10 @@ const COUNTDOWN_IN_MS = 5 * 60 * 1000;
 const STORAGE_KEY = "offerEndTime";
 
 function getTimeLeft() {
+  if (typeof window === "undefined") {
+    return COUNTDOWN_IN_MS;
+  }
+
   let endTime = Number(localStorage.getItem(STORAGE_KEY));
 
   if (!endTime || endTime <= Date.now()) {
@@ -15,7 +19,7 @@ function getTimeLeft() {
 }
 
 function Countdown() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+  const [timeLeft, setTimeLeft] = useState(COUNTDOWN_IN_MS);
 
   useEffect(() => {
     const timer = setInterval(() => {
