@@ -28,6 +28,8 @@
             color: vars.$color-darkgrey
             font-size: 1.4rem
             line-height: 150%
+            @include mix.mobile-sm
+                font-size: 1.8rem
             @include mix.big-screen
                 font-size: 1.8rem
 
@@ -49,6 +51,8 @@
             margin-bottom: 1.2rem
             color: vars.$color-white
             font-size: 1.8rem
+            @include mix.mobile-sm
+                font-size: 2rem
             @include mix.big-screen
                 font-size: 2.2rem
 
@@ -56,13 +60,15 @@
         p
             color: vars.$color-white
             font-size: 1.4rem
+            @include mix.mobile-sm
+                font-size: 1.6rem
             @include mix.big-screen
                 font-size: 1.8rem
 
     &__socials
         display: flex
         align-items: center
-        gap: 1.2rem
+        gap: 2rem
         margin-top: 1rem
 
         a
@@ -71,9 +77,12 @@
         img
             width: 2.4rem
             height: 2.4rem
-            @include mix.big-screen
+            @include mix.mobile-sm
                 width: 3rem
                 height: 3rem
+            @include mix.big-screen
+                width: 4rem
+                height: 4rem
 
     &__bottom
         @include mix.flex-between
@@ -81,5 +90,7 @@
         p
             color: vars.$color-darkgrey
             font-size: 1.5rem
+            @include mix.mobile-sm
+                font-size: 1.6rem
             @include mix.big-screen
                 font-size: 1.9rem

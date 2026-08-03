@@ -22,51 +22,55 @@ function Footer() {
           </div>
 
           <nav className="footer__nav" aria-label="Footer navigation">
-            <h3>Navigation</h3>
+            <h3 className="h3">Navigation</h3>
 
-            <a className="footer__a" href="/">
+            <a className="footer__a p" href="/">
               Home
             </a>
-            <a className="footer__a" href="/#services">
+            <a className="footer__a p" href="/#services">
               Services
             </a>
-            <a className="footer__a" href="/#about">
+            <a className="footer__a p" href="/#about">
               About us
             </a>
-            <a className="footer__a" href="/#reviews">
+            <a className="footer__a p" href="/#reviews">
               Reviews
             </a>
-            <a className="footer__a" href="/#contact">
+            <a className="footer__a p" href="/#contact">
               Contact
             </a>
-            <a className="footer__a" href="/#blog">
+            <a className="footer__a p" href="/#blog">
               Blog
             </a>
           </nav>
 
           <div className="footer__legal">
-            <h3>Legal</h3>
+            <h3 className="h3">Legal</h3>
 
-            <Link className="footer__a" to="/privacy-policy">
+            <Link className="footer__a p" to="/privacy-policy">
               Privacy Policy
             </Link>
-            <Link className="footer__a" to="/cookie-policy">
+            <Link className="footer__a p" to="/cookie-policy">
               Cookie Policy
             </Link>
-            <Link className="footer__a" to="/disclaimer">
+            <Link className="footer__a p" to="/disclaimer">
               Disclaimer
             </Link>
-            <Link className="footer__a" to="/terms-of-service">
+            <Link className="footer__a p" to="/terms-of-service">
               Terms of Service
             </Link>
           </div>
 
           <div className="footer__contacts">
-            <h3>Contacts</h3>
+            <h3 className="h3">Contacts</h3>
 
-            <a href="tel:+14047938283">(404) 793-8283</a>
-            <a href="mailto:tvmount@gmail.com">tvmount@gmail.com</a>
-            <p>MON-SUN 8:00 AM - 9:00 PM</p>
+            <a className="footer__a p" href="tel:+14047938283">
+              (404) 793-8283
+            </a>
+            <a className="footer__a p" href="mailto:tvmount@gmail.com">
+              tvmount@gmail.com
+            </a>
+            <p className="p">MON-SUN 8:00 AM - 9:00 PM</p>
 
             <div className="footer__socials">
               <a href="#" aria-label="TV Mount Company on YouTube">
@@ -85,8 +89,8 @@ function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>© {currentYear} TV Mount Company.</p>
-          <p>All rights reserved.</p>
+          <p className="p">© {currentYear} TV Mount Company.</p>
+          <p className="p">All rights reserved.</p>
         </div>
       </div>
     </footer>

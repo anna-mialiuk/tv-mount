@@ -25,7 +25,7 @@ function PopularAddons({ onQuizOpen }) {
                   loading="lazy"
                 />
 
-                <p className="popular-addons__card-title">{addon.title}</p>
+                <p className="popular-addons__card-title p">{addon.title}</p>
 
                 <Button
                   variant="primary"

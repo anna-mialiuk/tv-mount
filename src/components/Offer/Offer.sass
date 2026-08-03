@@ -67,6 +67,8 @@
         align-items: center
         @include mix.laptop
             width: 100%
+        @include mix.mobile-sm
+            justify-content: center
         
     &__time
         @include mix.flex-center
@@ -79,6 +81,10 @@
         @include mix.laptop
             height: 100%
             width: 100%
+        @include mix.mobile-sm
+            padding: 0rem
+            width: 10rem
+            height: 10rem
         @include mix.big-screen
             padding: 3rem 6rem
             width: auto

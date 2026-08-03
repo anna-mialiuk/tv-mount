@@ -22,7 +22,7 @@ function BundleDiscount({ onQuizOpen }) {
             <span className="bundle-discount__label-accent">Best value</span>
           </div>
 
-          <h2 className="bundle-discount__title">
+          <h2 className="bundle-discount__title h2">
             More screens. Less
             <br />
             hassle.{" "}
@@ -31,7 +31,7 @@ function BundleDiscount({ onQuizOpen }) {
             </span>
           </h2>
 
-          <p className="bundle-discount__description">
+          <p className="bundle-discount__description p">
             Save up to 30% when you book multiple installations. Professional
             wire concealment included — flawless walls in a single visit.
           </p>

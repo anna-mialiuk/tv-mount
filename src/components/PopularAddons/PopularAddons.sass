@@ -41,17 +41,22 @@
     margin-bottom: 1.2rem
     border-radius: 50%
     object-fit: cover
+    @include mix.mobile-sm
+      width: 10rem
+      height: 10rem
 
   &__card-title
     flex-grow: 1
     font-weight: 600
     margin-bottom: 1rem
+    @include mix.mobile-sm
+      font-size: 2rem
 
   &__button
-    font-size: 1.4rem
-    padding: 1.6rem 5rem
+    font-size: 1.6rem
     @include mix.mobile-sm
       width: 100%
+      font-size: 1.8rem
 
 
 
