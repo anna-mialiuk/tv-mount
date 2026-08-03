@@ -140,6 +140,8 @@
         color: #0D0D0D
         font-size: 1.8rem
         font-weight: 600
+        @include mix.mobile-sm
+            font-size: 2rem
 
     &__description
         display: -webkit-box
@@ -151,6 +153,8 @@
         font-weight: 400
         -webkit-box-orient: vertical
         -webkit-line-clamp: 2
+        @include mix.mobile-sm
+            font-size: 1.8rem
 
     &__link
         width: fit-content
@@ -161,6 +165,8 @@
         text-decoration: underline
         text-transform: uppercase
         transition: all .2s ease
+        @include mix.mobile-sm
+            font-size: 1.8rem
 
         &:hover,
         &:active
