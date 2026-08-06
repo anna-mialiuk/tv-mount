@@ -268,4 +268,24 @@ export const blogArticles = [
       "You've invested in a modern TV with outstanding color accuracy and exceptional picture quality. But even the best display can't guarantee a truly cinematic viewing experience on its own...",
     slug: "how-does-room-lighting-affect-tv-viewing",
   },
+
+  {
+    id: 29,
+    category: "Aesthetics & Wire Management",
+    image: "/blog/blog-29.webp",
+    title: "Balancing Sound and Style",
+    description:
+      "A great picture should be accompanied by great sound. A modern soundbar is one of theeasiest ways to create a...",
+    slug: "balancing-sound-and-style",
+  },
+
+  {
+    id: 30,
+    category: "Guides",
+    image: "/blog/blog-30.webp",
+    title: "Why Do TVs Often Break Right After the Warranty Expires?",
+    description:
+      "Many owners of even the most advanced modern electronics have noticed a curious paradox: a device works...",
+    slug: "why-do-tvs-often-break-right-after-the-warranty-expires",
+  },
 ];

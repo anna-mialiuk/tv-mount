@@ -7,8 +7,8 @@ function MantelMountInstallationAtlanta() {
             You've invested in a modern TV with outstanding color accuracy and
             exceptional picture quality. But even the best display can't
             guarantee a truly cinematic viewing experience on its own. One of
-            the biggest factors is something many people overlook — the lighting
-            in the room.
+            the biggest factors is something many people overlook —{" "}
+            <span className="italic">the lighting in the room.</span>
           </p>
 
           <p className="blog-article__paragraph p">
@@ -34,8 +34,8 @@ function MantelMountInstallationAtlanta() {
 
         <section className="blog-article__section">
           <h2 className="blog-article__section-title">
-            The Enemy of Contrast: Glare, Reflections, and the Nature of Image
-            Sensors
+            The Enemy of Contrast: Glare, Reflections, and How Your Eyes
+            Perceive Contrast
           </h2>
 
           <p className="blog-article__paragraph p">
@@ -131,10 +131,11 @@ function MantelMountInstallationAtlanta() {
             <li className="blog-article__list-item p">
               <p>
                 <strong>Color temperature:</strong> The ideal choice is a
-                neutral white light with a color temperature of 6500K (D65).
-                This reference standard ensures that your brain perceives whites
-                on the screen accurately without being influenced by warm or
-                cool light behind the display.
+                neutral white light with a color temperature of{" "}
+                <strong>6500K (D65)</strong>. This reference standard ensures
+                that your brain perceives whites on the screen accurately
+                without being influenced by warm or cool light behind the
+                display.
               </p>
             </li>
 
@@ -142,8 +143,8 @@ function MantelMountInstallationAtlanta() {
               <p>
                 <strong>Brightness level:</strong> Bias lighting should remain
                 subtle rather than overpowering. A common recommendation is to
-                set its brightness to approximately 10% of the TV's peak
-                brightness.
+                set its brightness to approximately{" "}
+                <strong>10% of the TV's peak brightness</strong>.
               </p>
             </li>
 
@@ -152,9 +153,9 @@ function MantelMountInstallationAtlanta() {
                 <strong>Enhanced perceived contrast:</strong> A soft halo of
                 light behind the TV makes blacks appear deeper and more
                 saturated. This effect is caused by a well-documented
-                characteristic of human vision known as simultaneous contrast,
-                which enhances our perception of contrast without changing the
-                image itself.
+                characteristic of human vision known as{" "}
+                <strong>simultaneous contrast</strong>, which enhances our
+                perception of contrast without changing the image itself.
               </p>
             </li>
           </ul>
@@ -169,8 +170,12 @@ function MantelMountInstallationAtlanta() {
 
         <section className="blog-article__section">
           <h2 className="blog-article__section-title">
-            Custom Calibration Based on Usage Scenarios
+            Lighting for Different Viewing Situations{" "}
           </h2>
+
+          <p className="blog-article__paragraph p">
+            Room lighting should be tailored to the way you use your TV:{" "}
+          </p>
 
           <ul className="blog-article__list">
             <li className="blog-article__list-item p">
@@ -181,13 +186,6 @@ function MantelMountInstallationAtlanta() {
                 atmosphere while reducing eye strain.
               </p>
             </li>
-          </ul>
-
-          <p className="blog-article__paragraph p">
-            Room lighting should be tailored to the way you use your TV:
-          </p>
-
-          <ul className="blog-article__list">
             <li className="blog-article__list-item p">
               <p>
                 <strong>For gaming or everyday viewing:</strong> Brighter,
