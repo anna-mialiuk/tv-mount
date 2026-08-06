@@ -26,31 +26,6 @@
     />
 
     <meta name="theme-color" content="#ff6b3d" />
-
-    <!-- Preload the LCP hero image so it starts downloading immediately,
-         in parallel with the JS bundle, instead of after React renders.
-         Each media query matches exactly the image the layout will show. -->
-    <link
-      rel="preload"
-      as="image"
-      href="/hero-mobile.webp"
-      media="(max-width: 576px)"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/hero-tablet.webp"
-      media="(min-width: 577px) and (max-width: 1024px)"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/hero.webp"
-      media="(min-width: 1025px)"
-      fetchpriority="high"
-    />
   </head>
 
   <body>

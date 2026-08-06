@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 import useServiceRegion from "../../hooks/useServiceRegion";
 import Button from "../Button/Button";
 import heroBenefits from "../../data/hero";
@@ -23,6 +25,27 @@ function Hero({ onQuizOpen }) {
 
   return (
     <section className="hero">
+      <Helmet>
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-mobile.webp"
+          media="(max-width: 576px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-tablet.webp"
+          media="(min-width: 577px) and (max-width: 1024px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero.webp"
+          media="(min-width: 1025px)"
+        />
+      </Helmet>
+
       <div className="hero__container container">
         <div className="hero__wrapper">
           <div className="hero__left-side">
