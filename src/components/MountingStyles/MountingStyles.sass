@@ -23,7 +23,7 @@
     overflow-x: auto
     border-bottom: 0.1rem solid vars.$color-sublightgrey
     
-    @include mix.mobile-sm
+    @include mix.mobile
       flex-direction: column
       align-items: flex-start
       gap: 0
@@ -39,6 +39,8 @@
     text-transform: uppercase
     cursor: pointer
     transition: color 0.2s ease
+    @include mix.mobile
+      padding: .8rem 0
 
     &::after
       content: ''

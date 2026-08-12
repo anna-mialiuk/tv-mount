@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 
-import useServiceRegion from "../../hooks/useServiceRegion";
 import Button from "../Button/Button";
 import heroBenefits from "../../data/hero";
 import "./Hero.sass";
@@ -21,8 +20,6 @@ function BenefitItem({ text }) {
 }
 
 function Hero({ onQuizOpen }) {
-  const serviceRegion = useServiceRegion();
-
   return (
     <section className="hero">
       <Helmet>
@@ -50,7 +47,10 @@ function Hero({ onQuizOpen }) {
         <div className="hero__wrapper">
           <div className="hero__left-side">
             <h1 className="hero__main-text">
-              Professional TV installation in 30 minutes
+              Professional
+              <br />
+              TV installation <br />
+              in 30 minutes
             </h1>
 
             <p className="hero__paragraph text-s">
@@ -111,49 +111,6 @@ function Hero({ onQuizOpen }) {
             role="img"
             aria-label="Professional TV installation"
           />
-        </div>
-
-        <div className="hero__badges">
-          <div className="hero__badge">
-            <img
-              src="/google.svg"
-              alt=""
-              className="hero__badge-icon"
-              aria-hidden="true"
-            />
-
-            <span className="hero__span-badge text-s">
-              5/5 rating on Google
-            </span>
-          </div>
-
-          <div className="hero__badge">
-            <img
-              src="/shield.svg"
-              alt=""
-              className="hero__badge-icon"
-              aria-hidden="true"
-            />
-
-            <span className="hero__span-badge text-s">
-              Licensed and insured
-            </span>
-          </div>
-
-          <div className="hero__badge">
-            <img
-              src="/star.svg"
-              alt=""
-              className="hero__badge-icon"
-              aria-hidden="true"
-            />
-
-            <span className="hero__span-badge text-s">
-              {serviceRegion
-                ? `Best service in ${serviceRegion}`
-                : "Best service near you"}
-            </span>
-          </div>
         </div>
       </div>
     </section>

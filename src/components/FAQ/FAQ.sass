@@ -24,6 +24,9 @@
 
         @include mix.big-screen
             padding: 3rem 2.4rem
+        
+        @include mix.mobile
+            padding: 2rem 1.6rem
 
         &--active
             background: vars.$color-white
@@ -32,9 +35,7 @@
 
     &__button
         width: 100%
-
         @include mix.flex-between
-
         gap: 2rem
         background: transparent
         border: none
@@ -62,6 +63,9 @@
         height: 2.4rem
         flex-shrink: 0
         transition: transform .35s ease
+        @include mix.mobile
+            width: 2rem
+            height: 2rem
 
     &__content
         max-height: 0

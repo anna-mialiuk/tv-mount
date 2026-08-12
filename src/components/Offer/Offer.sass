@@ -96,6 +96,8 @@
         line-height: 120%
         @include mix.laptop
             font-size: 4rem
+        @include mix.mobile
+            font-size: 3rem
         @include mix.big-screen
             font-size: 5rem
     
@@ -104,6 +106,8 @@
         font-weight: 300
         @include mix.laptop
             font-size: 2rem
+        @include mix.mobile
+            font-size: 1.5rem
         @include mix.big-screen
             font-size: 1.5rem
 
@@ -143,6 +147,13 @@
         margin-right: .8rem
         @include mix.laptop
             margin-right: 1.8rem
+        @include mix.mobile
+            margin-right: 1rem
+
+    &__slot-text
+        @include mix.mobile
+            font-size: 1.3rem
+
 
     &__bonus
         position: absolute

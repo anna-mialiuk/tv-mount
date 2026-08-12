@@ -15,10 +15,10 @@
 
     @include mix.laptop
         min-height: 44rem
-
-    @include mix.tablet
+    
+    @include mix.laptop-s
         display: flex
-        flex-direction: column
+        flex-direction: column-reverse
         min-height: auto
 
     &__container
@@ -67,12 +67,12 @@
             flex-wrap: wrap
             gap: .7rem
             margin-bottom: 1.3rem
-            font-size: 1.1rem
+            font-size: 1.4rem
 
     &__label-dot
         flex-shrink: 0
         font-size: 1.5rem
-        line-height: 1
+        line-height: 15%
 
     &__label-accent
         color: vars.$color-primary
@@ -134,7 +134,9 @@
         pointer-events: none
 
         @include mix.laptop-s
-            display: none
+            position: static
+            width: 100%
+            border-bottom: .1rem solid vars.$color-sublightgrey
 
     &__image
         position: absolute
@@ -144,3 +146,6 @@
         width: auto
         height: 100%
         max-width: none
+        @include mix.laptop-s
+            position: static
+            width: 100%

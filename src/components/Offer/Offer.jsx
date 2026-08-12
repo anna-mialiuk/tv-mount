@@ -34,7 +34,7 @@ function Offer() {
                     <div className="offer__slot" key={slot.count}>
                       <img src="/arrow.svg" alt="" className="offer__arrow" />
 
-                      <div>
+                      <div className="offer__slot-text">
                         <strong>{slot.count}</strong>
                         <br />
                         <span>{slot.text}</span>

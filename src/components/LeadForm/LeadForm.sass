@@ -9,6 +9,8 @@
     border-radius: vars.$radius-md
     border: .1rem solid vars.$color-sublightgrey
     box-shadow: vars.$shadow-card
+    @include mix.mobile
+        padding: 2rem
 
     &__title
         font-family: 'Cygre', sans-serif
@@ -17,6 +19,8 @@
         color: vars.$color-black
         @include mix.big-screen
             font-size: 5rem
+        @include mix.mobile
+            font-size: 2.4rem
 
     &__input
         width: 100%
@@ -35,6 +39,8 @@
     &__button
         width: 100%
         margin: 1.2rem 0
+        @include mix.mobile
+            font-size: 1.5rem
 
     &__note
         font-size: 1.4rem
