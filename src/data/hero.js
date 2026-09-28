@@ -1,10 +1,7 @@
 const heroBenefits = [
-  "Payment plans available",
-  "Certified technicians",
-  "Free estimate in minutes",
-  "Installation on the day of order",
-  "2-year warranty",
-  "Transparent pricing",
+  "Professional service",
+  "Same day installation",
+  "48 month warranty",
 ];
 
 export default heroBenefits;

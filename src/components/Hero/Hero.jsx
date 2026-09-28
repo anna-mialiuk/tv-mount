@@ -4,21 +4,6 @@ import Button from "../Button/Button";
 import heroBenefits from "../../data/hero";
 import "./Hero.sass";
 
-function BenefitItem({ text }) {
-  return (
-    <li className="hero__item">
-      <img
-        src="/check.svg"
-        alt=""
-        className="hero__item-icon"
-        aria-hidden="true"
-      />
-
-      <span className="hero__item-span-text text-s">{text}</span>
-    </li>
-  );
-}
-
 function Hero({ onQuizOpen }) {
   return (
     <section className="hero">
@@ -26,92 +11,64 @@ function Hero({ onQuizOpen }) {
         <link
           rel="preload"
           as="image"
-          href="/hero-mobile.webp"
+          href="/hero-bg-mobile.webp"
           media="(max-width: 576px)"
         />
         <link
           rel="preload"
           as="image"
-          href="/hero-tablet.webp"
-          media="(min-width: 577px) and (max-width: 1024px)"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/hero.webp"
-          media="(min-width: 1025px)"
+          href="/hero-bg.webp"
+          media="(min-width: 577px)"
         />
       </Helmet>
 
+      <picture className="hero__bg">
+        <source media="(max-width: 576px)" srcSet="/hero-bg-mobile.webp" />
+
+        <img
+          src="/hero-bg.webp"
+          alt=""
+          className="hero__bg-img"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </picture>
+
       <div className="hero__container container">
-        <div className="hero__wrapper">
-          <div className="hero__left-side">
-            <h1 className="hero__main-text">
-              Professional
-              <br />
-              TV installation <br />
-              in 30 minutes
-            </h1>
+        <a href="tel:+14047938283" className="hero__phone">
+          <span className="hero__phone-icon">
+            <img src="/icons/phone-white.svg" alt="" aria-hidden="true" />
+          </span>
+          (404) 793-8283
+        </a>
 
-            <p className="hero__paragraph text-s">
-              Trusted by 10,000+ customers. 5/5 rating on Google
-            </p>
+        <h1 className="hero__title">
+          TV Mount
+          <br />
+          Company
+        </h1>
 
-            <picture className="hero__tablet-picture">
-              <source media="(max-width: 576px)" srcSet="/hero-mobile.webp" />
+        <ul className="hero__list">
+          {heroBenefits.map((item) => (
+            <li className="hero__item text-s" key={item}>
+              {item}
+            </li>
+          ))}
+        </ul>
 
-              <img
-                src="/hero-tablet.webp"
-                alt="Professional TV installation"
-                className="hero__tablet-img"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </picture>
+        <Button variant="primary" className="hero__button" onClick={onQuizOpen}>
+          Book now
+        </Button>
 
-            <div className="hero__benefits">
-              <ul className="hero__list">
-                {heroBenefits.slice(0, 3).map((item) => (
-                  <BenefitItem key={item} text={item} />
-                ))}
-              </ul>
-
-              <ul className="hero__list">
-                {heroBenefits.slice(3).map((item) => (
-                  <BenefitItem key={item} text={item} />
-                ))}
-              </ul>
-            </div>
-
-            <ul className="hero__list-tablet">
-              {heroBenefits.map((item) => (
-                <BenefitItem key={item} text={item} />
-              ))}
-            </ul>
-
-            <div className="hero__buttons">
-              <Button variant="primary" onClick={onQuizOpen}>
-                Book now
-              </Button>
-
-              <Button variant="outline">
-                <img
-                  className="hero__button-icon"
-                  src="/phone.svg"
-                  alt=""
-                  aria-hidden="true"
-                />
-                Call: (404) 793-8283
-              </Button>
-            </div>
-          </div>
-
-          <div
-            className="hero__right-side"
-            role="img"
-            aria-label="Professional TV installation"
+        <p className="hero__afterpay">
+          <img
+            src="/icons/afterpay.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero__afterpay-icon"
           />
-        </div>
+          *afterpay available
+        </p>
       </div>
     </section>
   );

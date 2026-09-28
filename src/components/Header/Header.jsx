@@ -1,26 +1,32 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Header.sass";
 
 const navLinks = [
-  { label: "Main", href: "/" },
+  { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
   { label: "Reviews", href: "/#reviews" },
   { label: "Contacts", href: "/#contact" },
-  { label: "About Us", href: "/#about" },
+  { label: "About us", href: "/#about" },
   { label: "Blog", href: "/blog" },
 ];
 
 function Header({ onQuizOpen }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isOverlay = pathname === "/";
 
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="header">
+    <header className={`header ${isOverlay ? "header--overlay" : ""}`}>
       <div className="container header__container">
         <a href="/" className="header__logo" onClick={closeMenu}>
-          <img src="/logo.svg" alt="TV Mount Company" />
+          <img
+            src={isOverlay ? "/logo-footer.svg" : "/logo.svg"}
+            alt="TV Mount Company"
+          />
         </a>
 
         <nav
@@ -54,7 +60,7 @@ function Header({ onQuizOpen }) {
               onQuizOpen?.();
             }}
           >
-            Book Now
+            Get My Price
           </Button>
 
           <button

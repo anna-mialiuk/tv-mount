@@ -2,123 +2,170 @@
 @use '../../styles/mixins' as mix
 
 .hero
-    padding: 3.2rem 0
+    position: relative
+    display: flex
+    align-items: center
+    min-height: 100vh
+    min-height: 100svh
+    padding: 14rem 0 8rem
+    overflow: hidden
     background: vars.$color-black
+    color: vars.$color-white
+    text-align: center
 
-    @include mix.laptop
-        @include mix.section(2.4rem)
+    @include mix.laptop-big
+        padding-top: 12rem
 
-    @include mix.big-screen
-        padding: 5rem 0
+    @include mix.mobile
+        padding: 10rem 0 5rem
 
-    &__wrapper
-        display: flex
-        margin-bottom: 4.8rem
+    &::after
+        content: ''
+        position: absolute
+        inset: 0
+        z-index: 1
+        background: rgba(vars.$color-black, .62)
 
-        @include mix.laptop
-            flex-direction: column
+    &__bg
+        position: absolute
+        inset: 0
 
-        @include mix.big-screen
-            margin-bottom: 8rem
-
-    &__main-text
-        margin-bottom: 1.6rem
-        text-transform: uppercase
-
-    &__paragraph
-        margin-bottom: 2.8rem
-        color: vars.$color-darkgrey
-
-    &__left-side
-        width: 60%
-        margin-right: 8rem
-
-        @include mix.laptop
-            width: 100%
-            margin-right: 0
-
-    &__right-side
-        width: 40%
-        min-height: 42rem
-        background-image: url('/hero.webp')
-        background-size: cover
-        background-position: center
-        background-repeat: no-repeat
-        border-radius: vars.$radius-md
-
-        @include mix.laptop
-            display: none
-
-        @include mix.big-screen
-            min-height: 50rem
-
-    &__tablet-picture
-        display: none
+    &__bg-img
         width: 100%
-
-        @include mix.laptop
-            display: block
-            margin-bottom: 3rem
-
-    &__tablet-img
-        display: block
-        width: 100%
-        height: auto
-        aspect-ratio: 1856 / 672
-        border-radius: vars.$radius-md
-
-    &__benefits
-        display: flex
-        gap: 5rem
-        margin-bottom: 4.8rem
-
-        @include mix.laptop
-            display: none
-
-    &__list-tablet
-        display: none
-
-        @include mix.laptop
-            display: grid
-            grid-template-columns: repeat(3, 1fr)
-            gap: 1rem 2rem
-            margin-bottom: 4.8rem
-
-        @include mix.tablet
-            grid-template-columns: repeat(2, 1fr)
+        height: 100%
+        object-fit: cover
+        object-position: center 35%
 
         @include mix.mobile
-            grid-template-columns: 1fr
+            object-position: 38% center
+
+    &__container
+        position: relative
+        z-index: 2
+        @include mix.flex-column
+        align-items: center
+
+    &__phone
+        display: inline-flex
+        align-items: center
+        gap: 2rem
+        margin-bottom: 3.2rem
+        font-family: 'Cygre', sans-serif
+        font-size: 4rem
+        font-weight: 800
+        line-height: 1
+        transition: color .3s ease
+
+        &:hover
+            color: vars.$color-primary
+
+        @include mix.big-screen
+            font-size: 4.4rem
+
+        @include mix.tablet
+            gap: 1.4rem
+            font-size: 3rem
+
+        @include mix.mobile
+            margin-bottom: 2.4rem
+            font-size: 2.4rem
+
+    &__phone-icon
+        @include mix.flex-center
+        flex-shrink: 0
+        width: 5.2rem
+        height: 5.2rem
+        border-radius: 50%
+        background: vars.$color-primary
+
+        img
+            width: 2.6rem
+            height: 2.6rem
+
+        @include mix.mobile
+            width: 4rem
+            height: 4rem
+
+            img
+                width: 2rem
+                height: 2rem
+
+    &__title
+        margin-bottom: 4.8rem
+        font-size: 10vw
+        line-height: .95
+        letter-spacing: -.01em
+        text-transform: uppercase
+
+        @include mix.tablet
+            font-size: 11vw
+
+        @include mix.mobile
+            margin-bottom: 3.2rem
+            font-size: 12.5vw
+
+    &__list
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        gap: 1.2rem 3.2rem
+        margin-bottom: 8rem
+
+        @include mix.tablet
+            margin-bottom: 5rem
+
+        @include mix.mobile
+            flex-direction: column
+            align-items: center
+            margin-bottom: 4rem
 
     &__item
         display: flex
         align-items: center
+        gap: 1.2rem
+        font-weight: 400
 
-        &:not(:last-child)
-            margin-bottom: .8rem
+        &::before
+            content: ''
+            flex-shrink: 0
+            width: .8rem
+            height: .8rem
+            border-radius: 50%
+            background: vars.$color-primary
 
-    &__item-icon
-        margin-right: 1rem
+    &__button
+        min-width: 36rem
+        margin-bottom: 1.8rem
+        padding: 2rem 4rem
+        font-size: 2.4rem
+        font-weight: 600
 
-    &__buttons
-        display: flex
-        gap: 2rem
-        margin-bottom: 4rem
+        &:hover
+            filter: brightness(1.08)
 
-        @include mix.laptop
-            flex-direction: column
+        @include mix.big-screen
+            min-width: 32rem
+            font-size: 2.6rem
+
         @include mix.mobile
-            margin-bottom: 0
+            width: 100%
+            min-width: 0
+            font-size: 2rem
 
-    &__button-icon
-        width: 2rem
-        height: 2rem
-        margin-right: 1.6rem
+    &__afterpay
+        display: flex
+        align-items: center
+        gap: 1.2rem
+        font-size: 1.8rem
+        color: rgba(vars.$color-white, .85)
 
+        @include mix.big-screen
+            font-size: 2rem
 
-    &__item-span-text
-        color: vars.$color-white
+    &__afterpay-icon
+        width: 4.4rem
+        height: 4.4rem
 
-.m-r
-    @include mix.laptop
-        margin-bottom: 2rem
+        @include mix.mobile
+            width: 3.6rem
+            height: 3.6rem
