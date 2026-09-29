@@ -1,29 +1,35 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import sendLead from "../../utils/sendLead";
 import Modal from "../Modal/Modal";
 import steps from "../../data/quoteQuiz";
 import QuizHeader from "./QuizHeader";
 import QuizProgress from "./QuizProgress";
 import QuizOptionStep from "./QuizOptionStep";
+import QuizSizeStep from "./QuizSizeStep";
 import QuizContactForm from "./QuizContactForm";
 import QuizSuccess from "./QuizSuccess";
 import "./QuoteQuiz.sass";
 
-const FORM_STEP_INDEX = steps.length;
-const TOTAL_STEPS = steps.length + 1;
+// step 0 — TV size, then option steps, then the contact form
+const FORM_STEP_INDEX = steps.length + 1;
+const TOTAL_STEPS = steps.length + 2;
+const DEFAULT_ANSWERS = { tvQuantity: "1 TV" };
 
 function QuoteQuiz({ isOpen, onClose }) {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState(DEFAULT_ANSWERS);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isDiscountPopupOpen, setIsDiscountPopupOpen] = useState(false);
+  const nameInputRef = useRef(null);
 
-  const currentStep = steps[step];
+  const currentStep = step > 0 ? steps[step - 1] : null;
   const progress = isSuccess ? 100 : ((step + 1) / TOTAL_STEPS) * 100;
 
   const resetQuiz = () => {
     setStep(0);
-    setAnswers({});
+    setAnswers(DEFAULT_ANSWERS);
     setIsSuccess(false);
+    setIsDiscountPopupOpen(false);
   };
 
   const handleClose = () => {
@@ -40,17 +46,27 @@ function QuoteQuiz({ isOpen, onClose }) {
     }));
   };
 
+  const handleAnswersChange = (changes) => {
+    setAnswers((prevAnswers) => ({ ...prevAnswers, ...changes }));
+  };
+
+  const handleSizeNext = () => setStep(1);
+
   const handleNext = () => {
     if (!currentStep) return;
 
-    const currentAnswer = answers[currentStep.name];
-    const isRequired = currentStep.required !== false;
+    if (step < steps.length) {
+      setStep(step + 1);
+      return;
+    }
 
-    if (isRequired && !currentAnswer) return;
+    setStep(FORM_STEP_INDEX);
+    setIsDiscountPopupOpen(true);
+  };
 
-    setStep((current) =>
-      current < steps.length - 1 ? current + 1 : FORM_STEP_INDEX,
-    );
+  const handleClaimDiscount = () => {
+    setIsDiscountPopupOpen(false);
+    nameInputRef.current?.focus();
   };
 
   const handleBack = () => {
@@ -68,8 +84,13 @@ function QuoteQuiz({ isOpen, onClose }) {
         name: formData.get("name"),
         phone: formData.get("phone"),
         tvSize: answers.tvSize,
+        tvQuantity: answers.tvQuantity,
+        technicians: answers.technicians,
+        removeOldTv: answers.removeOldTv ? "Yes" : "No",
         wallType: answers.wallType,
-        service: answers.services,
+        service: Array.isArray(answers.services)
+          ? answers.services.join(", ")
+          : answers.services,
         answers,
       });
 
@@ -96,8 +117,17 @@ function QuoteQuiz({ isOpen, onClose }) {
         <QuizContactForm
           totalSteps={TOTAL_STEPS}
           answers={answers}
-          onBack={handleBack}
           onSubmit={handleSubmit}
+          nameInputRef={nameInputRef}
+          isPopupOpen={isDiscountPopupOpen}
+          onClaimDiscount={handleClaimDiscount}
+        />
+      ) : step === 0 ? (
+        <QuizSizeStep
+          totalSteps={TOTAL_STEPS}
+          answers={answers}
+          onChange={handleAnswersChange}
+          onNext={handleSizeNext}
         />
       ) : (
         <QuizOptionStep

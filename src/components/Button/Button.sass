@@ -4,20 +4,67 @@
 .button
     @include mix.flex-center
     padding: 1.6rem 3rem
-    border-radius: vars.$radius-md
+    border-radius: 1rem
     font-size: 1.8rem
     font-weight: 500
     cursor: pointer
     text-decoration: none
-    transition: .2s ease
+    box-shadow: 0 .2rem .8rem rgba(vars.$color-black, .08)
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease
+
     @include mix.big-screen
         font-size: 2.2rem
+
+    // small lift on hover, press effect on click
+    &:hover:not(:disabled)
+        transform: translateY(-.2rem)
+
+    &:active:not(:disabled)
+        transform: translateY(0) scale(.98)
 
     &--primary
         background: vars.$color-primary
         color: vars.$color-white
+        box-shadow: 0 .4rem 1.2rem rgba(vars.$color-primary, .25)
+
+        &:hover:not(:disabled)
+            background: vars.$color-primary-hover
+            box-shadow: 0 .6rem 1.6rem rgba(vars.$color-primary, .35)
+
+        &:disabled
+            opacity: .5
+            cursor: not-allowed
+            box-shadow: none
+
+    &--secondary
+        background: vars.$color-sublightgrey
+        color: vars.$color-black
+
+        &:hover
+            background: #D4D4D4
 
     &--outline
         background: vars.$color-white
         color: vars.$color-black
         border: .2rem solid vars.$color-primary
+
+        &:hover
+            background: vars.$color-primary-light
+
+    @media (prefers-reduced-motion: reduce)
+        transition: background .2s ease, color .2s ease, border-color .2s ease
+
+        &:hover:not(:disabled),
+        &:active:not(:disabled)
+            transform: none
+
+// phones: buttons no longer stretch to the full screen width.
+// Doubled class so it wins over the section-level button rules.
+.button.button:not(.header__button)
+    @include mix.mobile
+        width: 100%
+        max-width: 32rem
+        min-width: 0
+        align-self: center
+        padding: 1.4rem 2.4rem
+        font-size: 1.6rem

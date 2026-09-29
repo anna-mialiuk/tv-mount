@@ -8,6 +8,7 @@ function Button({
   className = "",
   onClick,
   type = "button",
+  disabled = false,
 }) {
   const isPhoneButton = variant === "secondary" || variant === "outline";
 
@@ -23,6 +24,7 @@ function Button({
     <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       className={`button button--${variant} ${className}`}
     >
       {children}

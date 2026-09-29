@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
-import Benefits from "./components/Benefits/Benefits";
 import Footer from "./components/Footer/Footer";
 import ScrollToHash from "./components/ScrollToHash";
 import ScrollToTop from "./components/ScrollToTop";
@@ -11,17 +10,23 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import SEO from "./components/SEO/SEO";
 import seo from "./data/seo";
 
-const Reviews = lazy(() => import("./components/Reviews/Reviews"));
+const QuizPromo = lazy(() => import("./components/QuizPromo/QuizPromo"));
+
+const Benefits = lazy(() => import("./components/Benefits/Benefits"));
 const BundleDiscount = lazy(
   () => import("./components/BundleDiscount/BundleDiscount"),
 );
+const LimitedOffer = lazy(
+  () => import("./components/LimitedOffer/LimitedOffer"),
+);
+const Technicians = lazy(() => import("./components/Technicians/Technicians"));
+const Reviews = lazy(() => import("./components/Reviews/Reviews"));
 const PopularAddons = lazy(
   () => import("./components/PopularAddons/PopularAddons"),
 );
 const MountingStyles = lazy(
   () => import("./components/MountingStyles/MountingStyles"),
 );
-const Offer = lazy(() => import("./components/Offer/Offer"));
 const Steps = lazy(() => import("./components/Steps/Steps"));
 const ServiceAreas = lazy(
   () => import("./components/ServiceAreas/ServiceAreas"),
@@ -45,18 +50,20 @@ function HomePage({ onQuizOpen }) {
       <SEO {...seo.home} />
 
       <Hero onQuizOpen={onQuizOpen} />
-      <Benefits />
 
       <Suspense fallback={null}>
-        <Reviews />
+        <QuizPromo onQuizOpen={onQuizOpen} />
         <BundleDiscount onQuizOpen={onQuizOpen} />
         <PopularAddons onQuizOpen={onQuizOpen} />
         <MountingStyles onQuizOpen={onQuizOpen} />
-        <Offer />
-        <Steps />
-        <ServiceAreas />
+        <Technicians />
+        <Reviews />
+        <Benefits onQuizOpen={onQuizOpen} />
+        <LimitedOffer onQuizOpen={onQuizOpen} />
+        <Steps onQuizOpen={onQuizOpen} />
         <Projects />
-        <BookingCTA />
+        <BookingCTA onQuizOpen={onQuizOpen} />
+        <ServiceAreas />
         <FAQ />
       </Suspense>
     </>

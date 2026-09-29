@@ -1,7 +1,5 @@
 import QuizOptionCard from "./QuizOptionCard";
 
-const NO_SERVICES_VALUE = "No additional services needed";
-
 function QuizOptionStep({
   stepIndex,
   totalSteps,
@@ -11,9 +9,30 @@ function QuizOptionStep({
   onBack,
   onNext,
 }) {
-  const hasRequiredAnswer = step.required === false || Boolean(value);
-  const isServicesStep = step.name === "services";
-  const isNoServicesActive = value === NO_SERVICES_VALUE;
+  const selected = step.multiple ? value || [] : value;
+  const isNoneActive = step.multiple && value === step.noneOption;
+
+  // multi-select steps are optional, single-select steps need an answer
+  const canContinue = step.multiple || Boolean(value);
+
+  const isActive = (optionValue) =>
+    step.multiple
+      ? Array.isArray(selected) && selected.includes(optionValue)
+      : selected === optionValue;
+
+  const handleClick = (optionValue) => {
+    if (!step.multiple) {
+      onOptionClick(optionValue);
+      return;
+    }
+
+    const current = Array.isArray(selected) ? selected : [];
+    const next = current.includes(optionValue)
+      ? current.filter((item) => item !== optionValue)
+      : [...current, optionValue];
+
+    onOptionClick(next);
+  };
 
   return (
     <div className="quote-quiz__body">
@@ -27,45 +46,44 @@ function QuizOptionStep({
       <div className="quote-quiz__options">
         {step.options.map((option) => (
           <QuizOptionCard
-            key={option.text}
+            key={option.value}
             option={option}
-            isActive={value === option.text}
-            onClick={() => onOptionClick(option.text)}
+            isActive={isActive(option.value)}
+            onClick={() => handleClick(option.value)}
           />
         ))}
-      </div>
 
-      {isServicesStep && (
-        <button
-          type="button"
-          className={`quote-quiz__no-services ${
-            isNoServicesActive ? "quote-quiz__no-services--active" : ""
-          }`}
-          onClick={() => onOptionClick(NO_SERVICES_VALUE)}
-        >
-          <span className="quote-quiz__no-services-circle" />
-          <span>No additional services needed — just the mount</span>
-        </button>
-      )}
-
-      <div
-        className={`quote-quiz__footer ${
-          stepIndex === 0 ? "quote-quiz__footer--single" : ""
-        }`}
-      >
-        {stepIndex > 0 && (
-          <button type="button" className="quote-quiz__back" onClick={onBack}>
-            ← Back
+        {step.noneOption && (
+          <button
+            type="button"
+            className={`quote-quiz__check-option quote-quiz__none ${
+              isNoneActive ? "quote-quiz__check-option--active" : ""
+            }`}
+            aria-pressed={isNoneActive}
+            onClick={() =>
+              onOptionClick(isNoneActive ? undefined : step.noneOption)
+            }
+          >
+            <span className="quote-quiz__checkbox" aria-hidden="true" />
+            <span className="quote-quiz__check-text">{step.noneOption}</span>
           </button>
         )}
+      </div>
+
+      <div className="quote-quiz__footer">
+        <button type="button" className="quote-quiz__back" onClick={onBack}>
+          <img src="/icons/arrow-left-grey.svg" alt="" aria-hidden="true" />
+          Back
+        </button>
 
         <button
           type="button"
-          className="quote-quiz__main-button"
+          className="quote-quiz__main-button quote-quiz__main-button--arrow"
           onClick={onNext}
-          disabled={!hasRequiredAnswer}
+          disabled={!canContinue}
         >
-          Next Step →
+          Next Step
+          <img src="/button-arrow.svg" alt="" aria-hidden="true" />
         </button>
       </div>
     </div>

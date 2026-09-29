@@ -4,17 +4,28 @@ function QuizOptionCard({ option, isActive, onClick }) {
       type="button"
       className={`quote-quiz__option ${
         isActive ? "quote-quiz__option--active" : ""
-      }`}
+      } ${option.image ? "" : "quote-quiz__option--text"}`}
+      aria-pressed={isActive}
       onClick={onClick}
     >
-      <img
-        src={option.image}
-        alt={option.text}
-        loading="lazy"
-        className="quote-quiz__option-image"
-      />
+      {option.image ? (
+        <img
+          src={option.image}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="quote-quiz__option-image"
+        />
+      ) : (
+        <span className="quote-quiz__option-dots" aria-hidden="true">
+          •••
+        </span>
+      )}
 
-      <span className="quote-quiz__option-text">{option.text}</span>
+      <span className="quote-quiz__option-text">
+        <strong>{option.title}</strong>
+        <span>{option.caption}</span>
+      </span>
     </button>
   );
 }

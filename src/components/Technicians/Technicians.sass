@@ -1,0 +1,188 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.technicians
+    padding: 6rem 0 0
+    overflow: hidden
+    background: vars.$color-black
+    color: vars.$color-white
+
+    @include mix.big-screen
+        padding: 8rem 0 0
+
+    // tablet & mobile: light background with waves
+    @include mix.laptop-big
+        padding: 6rem 0 0
+        background: vars.$color-lightgrey url('/discounts/bundle-bg.webp') center / 100% 100% no-repeat
+        color: vars.$color-black
+
+    @include mix.tablet
+        padding: 6rem 0
+
+    @include mix.mobile
+        padding: 4rem 0
+
+    &__container
+        @include mix.laptop-big
+            padding-inline: 5rem
+
+        @include mix.mobile
+            padding-inline: 1.6rem
+
+    &__title
+        margin-bottom: 6rem
+        color: vars.$color-white
+        text-align: center
+
+        @include mix.laptop-big
+            margin-bottom: 4rem
+            color: vars.$color-black
+
+        @include mix.mobile
+            margin-bottom: 2.4rem
+            text-align: left
+
+    &__list
+        display: flex
+        gap: 8rem
+
+        @include mix.laptop-big
+            gap: 3.2rem
+
+        @include mix.tablet
+            flex-direction: column
+
+        @include mix.mobile
+            gap: 2.4rem
+
+    &__card
+        position: relative
+        display: flex
+        flex: 1 1 0
+        min-width: 0
+        min-height: 52rem
+        margin-right: 4rem
+        border-radius: 2rem 10rem 0 0
+        background: vars.$color-white
+        color: vars.$color-black
+
+        @include mix.big-screen
+            min-height: 62rem
+
+        @include mix.laptop-big
+            min-height: 50rem
+            margin-right: 0
+            border: .1rem solid vars.$color-sublightgrey
+            border-bottom: 0
+
+        @include mix.tablet
+            flex: none
+            min-height: 40rem
+            border-bottom: .1rem solid vars.$color-sublightgrey
+
+        @include mix.mobile
+            min-height: 36rem
+            border-radius: 2rem 8rem 0 0
+
+    &__info
+        position: relative
+        z-index: 1
+        width: 55%
+        padding: 4.4rem 0 4rem 3.2rem
+
+        @include mix.laptop-big
+            width: 56%
+            padding: 4rem 0 4rem 2.8rem
+
+        @include mix.tablet
+            width: 58%
+            padding: 4.8rem 0 4.8rem 4rem
+
+        @include mix.mobile
+            width: 68%
+            padding: 3.2rem 0 3.2rem 2.4rem
+
+    &__name
+        margin-bottom: 2.4rem
+        font-family: 'Cygre', sans-serif
+        font-size: 3rem
+        font-weight: 800
+        text-transform: uppercase
+
+        @include mix.big-screen
+            font-size: 3.6rem
+
+        @include mix.mobile
+            margin-bottom: 1.6rem
+            font-size: 2.2rem
+
+    &__text
+        margin-bottom: 1.6rem
+        font-size: 1.8rem
+        line-height: 1.25
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+        @include mix.mobile
+            margin-bottom: 1.2rem
+            font-size: 1.6rem
+
+    &__skills
+        display: flex
+        flex-direction: column
+        gap: 1.2rem
+        max-width: 22rem
+
+        @include mix.big-screen
+            max-width: 28rem
+
+        @include mix.tablet
+            max-width: none
+
+        @include mix.mobile
+            gap: .8rem
+
+    &__skill
+        display: flex
+        align-items: center
+        gap: 1rem
+        font-size: 1.8rem
+        line-height: 1.25
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+        @include mix.mobile
+            font-size: 1.6rem
+
+    &__check
+        flex-shrink: 0
+        width: 1.4rem
+
+    // photo sticks out of the card on the right
+    &__photo
+        position: absolute
+        z-index: 2
+        right: -6rem
+        bottom: 0
+        height: calc(100% + 1rem)
+        max-width: 62%
+        object-fit: contain
+        object-position: right bottom
+        pointer-events: none
+
+        @include mix.laptop-big
+            right: -3rem
+            height: 92%
+            max-width: 60%
+
+        @include mix.tablet
+            right: 2rem
+            height: calc(100% + 2rem)
+            max-width: 42%
+
+        @include mix.mobile
+            right: -7rem
+            height: 90%
+            max-width: 64%

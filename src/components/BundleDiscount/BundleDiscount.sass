@@ -7,9 +7,8 @@
     overflow: hidden
     border-top: .1rem solid vars.$color-sublightgrey
     border-bottom: .1rem solid vars.$color-sublightgrey
-    background: vars.$color-white
-    margin-top: 3.2rem
-
+    background: vars.$color-white url('/discounts/bundle-bg.webp') center / cover no-repeat
+    
     @include mix.desktop
         min-height: 46rem
 
@@ -20,6 +19,7 @@
         display: flex
         flex-direction: column-reverse
         min-height: auto
+        background: vars.$color-white
 
     &__container
         position: relative
@@ -27,6 +27,9 @@
         min-height: inherit
         display: flex
         align-items: center
+
+        @include mix.laptop-s
+            background: #FDFDFD url('/discounts/bundle-bg-right.webp') right center / auto 100% no-repeat
 
         @include mix.tablet
             min-height: auto

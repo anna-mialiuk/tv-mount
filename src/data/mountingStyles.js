@@ -40,13 +40,16 @@ const mountingStyles = [
     ],
   },
   {
-    id: "motorized",
-    tab: "Motorized",
+    id: "mantel",
+    tab: "Mantel Mounts",
     title: "Motorized TV Mounts",
-    image: "/mounting-styles/motorized.webp",
-    paragraphs: [
-      "Motorized TV Mounts make it easy to adjust your screen with the push of a button. Enjoy the perfect viewing angle without effort.",
-      "Built for durability and style, they save space and bring a modern, high-end touch to any room.",
+    image: "/mounting-styles/mantel.webp",
+    list: [
+      "Enhanced Easy-Pull Down",
+      "Built-in Sound Bar Attachment",
+      "Heat Sensing Pull Handles",
+      "Paintable Wall Covers",
+      "Adjustable Stops & Auto-Straightening",
     ],
   },
 ];

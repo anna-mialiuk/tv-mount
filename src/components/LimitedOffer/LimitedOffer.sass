@@ -1,0 +1,120 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.limited-offer
+    @include mix.section(7rem)
+    position: relative
+    background: vars.$color-black url('/limited-offer/bg.webp') center / cover no-repeat
+    color: vars.$color-white
+    text-align: center
+
+    @include mix.laptop
+        @include mix.section(5rem)
+
+    @include mix.big-screen
+        @include mix.section(10rem)
+
+    &::before
+        content: ''
+        position: absolute
+        inset: 0
+        background: rgba(vars.$color-black, .5)
+
+    &__container
+        position: relative
+        z-index: 1
+        display: flex
+        flex-direction: column
+        align-items: center
+
+    &__title
+        margin-bottom: 3.2rem
+        color: vars.$color-white
+        font-size: 10rem
+        line-height: 1
+        text-transform: uppercase
+
+        @include mix.big-screen
+            font-size: 13rem
+
+        @include mix.laptop
+            font-size: 8rem
+
+        @include mix.mobile
+            margin-bottom: 2.4rem
+            font-size: 4.8rem
+
+    &__text
+        display: flex
+        align-items: center
+        gap: 1.6rem
+        max-width: 90rem
+        margin-bottom: 4rem
+        font-size: 2rem
+        line-height: 1.4
+        text-align: left
+
+        strong
+            font-weight: 700
+
+        @include mix.big-screen
+            max-width: 110rem
+            font-size: 2.4rem
+
+        @include mix.mobile
+            flex-direction: column
+            gap: 1.2rem
+            margin-bottom: 3.2rem
+            font-size: 1.6rem
+            text-align: center
+
+    &__gift
+        flex-shrink: 0
+        width: 3.2rem
+
+        @include mix.big-screen
+            width: 4rem
+
+    &__timer
+        display: flex
+        align-items: center
+        gap: 2.4rem
+        margin-bottom: 4.8rem
+        font-family: 'Cygre', sans-serif
+        font-size: 9rem
+        font-weight: 800
+        line-height: 1
+        font-variant-numeric: tabular-nums
+
+        @include mix.big-screen
+            font-size: 12rem
+
+        @include mix.laptop
+            font-size: 7rem
+
+        @include mix.mobile
+            gap: 1.2rem
+            margin-bottom: 3.2rem
+            font-size: 5.2rem
+
+    &__separator
+        margin-top: -.08em
+
+    &__button
+        min-width: 40rem
+        margin-bottom: 1.6rem
+        padding: 1.8rem 4rem
+        font-weight: 600
+
+        @include mix.mobile
+            width: 100%
+            min-width: 0
+
+    &__note
+        font-size: 1.8rem
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+        @include mix.mobile
+            font-size: 1.5rem

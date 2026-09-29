@@ -27,6 +27,10 @@
     border-radius: 1.2rem
     background: vars.$color-white
     text-align: center
+    transition: transform .3s ease, box-shadow .3s ease
+    &:hover
+      transform: translateY(-.4rem)
+      box-shadow: 0 1.2rem 2.4rem rgba(vars.$color-black, .08)
     @include mix.laptop
       width: 30rem
     @include mix.tablet

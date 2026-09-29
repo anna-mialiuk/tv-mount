@@ -70,7 +70,12 @@ function ProjectGallery({
         onClick={onClose}
         aria-label="Close project gallery"
       >
-        ×
+        <img
+          src="/close-x.svg"
+          alt=""
+          aria-hidden="true"
+          className="projects__close-icon"
+        />
       </button>
 
       <div

@@ -1,0 +1,15 @@
+[Unit]
+Description=TV Mount lead API (Telegram)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/tv-mount
+ExecStart=/usr/bin/node server/server.js
+EnvironmentFile=/etc/tv-mount.env
+Restart=always
+RestartSec=3
+User=www-data
+
+[Install]
+WantedBy=multi-user.target

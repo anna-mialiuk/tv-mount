@@ -1,0 +1,81 @@
+@use '../../styles/variables' as vars
+@use '../../styles/mixins' as mix
+
+.quiz-promo
+    position: relative
+    display: flex
+    align-items: center
+    min-height: 49rem
+    background: #1B1B1B url('/quiz-promo/bg.webp') right center / cover no-repeat
+    color: vars.$color-white
+
+    @include mix.big-screen
+        min-height: 60rem
+
+    // phones & tablets: vertical photo, text on its dark upper part
+    @include mix.tablet
+        align-items: stretch
+        min-height: 0
+        aspect-ratio: 1000 / 1153
+        background-image: url('/quiz-promo/bg-mobile.webp')
+        background-position: center bottom
+
+    &__container
+        position: relative
+        z-index: 1
+        padding-top: 6rem
+        padding-bottom: 6rem
+
+        // title at the top, button at the bottom over the floor
+        @include mix.tablet
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            padding-top: 5rem
+            padding-bottom: 5rem
+
+        @include mix.mobile
+            padding-top: 2.4rem
+            padding-bottom: 2.4rem
+
+    &__title
+        max-width: 64rem
+        margin-bottom: 5.6rem
+        color: vars.$color-white
+        font-size: 4.8rem
+        line-height: 1.2
+
+        @include mix.big-screen
+            max-width: 84rem
+            font-size: 6.4rem
+
+        @include mix.laptop
+            font-size: 3.8rem
+
+        @include mix.tablet
+            margin-bottom: 0
+            font-size: 4.8rem
+
+        @include mix.mobile
+            font-size: 2.8rem
+
+        @include mix.mobile-s
+            font-size: 2.4rem
+
+    &__highlight
+        display: inline-block
+        margin-top: .4rem
+        padding: .2rem .8rem
+        background: #E8E8E8
+        color: vars.$color-black
+        line-height: 1.1
+        white-space: nowrap
+
+    &__button
+        min-width: 38rem
+        padding: 2rem 4rem
+        font-weight: 600
+
+        @include mix.tablet
+            width: 100%
+            min-width: 0

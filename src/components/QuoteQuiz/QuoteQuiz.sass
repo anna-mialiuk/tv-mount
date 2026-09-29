@@ -12,47 +12,63 @@
     background: rgba(0, 0, 0, .7)
 
     &__modal
+        position: relative
+        display: flex
+        flex-direction: column
         width: 100%
-        max-width: 80rem
+        max-width: 76rem
+        max-height: calc(100vh - 4rem)
+        max-height: calc(100dvh - 4rem)
         background: vars.$color-white
-        border-radius: 1.6rem
+        border-radius: 1.2rem
         overflow: hidden
         border: .1rem solid vars.$color-white
 
+        @include mix.big-screen
+            max-width: 80rem
+
     &__header
         display: flex
-        align-items: flex-end
+        flex-shrink: 0
+        align-items: center
         justify-content: space-between
-        padding: .9rem 3rem
+        padding: 1.4rem 3rem 1.4rem 4rem
         background: vars.$color-black
         color: vars.$color-white
         border-bottom: .1rem solid vars.$color-sublightgrey
 
     &__header-left-wrapper
         display: flex
-        align-items: flex-end
+        align-items: center
 
     &__logo
         width: 12rem
         margin-right: 2rem
 
     &__header-title
-        font-size: 2rem
-        transform: translateY(-.6rem)
+        font-size: 1.8rem
+        font-weight: 600
 
     &__close
+        @include mix.flex-center
+        flex-shrink: 0
         border: none
         background: #343434
         width: 3rem
         height: 3rem
         cursor: pointer
         border-radius: .8rem
+        transition: background .2s ease
+
+        &:hover
+            background: #4A4A4A
     
     &__close-icon
         width: 1rem
         height: 1rem
 
     &__progress
+        flex-shrink: 0
         height: .8rem
         background: vars.$color-sublightgrey
 
@@ -64,6 +80,7 @@
 
     &__body
         padding: 2.4rem
+        overflow-y: auto
 
     &__step
         font-size: 1.2rem
@@ -73,66 +90,272 @@
     &__title
         margin-bottom: 1.2rem
 
+        &--second
+            max-width: 44rem
+            margin-top: 3.2rem
+            margin-bottom: 2rem
+            font-family: 'Cygre', sans-serif
+            font-size: 3rem
+            font-weight: 800
+            line-height: 120%
+
+            @include mix.mobile
+                font-size: 2.5rem
+
     &__subtitle
         font-size: 1.4rem
         margin-bottom: 2rem
         color: vars.$color-darkgrey
 
+    // ---------- Steps 2–3: image cards ----------
+
     &__options
-        @include mix.grid(4, 1.2rem)
-
-        @include mix.tablet
-            @include mix.grid(2, 1.2rem)
-
-        @include mix.mobile-sm
-            @include mix.grid(1, 1.2rem)
+        display: flex
+        flex-wrap: wrap
+        gap: 1.2rem
 
     &__option
-        @include mix.flex-column
+        display: flex
         align-items: center
-        padding: 1.6rem 2rem
-        border: .1rem solid #ddd
+        gap: 1.2rem
+        flex: 0 1 calc((100% - 3 * 1.2rem) / 4)
+        min-width: 14rem
+        min-height: 7.2rem
+        padding: .8rem 1rem
+        border: .2rem solid vars.$color-sublightgrey
         border-radius: 1rem
         background: vars.$color-white
+        color: vars.$color-black
         cursor: pointer
-        transition: .2s ease
+        transition: border-color .2s ease, background .2s ease
 
         &:hover
             border-color: vars.$color-primary
 
         &--active
             border-color: vars.$color-primary
-            background: rgba(255,107,53,.08)
-    
+            background: vars.$color-primary-light
+
+        &--text
+            flex-direction: column
+            justify-content: center
+            gap: .4rem
+
+        // phones: image on top, text below
+        @include mix.mobile
+            flex-direction: column
+            justify-content: flex-start
+            flex-basis: calc((100% - 1.2rem) / 2)
+            gap: .8rem
+            min-width: 0
+            padding: .8rem .8rem 1.2rem
+
+            // card without a photo ("Not Sure / Other"): content centered
+            &.quote-quiz__option--text
+                justify-content: center
+
+                .quote-quiz__option-text
+                    flex: none
+
     &__option-image
+        flex-shrink: 0
         width: 4.8rem
         height: 4.8rem
-        border-radius: 50%
-        border: .1rem solid vars.$color-black
-        margin-bottom: 1.3rem
+
+        @include mix.mobile
+            width: 100%
+            height: auto
+            aspect-ratio: 3 / 2
+        border-radius: .6rem
+        object-fit: cover
+
+    &__option-dots
+        font-size: 1rem
+        letter-spacing: .2rem
+        line-height: 1
+
+    &__option-text
+        display: flex
+        flex: 1
+        flex-direction: column
+        align-items: center
+        min-width: 0
+        font-size: 1.4rem
+        line-height: 1.3
+        text-align: center
+        overflow-wrap: break-word
+
+        strong
+            font-weight: 600
+
+    // "No additional services": a row on desktop, a text card on phones
+    &__none
+        flex-basis: 100%
+        margin-top: .4rem
+
+        @include mix.mobile
+            flex-basis: calc((100% - 1.2rem) / 2)
+            justify-content: center
+            min-height: 12rem
+            margin-top: 0
+            padding: 1.2rem
+            border-width: .2rem
+            border-radius: 1rem
+            font-size: 1.3rem
+            text-align: center
+
+            .quote-quiz__checkbox
+                display: none
+
+    // ---------- Footer ----------
 
     &__footer
         display: flex
-        gap: 1.2rem
-        margin-top: 3rem
-        @include mix.mobile-sm
-            flex-direction: column
+        gap: 2rem
+        margin-top: 12rem
 
-        &--single
-            .quote-quiz__main-button
-                width: 100%
-                flex: none
+        @include mix.mobile
+            margin-top: 4rem
+
+        @include mix.mobile-sm
+            flex-direction: column-reverse
+            gap: 1.2rem
 
     &__back
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 2.4rem
         flex: 1
-        padding: 1.4rem 2.4rem
+        padding: 1.6rem 2.4rem
         border: .1rem solid vars.$color-sublightgrey
         border-radius: 1rem
-        background: vars.$color-white
+        background: vars.$color-lightgrey
         color: vars.$color-black
         cursor: pointer
         font-size: 1.6rem
-        font-weight: 500
+        font-weight: 600
+        box-shadow: 0 .2rem .8rem rgba(vars.$color-black, .06)
+        transition: background .2s ease, border-color .2s ease, transform .2s ease
+
+        &:active
+            transform: scale(.98)
+
+        img
+            width: 4.1rem
+            filter: brightness(0)
+
+        &:hover
+            border-color: vars.$color-primary
+            background: vars.$color-primary-light
+
+    // ---------- Step 1: checkbox options ----------
+
+    &__check-grid
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        grid-template-rows: repeat(4, auto)
+        grid-auto-flow: column
+        gap: 1.2rem 1.6rem
+        margin-bottom: 2.4rem
+
+        &--row
+            grid-template-rows: none
+            grid-auto-flow: row
+
+        @include mix.mobile
+            grid-template-columns: 1fr
+            grid-template-rows: none
+            grid-auto-flow: row
+
+    &__check-option
+        display: flex
+        align-items: center
+        gap: 1.2rem
+        min-height: 4.8rem
+        padding: .6rem .8rem .6rem 1rem
+        border: .1rem solid vars.$color-sublightgrey
+        border-radius: .8rem
+        background: vars.$color-white
+        color: vars.$color-black
+        font-size: 1.5rem
+        text-align: left
+        cursor: pointer
+        transition: border-color .2s ease, background .2s ease
+
+        &:hover
+            border-color: vars.$color-primary
+
+        &--active
+            border-color: vars.$color-primary
+            background: vars.$color-primary-light
+
+    &__checkbox
+        position: relative
+        flex-shrink: 0
+        width: 2.2rem
+        height: 2.2rem
+        border: .2rem solid vars.$color-black
+        border-radius: .4rem
+
+        .quote-quiz__check-option--active &
+            border-color: vars.$color-primary
+
+            &::after
+                content: ''
+                position: absolute
+                inset: .3rem
+                border-radius: .1rem
+                background: vars.$color-primary
+
+    &__check-text
+        flex: 1
+        line-height: 1.2
+
+    &__price
+        flex-shrink: 0
+        padding: .6rem .8rem
+        border-radius: .6rem
+        background: vars.$color-primary
+        color: vars.$color-white
+        font-size: 1.5rem
+        font-weight: 600
+        line-height: 1
+
+    &__select-wrapper
+        position: relative
+        width: calc(50% - .8rem)
+
+        &::after
+            content: ''
+            position: absolute
+            top: 50%
+            right: 1.6rem
+            width: .8rem
+            height: .8rem
+            border-right: .2rem solid vars.$color-black
+            border-bottom: .2rem solid vars.$color-black
+            transform: translateY(-70%) rotate(45deg)
+            pointer-events: none
+
+        @include mix.mobile
+            width: 100%
+
+    &__select
+        width: 100%
+        padding: 1.3rem 4rem 1.3rem 1rem
+        border: .1rem solid vars.$color-primary
+        border-radius: .8rem
+        background: vars.$color-white
+        color: vars.$color-black
+        font-family: inherit
+        font-size: 1.5rem
+        appearance: none
+        cursor: pointer
+
+        &:focus-visible
+            outline: .2rem solid vars.$color-primary
+            outline-offset: .2rem
 
     &__main-button
         flex: 1
@@ -145,13 +368,59 @@
         background: vars.$color-primary
         color: vars.$color-white
         cursor: pointer
+        box-shadow: 0 .4rem 1.2rem rgba(vars.$color-primary, .25)
+        transition: background .2s ease, transform .2s ease, box-shadow .2s ease
+
+        &:hover:not(:disabled)
+            background: vars.$color-primary-hover
+            box-shadow: 0 .6rem 1.6rem rgba(vars.$color-primary, .35)
+            transform: translateY(-.2rem)
+
+        &:active:not(:disabled)
+            transform: scale(.98)
 
         &:disabled
             opacity: .5
             cursor: not-allowed
+            box-shadow: none
+
+        &--arrow
+            display: flex
+            align-items: center
+            justify-content: center
+            gap: 2.4rem
+            font-weight: 600
+
+            img
+                flex-shrink: 0
+                width: 4.1rem
+
+            @include mix.mobile-sm
+                gap: 1.2rem
+                font-size: 1.5rem
+
+                img
+                    width: 3rem
+
+        &--full
+            display: flex
+            align-items: center
+            justify-content: center
+            gap: 2.4rem
+            width: 100%
+            margin-top: 4rem
+            padding: 1.6rem 2.4rem
+
+            img
+                width: 4.1rem
 
     &__input
         width: 100%
+        transition: border-color .2s ease
+
+        &:focus
+            outline: none
+            border-color: vars.$color-primary
         margin-bottom: 1.4rem
         font-weight: 500
         color: vars.$color-darkgrey
@@ -166,25 +435,9 @@
         font-size: 1.4rem
         font-weight: 500
 
-    &__selection
-        font-size: 1.4rem
-        font-weight: 500
-        color: vars.$color-primary
-        margin-bottom: 2rem
-        padding: .8rem 2.4rem
-        background: vars.$color-primary-light
-        border: .1rem solid vars.$color-primary
-        border-radius: .6rem
-
-    &__discount
-        font-size: 1.4rem
-        font-weight: 500
-        margin-bottom: 2rem
-        padding: .8rem 2.4rem
-        color: #27AE60
-        background: #E6FFE6
-        border: .1rem solid #27AE60
-        border-radius: .6rem
+        &--muted
+            color: vars.$color-darkgrey
+            font-weight: 400
 
     &__success
         display: flex
@@ -263,31 +516,193 @@
             flex-direction: column
             gap: 1rem
 
-    &__no-services
-        width: 100%
-        display: flex
-        align-items: center
-        gap: 1.6rem
-        margin-top: 1.2rem
-        padding: .8rem 2.4rem
-        border: .1rem solid vars.$color-sublightgrey
-        border-radius: 1.2rem
-        background: vars.$color-white
-        font-size: 1.6rem
-        text-align: left
-        cursor: pointer
+    // ---------- Step 4: contact form ----------
 
-        &--active
+    &__final-title
+        display: flex
+        flex-direction: column
+        align-items: center
+        margin-bottom: 2.4rem
+        font-size: 4.4rem
+        line-height: 1.1
+        text-align: center
+        text-transform: uppercase
+
+        span
+            margin-top: .4rem
+            font-size: 2.6rem
+            text-transform: none
+
+        @include mix.mobile
+            font-size: 3.2rem
+
+            span
+                font-size: 2rem
+
+    &__banner
+        position: relative
+        margin-bottom: 2rem
+        padding: .8rem 1.6rem .8rem 4.4rem
+        border: .1rem solid
+        border-radius: .6rem
+        font-size: 1.4rem
+        font-weight: 600
+
+        @include mix.mobile-sm
+            padding-left: 3.6rem
+            font-size: 1.3rem
+
+        &::before
+            content: ''
+            position: absolute
+            top: 1.4rem
+            left: 1.6rem
+            width: .7rem
+            height: .7rem
+            border-top: .2rem solid currentColor
+            border-right: .2rem solid currentColor
+            transform: rotate(45deg)
+
+        &--selection
+            display: flex
+            flex-wrap: wrap
+            gap: .4rem 1.6rem
             border-color: vars.$color-primary
             background: vars.$color-primary-light
-        
-    &__no-services-circle
-        width: 3rem
-        height: 3rem
-        border: .2rem solid vars.$color-sublightgrey
-        border-radius: 50%
-        flex-shrink: 0
-    
-    &__no-services--active &__no-services-circle
-        border-color: vars.$color-primary
-        background: vars.$color-primary
+            color: vars.$color-primary
+
+        &--discount
+            margin-top: .6rem
+            border-color: #27AE60
+            background: #E6FFE6
+            color: #27AE60
+            text-transform: uppercase
+
+    // ---------- Discount popup ----------
+
+    &__popup-overlay
+        position: absolute
+        inset: 0
+        z-index: 5
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 2rem
+        background: rgba(vars.$color-black, .75)
+        animation: quiz-fade-in .25s ease
+
+    &__popup
+        position: relative
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 100%
+        max-width: 44rem
+        padding: 2.4rem 3.2rem 2rem
+        overflow: hidden
+        border-radius: 1.2rem
+        background: vars.$color-white
+        text-align: center
+        animation: quiz-pop-in .3s ease
+
+    &__confetti
+        position: absolute
+        inset: 0 0 auto
+        height: 60%
+        pointer-events: none
+
+        span
+            position: absolute
+            top: -2rem
+            left: calc(var(--i) * 5.5%)
+            width: .9rem
+            height: 1.6rem
+            border-radius: .2rem
+            background: linear-gradient(135deg, #F7E27E, #C9A227)
+            opacity: .85
+            animation: quiz-confetti 3.2s linear infinite
+            animation-delay: calc(var(--i) * -0.37s)
+
+            &:nth-child(3n)
+                width: 1.2rem
+                height: .8rem
+
+            &:nth-child(2n)
+                animation-duration: 4s
+
+    &__badge
+        position: relative
+        z-index: 1
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        width: 18rem
+        height: 18rem
+        margin-bottom: 1.6rem
+        color: vars.$color-white
+
+    &__badge-shape
+        position: absolute
+        inset: 0
+        width: 100%
+        height: 100%
+        filter: drop-shadow(0 .6rem 1.2rem rgba(167, 30, 30, .35))
+
+    &__badge-amount,
+    &__badge-label
+        position: relative
+
+    &__badge-amount
+        font-family: 'Cygre', sans-serif
+        font-size: 5rem
+        font-weight: 800
+        line-height: 1
+
+    &__badge-label
+        font-size: 2.2rem
+        line-height: 1
+
+    &__popup-title
+        position: relative
+        z-index: 1
+        margin-bottom: 1.2rem
+        font-family: 'Cygre', sans-serif
+        font-size: 2.6rem
+        font-weight: 800
+        line-height: 1.2
+
+        @include mix.mobile
+            font-size: 2.2rem
+
+    &__popup-text
+        margin-bottom: 3.2rem
+        color: vars.$color-darkgrey
+        font-size: 1.5rem
+        line-height: 1.3
+
+    &__popup-button
+        flex: none
+        min-width: 18rem
+        font-weight: 600
+
+@keyframes quiz-fade-in
+    from
+        opacity: 0
+
+@keyframes quiz-pop-in
+    from
+        opacity: 0
+        transform: scale(.92)
+
+@keyframes quiz-confetti
+    from
+        transform: translateY(0) rotate(0)
+    to
+        transform: translateY(26rem) rotate(540deg)
+
+@media (prefers-reduced-motion: reduce)
+    .quote-quiz__confetti span,
+    .quote-quiz__popup,
+    .quote-quiz__popup-overlay
+        animation: none

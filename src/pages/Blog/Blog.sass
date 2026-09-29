@@ -42,8 +42,9 @@
         cursor: pointer
         transition: background .2s ease, color .2s ease, transform .2s ease
 
-        &:hover
-            transform: translateY(-.1rem)
+        &:hover:not(&--active)
+            background: vars.$color-primary-light
+            color: vars.$color-primary
 
         &--active
             background: vars.$color-primary
@@ -82,6 +83,11 @@
         font-family: inherit
         font-size: 1.2rem
         cursor: pointer
+        transition: background .2s ease, color .2s ease
+
+        &:hover:not(&--active)
+            background: vars.$color-primary-light
+            color: vars.$color-primary
 
         &--active
             background: vars.$color-primary

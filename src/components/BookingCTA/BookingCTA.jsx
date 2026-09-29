@@ -1,65 +1,67 @@
-import LeadForm from "../LeadForm/LeadForm";
+import Button from "../Button/Button";
 import "./BookingCTA.sass";
 
-function BookingCTA() {
+const perks = ["Free consultation", "$50 discount", "2-year warranty"];
+
+function BookingCTA({ onQuizOpen }) {
   return (
     <section id="contact" className="booking-cta">
-      <div className="container">
-        <div className="booking-cta__wrapper">
-          <div className="booking-cta__content">
-            <h2 className="booking-cta__title">
-              READY FOR PROFESSIONAL TV INSTALLATION?
-            </h2>
+      <div className="booking-cta__container container">
+        <div className="booking-cta__top">
+          <h2 className="booking-cta__title">
+            Ready for professional TV installation?
+          </h2>
 
-            <p className="booking-cta__subtitle">
-              Installation on the day you order. No hidden fees
-            </p>
+          <p className="booking-cta__subtitle">
+            Installation on the day you order. <br />
+            No hidden fees
+          </p>
+        </div>
 
+        <div className="booking-cta__bottom">
+          <div className="booking-cta__perks">
             <p className="booking-cta__text">Book now and get:</p>
 
             <ul className="booking-cta__list">
-              <li className="booking-cta__item">
-                <img
-                  src="/check.svg"
-                  alt="icon"
-                  className="booking-cta__item-icon"
-                  loading="lazy"
-                />
-                <span className="booking-cta__item-span-text text-s">
-                  Free estimate in minutes
-                </span>
-              </li>
-              <li className="booking-cta__item">
-                <img
-                  src="/check.svg"
-                  alt="icon"
-                  className="booking-cta__item-icon"
-                  loading="lazy"
-                />
-                <span className="booking-cta__item-span-text text-s">
-                  $33 discount
-                </span>
-              </li>
-              <li className="booking-cta__item">
-                <img
-                  src="/check.svg"
-                  alt="icon"
-                  className="booking-cta__item-icon"
-                  loading="lazy"
-                />
-                <span className="booking-cta__item-span-text text-s">
-                  2-year warranty
-                </span>
-              </li>
+              {perks.map((perk) => (
+                <li className="booking-cta__item" key={perk}>
+                  <img
+                    src="/check.svg"
+                    alt=""
+                    aria-hidden="true"
+                    className="booking-cta__item-icon"
+                    loading="lazy"
+                  />
+                  {perk}
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="booking-cta__form">
-            <LeadForm
-              title="Get a $33 discount"
-              buttonText="Book now"
-              showCallButton={true}
-            />
+          <div className="booking-cta__buttons">
+            <Button variant="secondary" className="booking-cta__call">
+              <img
+                src="/phone.svg"
+                alt=""
+                aria-hidden="true"
+                className="booking-cta__call-icon"
+              />
+              Call: (404) 793-8283
+            </Button>
+
+            <Button
+              variant="primary"
+              className="booking-cta__book"
+              onClick={onQuizOpen}
+            >
+              Book now
+              <img
+                src="/button-arrow.svg"
+                alt=""
+                aria-hidden="true"
+                className="booking-cta__book-icon"
+              />
+            </Button>
           </div>
         </div>
       </div>

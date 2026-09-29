@@ -2,7 +2,12 @@
 @use '../../styles/mixins' as mix
 
 .projects
-    @include mix.section
+    @include mix.section(6rem)
+    background: #FDFDFD url('/discounts/bundle-bg.webp') center / 100% 100% no-repeat
+
+    @include mix.laptop-s
+        @include mix.section(4rem)
+        background: #FDFDFD url('/discounts/bundle-bg-right.webp') right top / auto 60rem repeat-y
 
     &__title
         margin-bottom: 3rem
@@ -30,6 +35,10 @@
         height: 100%
         display: block
         object-fit: cover
+        transition: transform .5s ease
+
+    &__card:hover &__image
+        transform: scale(1.04)
 
     &__actions
         @include mix.flex-center
@@ -56,18 +65,35 @@
             padding: 1.5rem
 
     &__close
+        @include mix.flex-center
         position: absolute
-        top: 1rem
-        right: 1rem
+        top: 2rem
+        right: 2rem
         z-index: 5
-        width: 4rem
-        height: 4rem
+        width: 4.4rem
+        height: 4.4rem
+        padding: 0
         border: none
         border-radius: .8rem
         background: rgba(52, 52, 52, .9)
-        color: vars.$color-white
-        font-size: 3rem
         cursor: pointer
+        transition: background .2s ease
+
+        &:hover
+            background: vars.$color-primary
+
+        &:focus-visible
+            outline: .2rem solid vars.$color-primary
+            outline-offset: .3rem
+
+        @include mix.tablet
+            top: 1.2rem
+            right: 1.2rem
+
+    &__close-icon
+        width: 1.4rem
+        height: 1.4rem
+        pointer-events: none
 
     &__modal-content
         position: relative

@@ -2,287 +2,248 @@
 @use '../../styles/mixins' as mix
 
 .reviews
-    @include mix.section
-    background: vars.$color-white
+    @include mix.section(6rem)
+    overflow: hidden
+    overflow: clip
+    background: vars.$color-lightgrey
 
     @include mix.laptop
-        @include mix.section(2.4rem)
+        @include mix.section(4rem)
 
     @include mix.big-screen
-        @include mix.section(5rem)
+        @include mix.section(8rem)
 
-    &__title
-        margin-bottom: 2rem
-
-        @include mix.laptop
-            margin-bottom: 1.6rem
-
-    &__google
-        display: flex
-        align-items: center
-        justify-content: space-between
+    &__header
+        @include mix.flex-between
         gap: 2rem
-        margin-bottom: 5.6rem
-        padding: 0rem 0rem 0rem 2.4rem
-        border-radius: 1.2rem
-        background: vars.$color-lightgrey
-
-        @include mix.laptop
-            margin-bottom: 3rem
+        margin-bottom: 4rem
 
         @include mix.tablet
             flex-direction: column
-            align-items: stretch
-            gap: 1.6rem
-            padding: 1.6rem
-
-    &__google-left
-        display: flex
-        align-items: center
-        flex-wrap: wrap
-        gap: 1.6rem
-
-        @include mix.tablet
-            gap: 1rem
-
-    &__google-stars
-        flex-shrink: 0
-        color: #FFD70F
-        font-size: 1.4rem
-        line-height: 1
-        letter-spacing: .35rem
-
-        @include mix.laptop
-            font-size: 2rem
-
-        @include mix.tablet
-            width: 100%
-            font-size: 2.2rem
-
-        @include mix.big-screen
-            font-size: 3rem
-
-    &__google-text
-        display: flex
-        align-items: center
-        flex-wrap: wrap
-        gap: .6rem
-        margin: 0
-        color: vars.$color-darkgrey
-        font-size: 1.4rem
-        line-height: 1.4
-
-        strong
-            color: vars.$color-darkgrey
-            font-weight: 500
-
-        span
-            color: vars.$color-darkgrey
-
-        @include mix.laptop
-            font-size: 1.6rem
-
-        @include mix.tablet
-            font-size: 1.4rem
-
-        @include mix.big-screen
-            font-size: 2.2rem
-
-    &__google-logo
-        display: block
-        flex-shrink: 0
-        width: 5rem
-        height: auto
-        object-fit: contain
-
-        @include mix.laptop
-            width: 8.5rem
-
-        @include mix.tablet
-            width: 8rem
-
-        @include mix.big-screen
-            width: 12rem
+            align-items: flex-start
+            margin-bottom: 3rem
 
     &__google-button
-        display: inline-flex
-        align-items: center
-        justify-content: center
         flex-shrink: 0
-        padding: 1.4rem 2.4rem
-        border: none
-        border-radius: 1.2rem
-        background: #2176FF
-        color: vars.$color-white
-        -webkit-text-fill-color: vars.$color-white
-        font-size: 1.4rem
+        padding: 1.6rem 3.2rem
+        border-radius: vars.$radius-md
+        background: vars.$color-sublightgrey
+        color: vars.$color-darkgrey
+        font-size: 1.8rem
         font-weight: 600
-        line-height: 1.2
-        text-align: center
-        text-decoration: none
         white-space: nowrap
-        cursor: pointer
-        appearance: none
-        -webkit-appearance: none
-
-        @include mix.laptop
-            padding: 1.2rem 2.4rem
-            font-size: 1.5rem
-
-        @include mix.tablet
-            width: 100%
-            padding: 1.2rem 2rem
-            font-size: 1.5rem
-            white-space: normal
+        cursor: default
+        user-select: none
 
         @include mix.big-screen
-            padding: 1.8rem 3.8rem
-            border-radius: 1.6rem
-            font-size: 2rem
+            padding: 2rem 4rem
+            font-size: 2.2rem
 
-    &__cards
-        @include mix.grid(4)
+        @include mix.mobile
+            width: 100%
+            text-align: center
+            font-size: 1.6rem
+
+    // ---------- Slider ----------
+
+    &__slider
+        --gap: 3rem
+        --visible: 3
+        --card: calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible))
 
         @include mix.laptop
-            @include mix.grid(2)
+            --gap: 2rem
+            --visible: 2
 
         @include mix.tablet
-            @include mix.grid(1)
+            --visible: 1
+            --card: 85%
+
+        @include mix.mobile
+            --gap: 1.2rem
+
+    &__track
+        display: flex
+        gap: var(--gap)
+        transform: translateX(calc(var(--index) * -1 * (var(--card) + var(--gap))))
+        transition: transform .4s ease
+        touch-action: pan-y
+
+        @media (prefers-reduced-motion: reduce)
+            transition: none
 
     &__card
-        padding: 2rem 2.6rem
-        border-left: .3rem solid vars.$color-primary
-        border-radius: 1.2rem
-        background: vars.$color-lightgrey
+        display: flex
+        flex-direction: column
+        flex: 0 0 var(--card)
+        min-height: 36rem
+        padding: 3.2rem 4rem
+        border: .1rem solid vars.$color-sublightgrey
+        border-radius: 2.4rem
+        background: vars.$color-white
+
+        @include mix.laptop
+            min-height: 32rem
+            padding: 2.8rem 3rem
+
+        @include mix.mobile
+            min-height: 30rem
+            padding: 2.4rem
 
         @include mix.big-screen
-            padding: 3rem 3.6rem
+            min-height: 42rem
+            padding: 4rem 4.8rem
 
-    &__card-top
-        @include mix.flex-between
-        align-items: flex-start
-        margin-bottom: 2rem
+        &--summary
+            align-items: center
+            justify-content: center
+            text-align: center
 
-    &__card-top-left
+    // ---------- Summary card ----------
+
+    &__summary-rating
+        font-family: 'Cygre', sans-serif
+        font-size: 5.2rem
+        font-weight: 800
+        line-height: 1
+        color: #6B6B6B
+
+        @include mix.big-screen
+            font-size: 6.4rem
+
+    &__summary-stars
+        margin: .8rem 0 .4rem
+        color: vars.$color-primary
+        font-size: 2.6rem
+        letter-spacing: .3rem
+        line-height: 1
+
+    &__summary-count
+        margin-bottom: 3.2rem
+        color: vars.$color-darkgrey
+        font-size: 1.6rem
+
+        @include mix.big-screen
+            font-size: 2rem
+
+    &__summary-logo
+        width: 12rem
+
+        @include mix.big-screen
+            width: 15rem
+
+    // ---------- Review card ----------
+
+    &__author
         display: flex
         align-items: center
+        gap: 1.6rem
+        margin-bottom: 3.2rem
 
-    &__name
-        font-size: 1.4rem
-
-        @include mix.laptop
-            font-size: 1.6rem
-
-        @include mix.big-screen
-            font-size: 1.8rem
-
-    &__stars
-        font-size: 1.4rem
-
-        @include mix.big-screen
-            font-size: 1.8rem
-
-    &__time
-        font-size: 1rem
-
-        @include mix.big-screen
-            font-size: 1.4rem
-
-    &__text
-        font-size: 1.4rem
-        line-height: 120%
-
-        @include mix.laptop
-            font-size: 1.6rem
-
-        @include mix.big-screen
-            font-size: 1.8rem
-
-    &__city
-        color: vars.$color-darkgrey
-        font-size: 1rem
-
-        @include mix.big-screen
-            font-size: 1.4rem
+        @include mix.mobile
+            margin-bottom: 2.4rem
 
     &__avatar
-        width: 3rem
-        height: 3rem
-        margin-right: 1rem
-        border-radius: 50%
+        flex-shrink: 0
+        width: 5.6rem
+        height: 5.6rem
+        border-radius: vars.$radius-sm
         object-fit: cover
 
         @include mix.big-screen
-            width: 6rem
-            height: 6rem
-            margin-right: 3rem
+            width: 6.4rem
+            height: 6.4rem
 
-    &__slider
-        width: 100%
+        &--letter
+            @include mix.flex-center
+            background: #D5D8DC
+            color: vars.$color-white
+            font-size: 2rem
+            font-weight: 500
+
+    &__name
+        font-size: 1.8rem
+        font-weight: 600
+        line-height: 1.3
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__time
+        color: #A0A0A0
+        font-size: 1.6rem
+
+        @include mix.big-screen
+            font-size: 1.8rem
+
+    &__text
+        font-size: 2rem
+        line-height: 1.35
+
+        @include mix.laptop
+            font-size: 1.8rem
+
+        @include mix.mobile
+            font-size: 1.6rem
+
+        @include mix.big-screen
+            font-size: 2.2rem
+
+    &__read-more
+        align-self: flex-start
+        margin-top: .8rem
+        color: vars.$color-primary
+        font-size: 1.6rem
+        font-weight: 600
+
+    &__rating
+        display: flex
+        align-items: center
+        gap: .8rem
+        margin-top: auto
+        padding-top: 2.4rem
+
+    &__stars
+        color: #FFC107
+        font-size: 1.6rem
+        letter-spacing: .2rem
+
+    &__rating-value
+        color: vars.$color-darkgrey
+        font-size: 1.8rem
+
+    // ---------- Controls ----------
 
     &__controls
         display: flex
         align-items: center
-        gap: 5.5rem
-        margin-top: 3.8rem
-
-        @include mix.tablet
-            gap: 4rem
-            margin-top: 3rem
+        gap: 10rem
+        margin-top: 3.2rem
 
         @include mix.mobile
-            gap: 3rem
+            gap: 4rem
             margin-top: 2.4rem
 
     &__arrow
-        display: flex
-        align-items: center
-        justify-content: center
+        @include mix.flex-center
         width: 6rem
-        padding: 0
-        border: 0
-        background: transparent
-        cursor: pointer
-        appearance: none
-        -webkit-appearance: none
         transition: transform .2s ease
 
         img
-            display: block
-            width: 6rem
+            width: 100%
             height: auto
             pointer-events: none
-            @include mix.mobile
-                width: 5.2rem
 
         &:hover:not(:disabled)
             transform: translateX(.3rem)
 
-        &:active:not(:disabled)
-            transform: translateX(.1rem)
-
-        &:focus-visible
-            border-radius: .4rem
-            outline-offset: .4rem
-
         &:disabled
             cursor: default
 
-        @include mix.mobile
-            width: 5.2rem
-    
-    &__arrow--prev
-        &:hover:not(:disabled)
+        &:focus-visible
+            outline: .2rem solid vars.$color-primary
+            outline-offset: .4rem
+            border-radius: .4rem
+
+        &--prev:hover:not(:disabled)
             transform: translateX(-.3rem)
-
-        &:active:not(:disabled)
-            transform: translateX(-.1rem)
-
-    &__read-more
-        font-size: 1.4rem
-        color: vars.$color-primary
-        font-weight: 600
-
-    &__stars
-        color: #FFD70F
-        letter-spacing: .4rem

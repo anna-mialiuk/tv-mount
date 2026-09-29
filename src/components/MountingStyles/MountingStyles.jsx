@@ -65,13 +65,23 @@ function MountingStyles({ onQuizOpen }) {
               {activeStyle.title}
             </h3>
 
-            <div className="mounting-styles__description">
-              {activeStyle.paragraphs.map((paragraph) => (
-                <p className="mounting-styles__paragraph p" key={paragraph}>
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+            {activeStyle.list ? (
+              <ul className="mounting-styles__list">
+                {activeStyle.list.map((item) => (
+                  <li className="mounting-styles__list-item" key={item}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="mounting-styles__description">
+                {activeStyle.paragraphs.map((paragraph) => (
+                  <p className="mounting-styles__paragraph p" key={paragraph}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            )}
 
             <Button
               variant="primary"

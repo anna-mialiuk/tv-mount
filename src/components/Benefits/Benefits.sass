@@ -1,23 +1,131 @@
+@use '../../styles/variables' as vars
 @use '../../styles/mixins' as mix
 
 .benefits
-    @include mix.section(3.2rem)
+    @include mix.section(6rem)
+
     @include mix.laptop
-        @include mix.section(2.4rem)
+        @include mix.section(4rem)
+
     @include mix.big-screen
-        @include mix.section(5rem)
+        @include mix.section(8rem)
 
     &__title
-        margin-bottom: 5.6rem
-        @include mix.laptop
-            margin-bottom: 3rem
+        margin-bottom: 4.8rem
 
-    &__text
-        margin-bottom: none
-
-    &__cards
-        @include mix.grid(4)
         @include mix.laptop
-            @include mix.grid(2)
-        @include mix.mobile-sm
-            @include mix.grid(1)
+            margin-bottom: 3.2rem
+
+        @include mix.mobile
+            margin-bottom: 2.4rem
+
+    &__wrapper
+        display: flex
+        align-items: stretch
+        gap: 8rem
+
+        @include mix.laptop-big
+            gap: 5rem
+
+        @include mix.laptop-s
+            flex-direction: column
+            gap: 3.2rem
+
+    &__picture
+        flex: 0 0 44%
+        align-self: flex-start
+        aspect-ratio: 1050 / 1420
+        border-radius: 1.6rem
+        overflow: hidden
+        box-shadow: 0 1.2rem 3.2rem rgba(vars.$color-black, .12)
+
+        @include mix.laptop-s
+            flex-basis: auto
+            aspect-ratio: 4 / 3
+
+        @include mix.mobile
+            aspect-ratio: 3 / 4
+
+    &__img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        object-position: center 40%
+
+    &__content
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        flex: 1
+
+    &__list
+        display: flex
+        flex-direction: column
+        gap: 3.2rem
+        margin-bottom: 4.8rem
+
+        @include mix.mobile
+            gap: 2.4rem
+            margin-bottom: 3.2rem
+
+    &__item
+        display: flex
+        align-items: flex-start
+        gap: 2.4rem
+
+        @include mix.mobile
+            gap: 1.6rem
+
+    &__icon
+        flex-shrink: 0
+        width: 4.8rem
+        height: 4.8rem
+
+        @include mix.big-screen
+            width: 6.4rem
+            height: 6.4rem
+
+        @include mix.mobile
+            width: 4.4rem
+            height: 4.4rem
+
+    &__item-title
+        margin-bottom: 1rem
+        font-size: 2.2rem
+        font-weight: 500
+        line-height: 1.25
+
+        @include mix.big-screen
+            font-size: 2.6rem
+
+        @include mix.mobile
+            margin-bottom: .6rem
+            font-size: 1.8rem
+
+    &__item-text
+        max-width: 60rem
+        color: vars.$color-darkgrey
+        font-size: 1.8rem
+        line-height: 1.4
+
+        @include mix.big-screen
+            font-size: 2rem
+
+        @include mix.mobile
+            font-size: 1.6rem
+
+    &__button
+        min-width: 32rem
+        margin-top: auto
+        padding: 2rem 4rem
+        font-size: 2.2rem
+        font-weight: 600
+
+
+        @include mix.laptop-s
+            margin-top: 0
+
+        @include mix.mobile
+            width: 100%
+            min-width: 0
+            font-size: 2rem
