@@ -1,4 +1,8 @@
-const nextSteps = ["Same-day installation", "2-year warranty", "Clear pricing"];
+const nextSteps = [
+  "We call you back to confirm the details.",
+  "A professional technician is assigned to your request.",
+  "You receive top-quality service tailored to your needs.",
+];
 
 function QuizSuccess({ onClose }) {
   return (
@@ -6,7 +10,8 @@ function QuizSuccess({ onClose }) {
       <div className="quote-quiz__success-icon-wrapper">
         <img
           src="/success-icon.png"
-          alt="success"
+          alt=""
+          aria-hidden="true"
           loading="lazy"
           className="quote-quiz__success-icon"
         />
@@ -15,38 +20,39 @@ function QuizSuccess({ onClose }) {
       <h2 className="quote-quiz__thank-h">THANK YOU!</h2>
       <h3 className="quote-quiz__thank-sub">Your request has been received.</h3>
       <p className="quote-quiz__thank-p">
-        We’ll call you within 1 hour to confirm your booking and provide the
-        exact price.
+        We’ll call you within{" "}
+        <span className="quote-quiz__thank-accent">15 minutes</span> to confirm
+        your booking and provide the exact price.
       </p>
 
       <div className="quote-quiz__next-steps">
         <h4 className="quote-quiz__next-steps-h">What happens next:</h4>
 
-        <ul className="quote-quiz__next-steps-wrapper">
-          {nextSteps.map((item) => (
+        <ol className="quote-quiz__next-steps-wrapper">
+          {nextSteps.map((item, index) => (
             <li className="quote-quiz__li" key={item}>
-              <img
-                src="/check.svg"
-                alt="icon"
-                loading="lazy"
-                className="quote-quiz__check-icon"
-              />
+              <span className="quote-quiz__li-number" aria-hidden="true">
+                {index + 1}
+              </span>
               <p className="quote-quiz__next-steps-p">{item}</p>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
 
       <button
         type="button"
-        className="quote-quiz__main-button"
+        className="quote-quiz__main-button quote-quiz__main-button--full quote-quiz__success-button"
         onClick={onClose}
       >
         Back to Homepage
       </button>
 
       <p className="quote-quiz__questions">
-        Questions? Call us: (404) 793-8283
+        Questions? Call us:{" "}
+        <a href="tel:+14047938283" className="quote-quiz__questions-link">
+          (404) 793-8283
+        </a>
       </p>
     </div>
   );
