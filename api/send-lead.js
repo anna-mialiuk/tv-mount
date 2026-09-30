@@ -1,3 +1,5 @@
+import { leadStatusKeyboard } from "./lead-statuses.js";
+
 function formatAnswers(answers) {
   if (!answers || typeof answers !== "object") return "-";
 
@@ -62,6 +64,7 @@ export default async function handler(request, response) {
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
+          reply_markup: leadStatusKeyboard(),
         }),
       },
     );

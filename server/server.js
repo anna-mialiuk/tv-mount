@@ -1,8 +1,14 @@
 // Small Node server for the VPS: runs the same handler as the Vercel
-// function in /api/send-lead.js, so the code stays in one place.
+// functions in /api (send-lead, telegram-webhook), so the code stays in one place.
 // No dependencies — only built-in Node modules.
 import http from "node:http";
-import handler from "../api/send-lead.js";
+import sendLead from "../api/send-lead.js";
+import telegramWebhook from "../api/telegram-webhook.js";
+
+const routes = {
+  "/api/send-lead": sendLead,
+  "/api/telegram-webhook": telegramWebhook,
+};
 
 const PORT = Number(process.env.PORT) || 3001;
 const MAX_BODY_SIZE = 20 * 1024; // 20 KB is plenty for a lead form
@@ -50,7 +56,9 @@ function readJsonBody(request) {
 const server = http.createServer(async (request, response) => {
   withHelpers(response);
 
-  if (request.url !== "/api/send-lead") {
+  const route = routes[request.url.split("?")[0]];
+
+  if (!route) {
     return response.status(404).json({ message: "Not found" });
   }
 
@@ -60,7 +68,7 @@ const server = http.createServer(async (request, response) => {
     return response.status(400).json({ message: "Invalid request body" });
   }
 
-  return handler(request, response);
+  return route(request, response);
 });
 
 server.listen(PORT, "127.0.0.1", () => {
