@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import sendLead from "../../utils/sendLead";
+import { trackEvent } from "../../utils/analytics";
 import "./CallbackWidget.sass";
 
 const AUTO_OPEN_DELAY = 15000; // 15 s on the site -> friendly prompt
@@ -62,6 +63,7 @@ function CallbackWidget({ isQuizOpen = false }) {
     const timer = setTimeout(
       () => {
         writeFlag(PROMPT_SHOWN_KEY);
+        trackEvent("callback_open", { trigger: "auto_prompt" });
         setMode("prompt");
         setIsOpen(true);
       },
@@ -87,6 +89,7 @@ function CallbackWidget({ isQuizOpen = false }) {
     // a manual open counts as "seen" — no auto prompt after that
     writeFlag(PROMPT_SHOWN_KEY);
     setMode("manual");
+    if (!isOpen) trackEvent("callback_open", { trigger: "button" });
     setIsOpen((prev) => !prev);
   };
 
@@ -116,9 +119,16 @@ function CallbackWidget({ isQuizOpen = false }) {
         company,
       });
 
+      trackEvent("generate_lead", {
+        form_name: mode === "prompt" ? "callback_prompt" : "callback_widget",
+      });
+
       writeFlag(LEAD_SENT_KEY);
       setIsSent(true);
     } catch (submitError) {
+      trackEvent("lead_error", {
+        form_name: mode === "prompt" ? "callback_prompt" : "callback_widget",
+      });
       console.error("Callback widget submit error:", submitError);
       setError("Something went wrong. Please call us: (404) 793-8283");
     } finally {

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import sendLead from "../../utils/sendLead";
+import { trackEvent } from "../../utils/analytics";
 import Modal from "../Modal/Modal";
 import steps from "../../data/quoteQuiz";
 import QuizHeader from "./QuizHeader";
@@ -33,6 +34,11 @@ function QuoteQuiz({ isOpen, onClose }) {
   };
 
   const handleClose = () => {
+    // closed before sending = drop-off, keep the step to see where people leave
+    if (!isSuccess) {
+      trackEvent("quiz_abandon", { step_number: step + 1 });
+    }
+
     resetQuiz();
     onClose();
   };
@@ -50,10 +56,22 @@ function QuoteQuiz({ isOpen, onClose }) {
     setAnswers((prevAnswers) => ({ ...prevAnswers, ...changes }));
   };
 
-  const handleSizeNext = () => setStep(1);
+  const handleSizeNext = () => {
+    trackEvent("quiz_step", {
+      step_number: 1,
+      step_name: "tv_size",
+      tv_size: answers.tvSize,
+    });
+    setStep(1);
+  };
 
   const handleNext = () => {
     if (!currentStep) return;
+
+    trackEvent("quiz_step", {
+      step_number: step + 1,
+      step_name: currentStep.name,
+    });
 
     if (step < steps.length) {
       setStep(step + 1);
@@ -94,8 +112,18 @@ function QuoteQuiz({ isOpen, onClose }) {
         answers,
       });
 
+      trackEvent("generate_lead", {
+        form_name: "quote_quiz",
+        tv_size: answers.tvSize,
+        wall_type: answers.wallType,
+        services: Array.isArray(answers.services)
+          ? answers.services.join(", ")
+          : answers.services || "none",
+      });
+
       setIsSuccess(true);
     } catch (error) {
+      trackEvent("lead_error", { form_name: "quote_quiz" });
       console.error("Quote quiz submit error:", error);
       alert("Failed to send request. Please try again.");
     }
