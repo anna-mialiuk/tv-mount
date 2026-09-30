@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function useProjectGallery(projects) {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [rawIndex, setActiveIndex] = useState(null);
+
+  // if the list got shorter (e.g. desktop -> mobile set), fall back to the
+  // first photo — calculated here instead of fixing state in an effect
+  const activeIndex =
+    rawIndex !== null && rawIndex >= projects.length ? 0 : rawIndex;
 
   const isGalleryOpen = activeIndex !== null;
   const activeImage = isGalleryOpen ? projects[activeIndex] : null;
@@ -29,12 +34,6 @@ function useProjectGallery(projects) {
       return current === projects.length - 1 ? 0 : current + 1;
     });
   };
-
-  useEffect(() => {
-    if (activeIndex !== null && activeIndex >= projects.length) {
-      setActiveIndex(0);
-    }
-  }, [activeIndex, projects.length]);
 
   return {
     activeIndex,
