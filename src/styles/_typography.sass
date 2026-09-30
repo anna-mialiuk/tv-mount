@@ -1,10 +1,16 @@
 @use './variables' as vars
 @use './mixins' as mix
 
-h1 
+// all headings: dark grey, sections on dark backgrounds set white themselves
+h1,
+h2,
+h3,
+h4
+  color: vars.$color-heading
+
+h1
   font-size: 4rem
   line-height: 140%
-  color: vars.$color-white
   @include mix.big-screen
     font-size: 6rem
   @include mix.mobile
@@ -35,7 +41,6 @@ h2
 
   h1
     margin-bottom: 3rem
-    color: vars.$color-black
 
   h2
     margin-top: 3rem
