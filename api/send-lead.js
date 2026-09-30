@@ -15,7 +15,13 @@ export default async function handler(request, response) {
   }
 
   try {
-    const { formName, name, phone, city, answers } = request.body || {};
+    const { formName, name, phone, city, answers, company } =
+      request.body || {};
+
+    // honeypot: real visitors never fill the hidden "company" field
+    if (company) {
+      return response.status(200).json({ message: "Lead sent successfully" });
+    }
 
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;

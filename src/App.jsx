@@ -8,6 +8,7 @@ import ScrollToHash from "./components/ScrollToHash";
 import ScrollToTop from "./components/ScrollToTop";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import SEO from "./components/SEO/SEO";
+import CallbackWidget from "./components/CallbackWidget/CallbackWidget";
 import seo from "./data/seo";
 
 const QuizPromo = lazy(() => import("./components/QuizPromo/QuizPromo"));
@@ -98,6 +99,8 @@ function App() {
       </ErrorBoundary>
 
       <Footer />
+
+      <CallbackWidget isQuizOpen={isQuizOpen} />
 
       {isQuizOpen && (
         <Suspense fallback={null}>
