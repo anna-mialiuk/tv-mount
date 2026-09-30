@@ -24,7 +24,7 @@ function VideoReviews() {
 
   const handleEnded = (id) => {
     const video = videoRefs.current[id];
-    // back to the first frame, ready to be played again
+    // back to the cover, ready to be played again
     if (video) video.load();
     setPlayingId(null);
   };
@@ -45,9 +45,11 @@ function VideoReviews() {
                     videoRefs.current[review.id] = node;
                   }}
                   className="video-reviews__video"
-                  // #t=0.1 — show the first frame as a cover (needed for iPhone)
-                  src={`${review.video}#t=0.1`}
-                  preload="metadata"
+                  src={review.video}
+                  // a small frame from the video: shows at once, even on slow internet;
+                  // the video itself loads only after Play
+                  poster={review.poster}
+                  preload="none"
                   playsInline
                   controls={isPlaying}
                   onPause={() => {
