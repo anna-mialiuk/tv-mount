@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
+import { SITE_URL } from "../../data/seo";
 
 const DEFAULT_TITLE = "TV Mount Company | Professional TV Installation";
 const DEFAULT_DESCRIPTION =
   "Professional TV mounting and installation services. Fast service, clean setup, hidden wires, and reliable technicians.";
-const DEFAULT_URL = "https://tvmountcompany.com/";
-const DEFAULT_IMAGE = "https://tvmountcompany.com/hero.jpg";
+const DEFAULT_URL = `${SITE_URL}/`;
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 function SEO({
   title = DEFAULT_TITLE,

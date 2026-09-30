@@ -3,10 +3,20 @@ import { Link, useParams } from "react-router-dom";
 
 import { blogArticles } from "../../data/blog";
 import SEO from "../../components/SEO/SEO";
+import { SITE_URL } from "../../data/seo";
 
 import "./BlogArticle.sass";
 
 const articleModules = import.meta.glob("../../content/blog/*/index.jsx");
+
+// One lazy component per article, created once when the module loads —
+// not during render, so React doesn't recreate it on every re-render.
+const articleComponents = Object.fromEntries(
+  Object.entries(articleModules).map(([path, loader]) => {
+    const slug = path.split("/").at(-2);
+    return [slug, lazy(loader)];
+  }),
+);
 
 function BlogArticle() {
   const { slug } = useParams();
@@ -15,20 +25,7 @@ function BlogArticle() {
     return blogArticles.find((item) => item.slug === slug);
   }, [slug]);
 
-  const ArticleContent = useMemo(() => {
-    if (!slug) {
-      return null;
-    }
-
-    const articlePath = `../../content/blog/${slug}/index.jsx`;
-    const articleLoader = articleModules[articlePath];
-
-    if (!articleLoader) {
-      return null;
-    }
-
-    return lazy(articleLoader);
-  }, [slug]);
+  const ArticleContent = articleComponents[slug];
 
   if (!article || !ArticleContent) {
     return (
@@ -53,6 +50,7 @@ function BlogArticle() {
       <SEO
         title={`${article.title} | TV Mount Company`}
         description={article.description}
+        url={`${SITE_URL}/blog/${article.slug}`}
       />
 
       <main className="blog-article">
