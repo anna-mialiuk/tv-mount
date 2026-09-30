@@ -9,6 +9,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import SEO from "./components/SEO/SEO";
 import CallbackWidget from "./components/CallbackWidget/CallbackWidget";
+import { trackEvent } from "./utils/analytics";
 import seo from "./data/seo";
 
 const QuizPromo = lazy(() => import("./components/QuizPromo/QuizPromo"));
@@ -74,7 +75,10 @@ function HomePage({ onQuizOpen }) {
 function App() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
 
-  const openQuiz = () => setIsQuizOpen(true);
+  const openQuiz = () => {
+    trackEvent("quiz_start");
+    setIsQuizOpen(true);
+  };
   const closeQuiz = () => setIsQuizOpen(false);
 
   return (
