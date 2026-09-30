@@ -39,7 +39,7 @@ function Footer() {
             <a className="footer__a p" href="/#contact">
               Contact
             </a>
-            <a className="footer__a p" href="/#blog">
+            <a className="footer__a p" href="/blog">
               Blog
             </a>
           </nav>
