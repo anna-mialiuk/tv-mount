@@ -13,6 +13,9 @@ import { trackEvent } from "./utils/analytics";
 import seo from "./data/seo";
 
 const QuizPromo = lazy(() => import("./components/QuizPromo/QuizPromo"));
+const VideoReviews = lazy(
+  () => import("./components/VideoReviews/VideoReviews"),
+);
 
 const Benefits = lazy(() => import("./components/Benefits/Benefits"));
 const BundleDiscount = lazy(
@@ -55,6 +58,7 @@ function HomePage({ onQuizOpen }) {
 
       <Suspense fallback={null}>
         <QuizPromo onQuizOpen={onQuizOpen} />
+        <VideoReviews />
         <BundleDiscount onQuizOpen={onQuizOpen} />
         <PopularAddons onQuizOpen={onQuizOpen} />
         <MountingStyles onQuizOpen={onQuizOpen} />
