@@ -1,7 +1,12 @@
 import Button from "../Button/Button";
+import { QUIZ_DISCOUNT } from "../../data/quoteQuiz";
 import "./BookingCTA.sass";
 
-const perks = ["Free consultation", "$50 discount", "2-year warranty"];
+const perks = [
+  "Free consultation",
+  `$${QUIZ_DISCOUNT} discount`,
+  "2-year warranty",
+];
 
 function BookingCTA({ onQuizOpen }) {
   return (

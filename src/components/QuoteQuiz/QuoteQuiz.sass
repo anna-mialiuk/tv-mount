@@ -590,6 +590,27 @@
             span
                 font-size: 2rem
 
+    &__honeypot
+        position: absolute
+        left: -9999px
+        width: 1px
+        height: 1px
+        opacity: 0
+
+    &__form-error
+        margin: -.8rem 0 1.6rem
+        color: #D32F2F
+        font-size: 1.4rem
+        line-height: 1.35
+
+        a
+            color: inherit
+            font-weight: 600
+            white-space: nowrap
+
+    &__input[aria-invalid="true"]
+        border-color: #D32F2F
+
     &__banner
         position: relative
         margin-bottom: 2rem

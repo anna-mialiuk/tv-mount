@@ -78,6 +78,9 @@ function QuizContactForm({
   nameInputRef,
   isPopupOpen,
   onClaimDiscount,
+  submitError,
+  isSubmitting,
+  onFieldChange,
 }) {
   const selection = [
     answers.tvSize && `${answers.tvSize} TV`,
@@ -87,7 +90,22 @@ function QuizContactForm({
 
   return (
     <>
-      <form className="quote-quiz__body" onSubmit={onSubmit}>
+      <form
+        className="quote-quiz__body"
+        onSubmit={onSubmit}
+        onChange={onFieldChange}
+        noValidate
+      >
+        {/* honeypot for bots — hidden from people and screen readers */}
+        <input
+          type="text"
+          name="company"
+          className="quote-quiz__honeypot"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+
         <p className="quote-quiz__step">
           Step {totalSteps} of {totalSteps}
         </p>
@@ -126,8 +144,23 @@ function QuizContactForm({
           className="quote-quiz__input"
           placeholder="(404) 000-0000"
           autoComplete="tel"
+          inputMode="tel"
+          aria-invalid={Boolean(submitError && submitError !== "network")}
           required
         />
+
+        {submitError && (
+          <p className="quote-quiz__form-error" role="alert">
+            {submitError === "network" ? (
+              <>
+                We couldn’t send your request. Please try again or call us:{" "}
+                <a href="tel:+14047938283">(404) 793-8283</a>
+              </>
+            ) : (
+              submitError
+            )}
+          </p>
+        )}
 
         <div className="quote-quiz__banner quote-quiz__banner--discount">
           You qualify for ${QUIZ_DISCOUNT} off + free wire concealment
@@ -136,8 +169,11 @@ function QuizContactForm({
         <button
           type="submit"
           className="quote-quiz__main-button quote-quiz__main-button--full quote-quiz__main-button--arrow"
+          disabled={isSubmitting}
         >
-          Get My Free Quote & Claim ${QUIZ_DISCOUNT} Discount
+          {isSubmitting
+            ? "Sending..."
+            : `Get My Free Quote & Claim $${QUIZ_DISCOUNT} Discount`}
           <img src="/button-arrow.svg" alt="" aria-hidden="true" />
         </button>
       </form>

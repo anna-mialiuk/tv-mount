@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Button from "../Button/Button";
+import { QUIZ_DISCOUNT } from "../../data/quoteQuiz";
 import { getTimeLeft } from "../../utils/getTimeLeft";
 import "./LimitedOffer.sass";
 
@@ -32,8 +33,8 @@ function LimitedOffer({ onQuizOpen }) {
             loading="lazy"
           />
           <span>
-            Add more services to reach $1,000 and unlock your $33 discount{" "}
-            <strong>+ free wire concealment!</strong>
+            Add more services to reach $1,000 and unlock your ${QUIZ_DISCOUNT}{" "}
+            discount <strong>+ free wire concealment!</strong>
           </span>
         </p>
 

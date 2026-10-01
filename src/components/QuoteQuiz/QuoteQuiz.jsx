@@ -14,6 +14,7 @@ import "./QuoteQuiz.sass";
 // step 0 — TV size, then option steps, then the contact form
 const FORM_STEP_INDEX = steps.length + 1;
 const TOTAL_STEPS = steps.length + 2;
+const MIN_PHONE_DIGITS = 10;
 const DEFAULT_ANSWERS = { tvQuantity: "1 TV" };
 
 function QuoteQuiz({ isOpen, onClose }) {
@@ -21,6 +22,8 @@ function QuoteQuiz({ isOpen, onClose }) {
   const [answers, setAnswers] = useState(DEFAULT_ANSWERS);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDiscountPopupOpen, setIsDiscountPopupOpen] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const nameInputRef = useRef(null);
 
   const currentStep = step > 0 ? steps[step - 1] : null;
@@ -31,6 +34,8 @@ function QuoteQuiz({ isOpen, onClose }) {
     setAnswers(DEFAULT_ANSWERS);
     setIsSuccess(false);
     setIsDiscountPopupOpen(false);
+    setSubmitError("");
+    setIsSubmitting(false);
   };
 
   const handleClose = () => {
@@ -95,12 +100,27 @@ function QuoteQuiz({ isOpen, onClose }) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+    const phone = String(formData.get("phone") || "");
+
+    // honeypot: real visitors never see or fill the hidden "company" field
+    if (formData.get("company")) {
+      setIsSuccess(true);
+      return;
+    }
+
+    if (phone.replace(/\D/g, "").length < MIN_PHONE_DIGITS) {
+      setSubmitError("Please enter a valid phone number (at least 10 digits).");
+      return;
+    }
+
+    setSubmitError("");
+    setIsSubmitting(true);
 
     try {
       await sendLead({
         formName: "Quote Quiz",
         name: formData.get("name"),
-        phone: formData.get("phone"),
+        phone,
         tvSize: answers.tvSize,
         tvQuantity: answers.tvQuantity,
         technicians: answers.technicians,
@@ -125,7 +145,9 @@ function QuoteQuiz({ isOpen, onClose }) {
     } catch (error) {
       trackEvent("lead_error", { form_name: "quote_quiz" });
       console.error("Quote quiz submit error:", error);
-      alert("Failed to send request. Please try again.");
+      setSubmitError("network");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -149,6 +171,9 @@ function QuoteQuiz({ isOpen, onClose }) {
           nameInputRef={nameInputRef}
           isPopupOpen={isDiscountPopupOpen}
           onClaimDiscount={handleClaimDiscount}
+          submitError={submitError}
+          isSubmitting={isSubmitting}
+          onFieldChange={() => submitError && setSubmitError("")}
         />
       ) : step === 0 ? (
         <QuizSizeStep
