@@ -38,7 +38,7 @@ const texts = {
   },
   prompt: {
     title: "Need help choosing? 👋",
-    text: "Our technician can call you in 15 minutes, answer your questions and give you an exact price. Free, no obligation.",
+    text: "Let us call you back to answer all your questions and provide the precise estimate.",
   },
 };
 

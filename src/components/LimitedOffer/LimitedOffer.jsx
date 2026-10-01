@@ -33,7 +33,7 @@ function LimitedOffer({ onQuizOpen }) {
             loading="lazy"
           />
           <span>
-            Add more services to reach $1,000 and unlock your ${QUIZ_DISCOUNT}{" "}
+            Add more services to reach $300 and unlock your ${QUIZ_DISCOUNT}{" "}
             discount <strong>+ free wire concealment!</strong>
           </span>
         </p>
