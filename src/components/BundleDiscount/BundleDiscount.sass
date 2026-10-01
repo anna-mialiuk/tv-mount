@@ -1,55 +1,62 @@
 @use '../../styles/variables' as vars
 @use '../../styles/mixins' as mix
 
+// The whole picture (TVs with -20% / -30%) is the background.
+// Desktop: text on the empty left part. Phones: tall picture, text on its top.
 .bundle-discount
     position: relative
-    min-height: 49rem
+    display: flex
+    align-items: center
+    min-height: 52rem
     overflow: hidden
     border-top: .1rem solid vars.$color-sublightgrey
     border-bottom: .1rem solid vars.$color-sublightgrey
-    background: vars.$color-white url('/discounts/bundle-bg.webp') center / cover no-repeat
-    
-    @include mix.desktop
-        min-height: 46rem
+    background: vars.$color-white url('/discounts/bundle-sale.webp') right center / cover no-repeat
+
+    @include mix.big-screen
+        min-height: 64rem
 
     @include mix.laptop
         min-height: 44rem
-    
+
+    // tablets: text on top, the same wide picture below it, zoomed in on
+    // the TVs (they sit in the right half of the picture)
     @include mix.laptop-s
-        display: flex
-        flex-direction: column-reverse
-        min-height: auto
+        display: block
+        min-height: 0
+        padding-bottom: 64%
+        background-size: 210% auto
+        background-position: right bottom
+
+    // phones: tall picture. Text sits on its light top part; padding-bottom
+    // (in % of the width) keeps room for the TVs so the text never covers them
+    @include mix.mobile
+        display: block
+        min-height: 0
+        padding-bottom: 92%
+        background-image: url('/discounts/bundle-sale-mobile.webp')
+        background-position: center bottom
+        background-size: 100% auto
 
     &__container
         position: relative
-        z-index: 2
-        min-height: inherit
-        display: flex
-        align-items: center
-
-        @include mix.tablet
-            min-height: auto
+        z-index: 1
 
     &__info
-        width: 50%
-        padding: 7.5rem 2rem 6.5rem 0
-
-        @include mix.desktop
-            width: 52%
-
-        @include mix.laptop-big
-            width: 54%
+        width: 46%
+        padding: 7rem 2rem 7rem 0
 
         @include mix.laptop
-            width: 56%
-            padding: 6rem 2rem 5.5rem 0
+            width: 50%
+            padding: 5rem 2rem 5rem 0
 
         @include mix.laptop-s
             width: 100%
-            padding: 4.5rem 0
+            max-width: 62rem
+            padding: 5rem 0 2rem
 
         @include mix.mobile
-            padding: 3.2rem 0
+            padding: 3.2rem 0 1.6rem
 
     &__label
         display: flex
@@ -57,8 +64,9 @@
         gap: 1rem
         margin-bottom: 1.7rem
         color: #292929
-        font-size: 1.3rem
-        font-weight: 600
+        font-size: 1.4rem
+        font-weight: 400
+        letter-spacing: .03em
         line-height: 1.2
         text-transform: uppercase
 
@@ -122,29 +130,3 @@
 
         @include mix.mobile
             margin-bottom: 2.6rem
-            
-    &__visual
-        position: absolute
-        z-index: 1
-        top: 0
-        right: 0
-        bottom: 0
-        width: 50vw
-        pointer-events: none
-
-        @include mix.laptop-s
-            position: static
-            width: 100%
-            border-bottom: .1rem solid vars.$color-sublightgrey
-
-    &__image
-        position: absolute
-        top: 0
-        right: 0
-        display: block
-        width: auto
-        height: 100%
-        max-width: none
-        @include mix.laptop-s
-            position: static
-            width: 100%
